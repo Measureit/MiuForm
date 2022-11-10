@@ -1,0 +1,33 @@
+{
+	"CHECKIN": {
+		"BACK_TO_CHECKLIST": "Back to Checklist",
+		"COULD_NOT_CHECK_FOR_DEVICES": "Could not check for devices.",
+		"COULD_NOT_CHECK_FOR_DEVICES_HINT": "This may be caused by some security error.",
+		"DENIED_CAMERA_PERMISSION": "You denied the camera permission, we can't scan anything without it. 😪",
+		"DESCRIPTION": "Please point your camera on QR code.",
+		"DEVICE_WITHOUT_CAMERA": "If your device does not has cameras, no permissions will be asked.",
+		"ENABLE_TORCH": "Enable torch",
+		"ENABLE_TRY_HARDER": "Enable Try-harder",
+		"NO_DEVICES_WERE_FOUND": "No devices were found.",
+		"NO_DEVICES_WERE_FOUND_HINT": "I believe your device has no media devices attached to.",
+		"NO_DEVICE_SELECTED": "No device selected",
+		"TITLE": "Checkin",
+		"WAITING_FOR_PERMISSIONS": "Waiting for permissions."
+	},
+	"CHECKPOINTS": {
+		"TITLE": "Checkpoints ({{ done }}/{{ count }})"
+	},
+	"HEADER": {
+		"ABOUT": "About",
+		"APP_NAME": "MiuForm",
+		"ENGLISH": "English",
+		"GERMAN": "German",
+		"LANGUAGES": "Languages",
+		"POLISH": "Polish",
+		"PRIVATE_POLICY": "Private Policy"
+	},
+	"LEFT_MENU": {
+		"REPORTS": "Reports",
+		"CONFIGURATION": "Configuration"
+	}
+}

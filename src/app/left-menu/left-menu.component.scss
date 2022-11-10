@@ -1,0 +1,19 @@
+@use '../../variables' as v;
+.sidenav_container {
+  min-width: 60px;
+  height: calc(100vh - 200px);
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+  padding-right:5px;
+}
+
+mat-icon.menu-item-icon{
+  padding: 2px;
+  color: v.$base-color;
+  align-self: center;
+}
