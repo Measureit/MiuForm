@@ -1,0 +1,95 @@
+{
+  "configVersion": 1,
+  "timestamp": 1668117467950,
+  "index": "https://measureit.github.io/MiuForm/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "https://measureit.github.io/MiuForm/546.9ba1344d91f3bc68.js",
+        "https://measureit.github.io/MiuForm/661.3283d4805902493f.js",
+        "https://measureit.github.io/MiuForm/favicon.ico",
+        "https://measureit.github.io/MiuForm/index.html",
+        "https://measureit.github.io/MiuForm/main.f4864d0d442ae144.js",
+        "https://measureit.github.io/MiuForm/manifest.webmanifest",
+        "https://measureit.github.io/MiuForm/polyfills.ebae14c68952fa7c.js",
+        "https://measureit.github.io/MiuForm/runtime.734600f997fcd614.js",
+        "https://measureit.github.io/MiuForm/styles.122b0099322444bd.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "https://measureit.github.io/MiuForm/assets/config/config.docker.json",
+        "https://measureit.github.io/MiuForm/assets/config/config.json",
+        "https://measureit.github.io/MiuForm/assets/i18n/de.json",
+        "https://measureit.github.io/MiuForm/assets/i18n/en.json",
+        "https://measureit.github.io/MiuForm/assets/i18n/pl.json",
+        "https://measureit.github.io/MiuForm/assets/icons/icon-128x128.png",
+        "https://measureit.github.io/MiuForm/assets/icons/icon-144x144.png",
+        "https://measureit.github.io/MiuForm/assets/icons/icon-152x152.png",
+        "https://measureit.github.io/MiuForm/assets/icons/icon-192x192.png",
+        "https://measureit.github.io/MiuForm/assets/icons/icon-384x384.png",
+        "https://measureit.github.io/MiuForm/assets/icons/icon-512x512.png",
+        "https://measureit.github.io/MiuForm/assets/icons/icon-72x72.png",
+        "https://measureit.github.io/MiuForm/assets/icons/icon-96x96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "https://measureit.github.io/MiuForm/546.9ba1344d91f3bc68.js": "2d98e9b2b6fc523c29ea5165b85cc9dc5a55e460",
+    "https://measureit.github.io/MiuForm/661.3283d4805902493f.js": "1c31d4681004274e509819a6ad185e2703cb109e",
+    "https://measureit.github.io/MiuForm/assets/config/config.docker.json": "e9165bbd75264d476bfc5034f1b998cd3940e35f",
+    "https://measureit.github.io/MiuForm/assets/config/config.json": "b561be32e7afc7938d98ffa1cfe23861c485d55a",
+    "https://measureit.github.io/MiuForm/assets/i18n/de.json": "d869d585a4d3c93de17598bdb58d86831251ae6f",
+    "https://measureit.github.io/MiuForm/assets/i18n/en.json": "d869d585a4d3c93de17598bdb58d86831251ae6f",
+    "https://measureit.github.io/MiuForm/assets/i18n/pl.json": "71661ccfa45e2fd396a30b4b94109ce5b4643ae4",
+    "https://measureit.github.io/MiuForm/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "https://measureit.github.io/MiuForm/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "https://measureit.github.io/MiuForm/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "https://measureit.github.io/MiuForm/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "https://measureit.github.io/MiuForm/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "https://measureit.github.io/MiuForm/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "https://measureit.github.io/MiuForm/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "https://measureit.github.io/MiuForm/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "https://measureit.github.io/MiuForm/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "https://measureit.github.io/MiuForm/index.html": "1303769e2bfb7a1ec5ad31dceef65890f5657590",
+    "https://measureit.github.io/MiuForm/main.f4864d0d442ae144.js": "c329d85863d08dfe9f9b7490e578b14d011e04ba",
+    "https://measureit.github.io/MiuForm/manifest.webmanifest": "d37f7521ddd03cae3def4f3769a243b6b8f08a15",
+    "https://measureit.github.io/MiuForm/polyfills.ebae14c68952fa7c.js": "2456fc1979aae4c36c8255ef4ce630c5e59a6a86",
+    "https://measureit.github.io/MiuForm/runtime.734600f997fcd614.js": "dd1a5993ff3648575f83a7344dd007bd5762579d",
+    "https://measureit.github.io/MiuForm/styles.122b0099322444bd.css": "340f7dce03632cd218d326bf27c7534e51c6f7c3"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
