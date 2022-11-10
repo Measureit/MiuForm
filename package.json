@@ -9,7 +9,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:headless": "ng test --watch=false --browsers=ChromeHeadless",
-    "deploy": "ng deploy --base-href=/MiuForm/"
+    "deploy": "ng deploy --no-silent --base-href=/MiuForm/" 
   },
   "private": true,
   "dependencies": {
