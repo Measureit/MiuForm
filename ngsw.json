@@ -1,7 +1,7 @@
 {
   "configVersion": 1,
-  "timestamp": 1668122312726,
-  "index": "/MiuForm/index.html",
+  "timestamp": 1668123366168,
+  "index": "/index.html",
   "assetGroups": [
     {
       "name": "app",
@@ -11,15 +11,15 @@
         "ignoreVary": true
       },
       "urls": [
-        "/MiuForm/546.9ba1344d91f3bc68.js",
-        "/MiuForm/661.3283d4805902493f.js",
-        "/MiuForm/favicon.ico",
-        "/MiuForm/index.html",
-        "/MiuForm/main.3cab5ca811a7698d.js",
-        "/MiuForm/manifest.webmanifest",
-        "/MiuForm/polyfills.ebae14c68952fa7c.js",
-        "/MiuForm/runtime.734600f997fcd614.js",
-        "/MiuForm/styles.122b0099322444bd.css"
+        "/546.9ba1344d91f3bc68.js",
+        "/661.3283d4805902493f.js",
+        "/favicon.ico",
+        "/index.html",
+        "/main.6b30fba432e63672.js",
+        "/manifest.webmanifest",
+        "/polyfills.ebae14c68952fa7c.js",
+        "/runtime.734600f997fcd614.js",
+        "/styles.122b0099322444bd.css"
       ],
       "patterns": []
     },
@@ -31,43 +31,43 @@
         "ignoreVary": true
       },
       "urls": [
-        "/MiuForm/assets/i18n/de.json",
-        "/MiuForm/assets/i18n/en.json",
-        "/MiuForm/assets/i18n/pl.json",
-        "/MiuForm/assets/icons/icon-128x128.png",
-        "/MiuForm/assets/icons/icon-144x144.png",
-        "/MiuForm/assets/icons/icon-152x152.png",
-        "/MiuForm/assets/icons/icon-192x192.png",
-        "/MiuForm/assets/icons/icon-384x384.png",
-        "/MiuForm/assets/icons/icon-512x512.png",
-        "/MiuForm/assets/icons/icon-72x72.png",
-        "/MiuForm/assets/icons/icon-96x96.png"
+        "/assets/i18n/de.json",
+        "/assets/i18n/en.json",
+        "/assets/i18n/pl.json",
+        "/assets/icons/icon-128x128.png",
+        "/assets/icons/icon-144x144.png",
+        "/assets/icons/icon-152x152.png",
+        "/assets/icons/icon-192x192.png",
+        "/assets/icons/icon-384x384.png",
+        "/assets/icons/icon-512x512.png",
+        "/assets/icons/icon-72x72.png",
+        "/assets/icons/icon-96x96.png"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "/MiuForm/546.9ba1344d91f3bc68.js": "2d98e9b2b6fc523c29ea5165b85cc9dc5a55e460",
-    "/MiuForm/661.3283d4805902493f.js": "1c31d4681004274e509819a6ad185e2703cb109e",
-    "/MiuForm/assets/i18n/de.json": "d869d585a4d3c93de17598bdb58d86831251ae6f",
-    "/MiuForm/assets/i18n/en.json": "d869d585a4d3c93de17598bdb58d86831251ae6f",
-    "/MiuForm/assets/i18n/pl.json": "71661ccfa45e2fd396a30b4b94109ce5b4643ae4",
-    "/MiuForm/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
-    "/MiuForm/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
-    "/MiuForm/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
-    "/MiuForm/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
-    "/MiuForm/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
-    "/MiuForm/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
-    "/MiuForm/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
-    "/MiuForm/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
-    "/MiuForm/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/MiuForm/index.html": "3ccd4682bb13e933800865beb59525781dda1c88",
-    "/MiuForm/main.3cab5ca811a7698d.js": "e51fed8048ac91ebc4eeaf37f10efd4121838e2d",
-    "/MiuForm/manifest.webmanifest": "d37f7521ddd03cae3def4f3769a243b6b8f08a15",
-    "/MiuForm/polyfills.ebae14c68952fa7c.js": "2456fc1979aae4c36c8255ef4ce630c5e59a6a86",
-    "/MiuForm/runtime.734600f997fcd614.js": "dd1a5993ff3648575f83a7344dd007bd5762579d",
-    "/MiuForm/styles.122b0099322444bd.css": "340f7dce03632cd218d326bf27c7534e51c6f7c3"
+    "/546.9ba1344d91f3bc68.js": "2d98e9b2b6fc523c29ea5165b85cc9dc5a55e460",
+    "/661.3283d4805902493f.js": "1c31d4681004274e509819a6ad185e2703cb109e",
+    "/assets/i18n/de.json": "d869d585a4d3c93de17598bdb58d86831251ae6f",
+    "/assets/i18n/en.json": "d869d585a4d3c93de17598bdb58d86831251ae6f",
+    "/assets/i18n/pl.json": "71661ccfa45e2fd396a30b4b94109ce5b4643ae4",
+    "/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "/index.html": "1f577084b02a01133c802b6395c5086da8e174ee",
+    "/main.6b30fba432e63672.js": "1dc269ca4a2e543ad2f4f73053a121a74d03e2c5",
+    "/manifest.webmanifest": "d37f7521ddd03cae3def4f3769a243b6b8f08a15",
+    "/polyfills.ebae14c68952fa7c.js": "2456fc1979aae4c36c8255ef4ce630c5e59a6a86",
+    "/runtime.734600f997fcd614.js": "dd1a5993ff3648575f83a7344dd007bd5762579d",
+    "/styles.122b0099322444bd.css": "340f7dce03632cd218d326bf27c7534e51c6f7c3"
   },
   "navigationUrls": [
     {
