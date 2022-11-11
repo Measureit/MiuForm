@@ -91,7 +91,7 @@ const materialModules = [
    MatSnackBarModule,
   // MatSortModule,
   // MatTableModule,
-  // MatTabsModule,
+   MatTabsModule,
   // MatToolbarModule,
   // MatTooltipModule,
   // MatTreeModule,

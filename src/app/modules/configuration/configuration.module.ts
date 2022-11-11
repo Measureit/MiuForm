@@ -5,6 +5,7 @@ import { ConfigurationRoutingModule } from './configuration-routing.module';
 import { FactoriesComponent } from './configuration/factories/factories.component';
 import { ChecklistComponent } from './configuration/checklist/checklist.component';
 import { DeliveryComponent } from './configuration/delivery/delivery.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -17,7 +18,8 @@ import { DeliveryComponent } from './configuration/delivery/delivery.component';
   ],
   imports: [
     CommonModule,
-    ConfigurationRoutingModule
+    ConfigurationRoutingModule,
+    SharedModule
   ]
 })
 export class ConfigurationModule { }

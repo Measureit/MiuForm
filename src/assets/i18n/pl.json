@@ -1,25 +1,19 @@
 {
-	"CHECKIN": {
-		"BACK_TO_CHECKLIST": "Wróć do Punktów kontrolnych",
-		"COULD_NOT_CHECK_FOR_DEVICES": "Nie mogę wyszukać twoich kamer.",
-		"COULD_NOT_CHECK_FOR_DEVICES_HINT": "To może być spowodowane zabezpieczeniami twojego urządzenia.",
-		"DENIED_CAMERA_PERMISSION": "Nie mamy pozwolenia na używanie twojej kamery, nie możemy nic zeskanować. 😪",
-		"DESCRIPTION": "Teraz zeskanuj QR kod Punktu kontrolnego.",
-		"DEVICE_WITHOUT_CAMERA": "Jeśli twoje urządzenie nie ma kamery nie będziesz pytany o przyznanie pozwolenia do skanowania.",
-		"ENABLE_TORCH": "Aktywuj latarkę",
-		"ENABLE_TRY_HARDER": "Aktywuj tryb Try-harder",
-		"NO_DEVICES_WERE_FOUND": "Nie znaleziono kamery.",
-		"NO_DEVICES_WERE_FOUND_HINT": "Aplikacja nie może znaleźć kamery w tym urządzeniu.",
-		"NO_DEVICE_SELECTED": "Bez kamery",
-		"TITLE": "Zaliczenie Punktu kontrolnego",
-		"WAITING_FOR_PERMISSIONS": "Czekanie na zezwolenie używania kamery."
-	},
-	"CHECKPOINTS": {
-		"TITLE": "Punkty kontrolne ({{ done }}/{{ count }})"
+	"CONFIGURATION": {
+	  "TITLE": "Konfiguracja",
+	  "FACTORIES": {
+	    "TITLE": "Fabryki"
+	  },
+	  "CHECKLIST": {
+	    "TITLE": "Check lista"
+	  },
+	  "DELIVERY": {
+	    "TITLE": "Dostarczanie"
+	  }
 	},
 	"HEADER": {
 		"ABOUT": "Informacje",
-		"APP_NAME": "MiuForm (e-podchody)",
+		"APP_NAME": "Miu App",
 		"ENGLISH": "Angielski",
 		"GERMAN": "Niemiecki",
 		"LANGUAGES": "Języki",

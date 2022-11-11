@@ -42,7 +42,8 @@ export class Repository<T extends DbModel> {
     return checkpoint;
   }
 
-  update(item: T) {
-    return this.db.put(item);
+  update(item: T) : Observable<boolean> {
+    return from(this.db.put(item))
+      .pipe(map(x => x.ok))
   }
 }
