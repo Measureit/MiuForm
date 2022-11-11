@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { concatMap } from 'rxjs/operators';
 import { ChecklistItemConfig, DeliveryConfig, FactoryInfoConfig } from '../models';
+import { DBService } from './db.service';
 import { Repository } from './repository';
 
 @Injectable({
@@ -13,7 +14,7 @@ export class ConfigurationService  {
   private readonly dbFactoryInfoConfigRepo: Repository<FactoryInfoConfig>;
   private readonly dbDeliveryConfigRepo: Repository<DeliveryConfig>;
 
-  constructor() {
+  constructor(private dbService: DBService) {
     this.dbChecklistItemRepo = new Repository<ChecklistItemConfig>('miuapp_ChecklistItem');
     this.dbFactoryInfoConfigRepo = new Repository<FactoryInfoConfig>('miuapp_FactoryInfoConfig');
     this.dbDeliveryConfigRepo = new Repository<DeliveryConfig>('miuapp_DeliveryConfig');

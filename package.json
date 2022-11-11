@@ -9,7 +9,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:headless": "ng test --watch=false --browsers=ChromeHeadless",
-    "deploy": "ng deploy --no-silent --base-href=/MiuForm/" 
+    "deploy": "ng deploy --no-silent --base-href=/MiuForm/"
   },
   "private": true,
   "dependencies": {
@@ -28,6 +28,7 @@
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "pouchdb": "^7.3.0",
+    "pouchdb-find": "^7.3.1",
     "rxjs": "~7.5.7",
     "tslib": "^2.4.1",
     "zone.js": "~0.12.0"

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
 import { ChecklistItemConfig, DeliveryConfig, FactoryInfoConfig, Report } from '../models';
+import { DBService } from './db.service';
 import { Repository } from "./repository";
-
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,9 @@ export class ReportService {
   private readonly dbDeliveryConfigRepo: Repository<DeliveryConfig>;
   private readonly dbReportRepo: Repository<Report>;
 
-  constructor() {
+  constructor(
+    private dbService: DBService
+  ) {
     this.dbChecklistItemRepo = new Repository<ChecklistItemConfig>('miuapp_ChecklistItem');
     this.dbFactoryInfoConfigRepo = new Repository<FactoryInfoConfig>('miuapp_FactoryInfoConfig');
     this.dbDeliveryConfigRepo = new Repository<DeliveryConfig>('miuapp_DeliveryConfig');
