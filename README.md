@@ -1,9 +1,19 @@
-# Miuform
+# MiuApp (technically Miuform)
 
+Application to provides factory inspection reports.
 
-icon:
+use free icons:
 <a href="https://www.flaticon.com/free-icons/inspector" title="inspector icons">Inspector icons created by Good Ware - Flaticon</a>
 
+# Google Store
+
+Generates by 
+```cmd
+bubblewrap --help
+```
+from main folder of repository.
+
+# Development
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.9.
 

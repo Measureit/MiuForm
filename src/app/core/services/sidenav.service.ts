@@ -16,6 +16,16 @@ export class SidenavService {
     //     this.sideNavState$.next(true);
     //   }
     // });
+
+    media.asObservable()
+    .subscribe((changes: MediaChange[]) => {
+        if (changes.some(x => x.mqAlias === 'xs')) {
+          this.sideNavState$.next(false);
+        }
+        else{
+          this.sideNavState$.next(true);
+        }
+      });
    }
 
 }

@@ -40,3 +40,8 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# build do google
+app/build/
+.gradle/
+*.apk
