@@ -1,0 +1,23 @@
+<h1 mat-dialog-title *ngIf="data.action === EditorActions.Create">{{ 'CONFIGURATION.FACTORIES.EDITOR.CREATE' | translate }}</h1>
+<h1 mat-dialog-title *ngIf="data.action === EditorActions.Update">{{ 'CONFIGURATION.FACTORIES.EDITOR.UPDATE' | translate }}</h1>
+<h1 mat-dialog-title *ngIf="data.action === EditorActions.Delete">{{ 'CONFIGURATION.FACTORIES.EDITOR.REMOVE' | translate }}</h1>
+<div mat-dialog-content fxLayout="column">  
+  <mat-form-field appearance="fill">
+    <mat-label>{{ 'ITEM.FACTORY.NAME' | translate }}</mat-label>
+    <input matInput [(ngModel)]="item.name" >
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>{{ 'ITEM.FACTORY.SHORTNAME' | translate }}</mat-label>
+    <input matInput [(ngModel)]="item.shortName" >
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>{{ 'ITEM.FACTORY.ADDRESS' | translate }}</mat-label>
+    <input matInput [(ngModel)]="item.address" >
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">{{ 'COMMON.CANCEL' | translate }}</button>
+  <button mat-button (click)="addOrUpdate(item)" cdkFocusInitial *ngIf="data.action === EditorActions.Create">{{ 'COMMON.CREATE' |  translate }}</button>
+  <button mat-button (click)="addOrUpdate(item)" cdkFocusInitial *ngIf="data.action === EditorActions.Update">{{ 'COMMON.UPDATE' |  translate }}</button>
+  <button mat-button cdkFocusInitial *ngIf="data.action === EditorActions.Delete">{{ 'COMMON.REMOVE' |  translate }}</button>
+</div>

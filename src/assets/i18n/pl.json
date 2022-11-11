@@ -1,14 +1,44 @@
 {
+  "COMMON": {
+    "CREATE": "Utwórz",
+    "UPDATE": "Zaktualizuj",
+    "DELETE": "Usuń",
+    "CANCEL": "Anuluj"
+  },
+	"REPORTS": {
+		"FILTER_BY_FACTORIES": "Filtruj przez fabrkę",
+		"LOAD_NOACTIVE_FACTORIES": "Nieaktywne"
+	},
+	"ITEM": {
+	  "FACTORY": {
+	    "NAME": "Nazwa",
+	    "SHORTNAME": "Nazwa skrócona",
+	    "ADDRESS": "Adres"
+	  },
+	  "CHECKLISTITEM": {
+	  },
+	  "REPORT": {
+	  }	  
+	},
 	"CONFIGURATION": {
 	  "TITLE": "Konfiguracja",
 	  "FACTORIES": {
-	    "TITLE": "Fabryki"
+	    "TITLE": "Fabryki",
+		  "LOAD_NOACTIVE": "Wyświetl również nieaktywne",
+		  
+		  "EDITOR": {
+	      "CREATE": "Utwórz dane fabryki",
+        "UPDATE": "Zaktualizuj dane fabryki",
+        "DELETE": "Usuń dane fabryki"
+		  }
 	  },
 	  "CHECKLIST": {
-	    "TITLE": "Check lista"
+	    "TITLE": "Check lista",
+		  "LOAD_NOACTIVE": "Wyświetl również nieaktywne"
 	  },
 	  "DELIVERY": {
-	    "TITLE": "Dostarczanie"
+	    "TITLE": "Dostarczanie",
+		  "LOAD_NOACTIVE": "Wyświetl również nieaktywne"
 	  }
 	},
 	"HEADER": {

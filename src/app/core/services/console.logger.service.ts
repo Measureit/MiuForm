@@ -16,7 +16,9 @@ export abstract class Logger {
 
 const noop = (): any => undefined;
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ConsoleLoggerService implements Logger {
 
   get debug() {

@@ -1,1 +1,24 @@
-<p>factories works!</p>
+<div fxLayout="column">
+    <div fxLayout="row">
+        <mat-checkbox 
+            (change)="reloadFactories($event.checked)"
+            [checked]="loadFactoryWithNoActive">
+            {{ 'CONFIGURATION.FACTORIES.LOAD_NOACTIVE' | translate}}
+        </mat-checkbox>
+    </div>
+
+    <mat-list>
+        <mat-list-item *ngFor="let item of items">
+          <!-- <img matListAvatar src="..." alt="...">
+          <h3 matLine> {{message.from}} </h3> -->
+          <p matLine>
+            <span> {{item.name}} </span>
+            <!-- <span class="demo-2"> -- {{message.content}} </span> -->
+          </p>
+        </mat-list-item>
+      </mat-list>
+
+    <button mat-fab color="primary"  class="mat-fab-bottom-right" (click)="add()">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>

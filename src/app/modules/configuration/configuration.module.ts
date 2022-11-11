@@ -6,6 +6,7 @@ import { FactoriesComponent } from './configuration/factories/factories.componen
 import { ChecklistComponent } from './configuration/checklist/checklist.component';
 import { DeliveryComponent } from './configuration/delivery/delivery.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { EditorComponent } from './configuration/factories/editor/editor.component';
 
 
 
@@ -14,7 +15,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ConfigurationComponent,
     FactoriesComponent,
     ChecklistComponent,
-    DeliveryComponent
+    DeliveryComponent,
+    EditorComponent
   ],
   imports: [
     CommonModule,

@@ -1,14 +1,44 @@
 {
+  "COMMON": {
+    "CREATE": "Create",
+    "UPDATE": "Update",
+    "DELETE": "Delete",
+    "CANCEL": "Cancel"
+  },
+	"REPORTS": {
+		"FILTER_BY_FACTORIES": "Factory filter",
+		"LOAD_NOACTIVE_FACTORIES": "No active"
+	},
+	"ITEM": {
+	  "FACTORY": {
+	    "NAME": "Name",
+	    "SHORTNAME": "Short Name",
+	    "ADDRESS": "Address"
+	  },
+	  "CHECKLISTITEM": {
+	  },
+	  "REPORT": {
+	  }	  
+	},
 	"CONFIGURATION": {
 	  "TITLE": "Configuration",
 	  "FACTORIES": {
-	    "TITLE": "Factories"
+	    "TITLE": "Factories",
+		  "LOAD_NOACTIVE": "Display also inactive items",
+		  
+		  "EDITOR": {
+	      "CREATE": "Create factory info",
+        "UPDATE": "update factory info",
+        "DELETE": "Delete factory info"
+		  }
 	  },
 	  "CHECKLIST": {
-	    "TITLE": "Checklist"
+	    "TITLE": "Checklist",
+		"LOAD_NOACTIVE": "Display also inactive items"
 	  },
 	  "DELIVERY": {
-	    "TITLE": "Delivery"
+	    "TITLE": "Delivery",
+		"LOAD_NOACTIVE": "Display also inactive items"
 	  }
 	},
 	"HEADER": {

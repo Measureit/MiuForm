@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
 import { ChecklistItemConfig, DeliveryConfig, FactoryInfoConfig, Report } from '../models';
+import { ConsoleLoggerService, Logger } from './console.logger.service';
 import { DBService } from './db.service';
 import { Repository } from "./repository";
 
@@ -14,12 +15,13 @@ export class ReportService {
   private readonly dbReportRepo: Repository<Report>;
 
   constructor(
-    private dbService: DBService
+    private dbService: DBService,
+    private logger: Logger
   ) {
-    this.dbChecklistItemRepo = new Repository<ChecklistItemConfig>('miuapp_ChecklistItem');
-    this.dbFactoryInfoConfigRepo = new Repository<FactoryInfoConfig>('miuapp_FactoryInfoConfig');
-    this.dbDeliveryConfigRepo = new Repository<DeliveryConfig>('miuapp_DeliveryConfig');
-    this.dbReportRepo = new Repository<Report>('miuapp_Report');
+    this.dbChecklistItemRepo = new Repository<ChecklistItemConfig>(logger, 'miuapp_ChecklistItem');
+    this.dbFactoryInfoConfigRepo = new Repository<FactoryInfoConfig>(logger, 'miuapp_FactoryInfoConfig');
+    this.dbDeliveryConfigRepo = new Repository<DeliveryConfig>(logger, 'miuapp_DeliveryConfig');
+    this.dbReportRepo = new Repository<Report>(logger, 'miuapp_Report');
   }
 
   getFactories(withNoActive: boolean) : Observable<FactoryInfoConfig[]> {

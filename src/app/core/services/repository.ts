@@ -2,19 +2,26 @@ import PouchDB from 'pouchdb';
 import { from, Observable } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 import { DbModel } from '../models';
+import { ConsoleLoggerService, Logger } from './console.logger.service';
 
 
 export class Repository<T extends DbModel> {
 
+  private readonly dbName: string;
   private readonly db: PouchDB.Database<T>;
+  private readonly logger: Logger;
 
   constructor(
+    logger: Logger,
     dbName: string
   ) {
+    this.dbName = dbName;
+    this.logger = logger;
     this.db = new PouchDB(dbName);
   }
 
   get(withNoActive?: boolean): Observable<T[]> {
+    this.logger.debug(`get with ${withNoActive} on ${this.dbName}`);
     return new Observable<Array<T>>((obs) => {
       const docs = this.db
         .find({
@@ -31,6 +38,7 @@ export class Repository<T extends DbModel> {
   }
 
   changeActive(id: string, isActive: boolean = false): Observable<boolean> {
+    this.logger.debug(`changeActive with ${id}, ${isActive} on ${this.dbName}`);
     const checkpoint = from(this.db.get<T>(id))
       .pipe(
         mergeMap(checkpoint => {
@@ -43,6 +51,7 @@ export class Repository<T extends DbModel> {
   }
 
   update(item: T) : Observable<boolean> {
+    this.logger.debug(`update with ${item._id} on ${this.dbName}`);
     return from(this.db.put(item))
       .pipe(map(x => x.ok))
   }

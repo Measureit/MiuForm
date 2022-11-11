@@ -1,6 +1,6 @@
-<div fxFlex="column">
-    <div fxFlex="row">
-        <mat-select multiple>
+<div fxLayout="column">
+    <div fxLayout="row">
+        <mat-select multiple placeholder="{{ 'REPORTS.FILTER_BY_FACTORIES' | translate }}">
             <mat-option *ngFor="let factory of factoryList" [value]="factory._id">{{factory.name}}</mat-option>
         </mat-select>
         <mat-checkbox 
