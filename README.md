@@ -1,5 +1,10 @@
 # Miuform
 
+
+icon:
+<a href="https://www.flaticon.com/free-icons/inspector" title="inspector icons">Inspector icons created by Good Ware - Flaticon</a>
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.9.
 
 ## Development server
