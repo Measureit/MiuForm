@@ -1,25 +1,49 @@
 {
-	"CHECKIN": {
-		"BACK_TO_CHECKLIST": "Wróć do Punktów kontrolnych",
-		"COULD_NOT_CHECK_FOR_DEVICES": "Nie mogę wyszukać twoich kamer.",
-		"COULD_NOT_CHECK_FOR_DEVICES_HINT": "To może być spowodowane zabezpieczeniami twojego urządzenia.",
-		"DENIED_CAMERA_PERMISSION": "Nie mamy pozwolenia na używanie twojej kamery, nie możemy nic zeskanować. 😪",
-		"DESCRIPTION": "Teraz zeskanuj QR kod Punktu kontrolnego.",
-		"DEVICE_WITHOUT_CAMERA": "Jeśli twoje urządzenie nie ma kamery nie będziesz pytany o przyznanie pozwolenia do skanowania.",
-		"ENABLE_TORCH": "Aktywuj latarkę",
-		"ENABLE_TRY_HARDER": "Aktywuj tryb Try-harder",
-		"NO_DEVICES_WERE_FOUND": "Nie znaleziono kamery.",
-		"NO_DEVICES_WERE_FOUND_HINT": "Aplikacja nie może znaleźć kamery w tym urządzeniu.",
-		"NO_DEVICE_SELECTED": "Bez kamery",
-		"TITLE": "Zaliczenie Punktu kontrolnego",
-		"WAITING_FOR_PERMISSIONS": "Czekanie na zezwolenie używania kamery."
+  "COMMON": {
+    "CREATE": "Utwórz",
+    "UPDATE": "Zaktualizuj",
+    "DELETE": "Usuń",
+    "CANCEL": "Anuluj"
+  },
+	"REPORTS": {
+		"FILTER_BY_FACTORIES": "Filtruj przez fabrkę",
+		"LOAD_NOACTIVE_FACTORIES": "Nieaktywne"
 	},
-	"CHECKPOINTS": {
-		"TITLE": "Punkty kontrolne ({{ done }}/{{ count }})"
+	"ITEM": {
+	  "FACTORY": {
+	    "NAME": "Nazwa",
+	    "SHORTNAME": "Nazwa skrócona",
+	    "ADDRESS": "Adres"
+	  },
+	  "CHECKLISTITEM": {
+	  },
+	  "REPORT": {
+	  }	  
+	},
+	"CONFIGURATION": {
+	  "TITLE": "Konfiguracja",
+	  "FACTORIES": {
+	    "TITLE": "Fabryki",
+		  "LOAD_NOACTIVE": "Wyświetl również nieaktywne",
+		  
+		  "EDITOR": {
+	      "CREATE": "Utwórz dane fabryki",
+        "UPDATE": "Zaktualizuj dane fabryki",
+        "DELETE": "Usuń dane fabryki"
+		  }
+	  },
+	  "CHECKLIST": {
+	    "TITLE": "Check lista",
+		  "LOAD_NOACTIVE": "Wyświetl również nieaktywne"
+	  },
+	  "DELIVERY": {
+	    "TITLE": "Dostarczanie",
+		  "LOAD_NOACTIVE": "Wyświetl również nieaktywne"
+	  }
 	},
 	"HEADER": {
 		"ABOUT": "Informacje",
-		"APP_NAME": "MiuForm (e-podchody)",
+		"APP_NAME": "Miu App",
 		"ENGLISH": "Angielski",
 		"GERMAN": "Niemiecki",
 		"LANGUAGES": "Języki",

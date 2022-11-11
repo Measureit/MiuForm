@@ -1,25 +1,49 @@
 {
-	"CHECKIN": {
-		"BACK_TO_CHECKLIST": "Back to Checklist",
-		"COULD_NOT_CHECK_FOR_DEVICES": "Could not check for devices.",
-		"COULD_NOT_CHECK_FOR_DEVICES_HINT": "This may be caused by some security error.",
-		"DENIED_CAMERA_PERMISSION": "You denied the camera permission, we can't scan anything without it. 😪",
-		"DESCRIPTION": "Please point your camera on QR code.",
-		"DEVICE_WITHOUT_CAMERA": "If your device does not has cameras, no permissions will be asked.",
-		"ENABLE_TORCH": "Enable torch",
-		"ENABLE_TRY_HARDER": "Enable Try-harder",
-		"NO_DEVICES_WERE_FOUND": "No devices were found.",
-		"NO_DEVICES_WERE_FOUND_HINT": "I believe your device has no media devices attached to.",
-		"NO_DEVICE_SELECTED": "No device selected",
-		"TITLE": "Checkin",
-		"WAITING_FOR_PERMISSIONS": "Waiting for permissions."
+  "COMMON": {
+    "CREATE": "Create",
+    "UPDATE": "Update",
+    "DELETE": "Delete",
+    "CANCEL": "Cancel"
+  },
+	"REPORTS": {
+		"FILTER_BY_FACTORIES": "Factory filter",
+		"LOAD_NOACTIVE_FACTORIES": "No active"
 	},
-	"CHECKPOINTS": {
-		"TITLE": "Checkpoints ({{ done }}/{{ count }})"
+	"ITEM": {
+	  "FACTORY": {
+	    "NAME": "Name",
+	    "SHORTNAME": "Short Name",
+	    "ADDRESS": "Address"
+	  },
+	  "CHECKLISTITEM": {
+	  },
+	  "REPORT": {
+	  }	  
+	},
+	"CONFIGURATION": {
+	  "TITLE": "Configuration",
+	  "FACTORIES": {
+	    "TITLE": "Factories",
+		  "LOAD_NOACTIVE": "Display also inactive items",
+		  
+		  "EDITOR": {
+	      "CREATE": "Create factory info",
+        "UPDATE": "update factory info",
+        "DELETE": "Delete factory info"
+		  }
+	  },
+	  "CHECKLIST": {
+	    "TITLE": "Checklist",
+		"LOAD_NOACTIVE": "Display also inactive items"
+	  },
+	  "DELIVERY": {
+	    "TITLE": "Delivery",
+		"LOAD_NOACTIVE": "Display also inactive items"
+	  }
 	},
 	"HEADER": {
 		"ABOUT": "About",
-		"APP_NAME": "MiuForm",
+		"APP_NAME": "Miu App",
 		"ENGLISH": "English",
 		"GERMAN": "German",
 		"LANGUAGES": "Languages",
