@@ -66,7 +66,7 @@ const materialModules = [
    MatButtonModule,
   // MatButtonToggleModule,
    MatCardModule,
-  // MatCheckboxModule,
+  MatCheckboxModule,
   // MatChipsModule,
   // MatStepperModule,
   // MatDatepickerModule,

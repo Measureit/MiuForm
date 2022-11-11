@@ -1,1 +1,10 @@
-<p>reports works!</p>
+<div flex layout="column">
+    <div flex layout="row">
+        <mat-select multiple>
+            <mat-option *ngFor="let factory of factoryList" [value]="factory._id">{{factory.name}}</mat-option>
+        </mat-select>
+        <mat-checkbox 
+        (change)="reloadFactories($event.checked)"
+        [checked]="loadFactoryWithNoActive">{{ 'REPORTS.LOAD_NOACTIVE_FACTORIES' | translate}}</mat-checkbox>
+    </div>
+</div>
