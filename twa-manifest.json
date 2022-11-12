@@ -1,8 +1,8 @@
 {
-  "packageId": "io.github.measureit.miuforminspector",
+  "packageId": "io.github.measureit.miuform",
   "host": "measureit.github.io",
-  "name": "Inspector",
-  "launcherName": "Inspector",
+  "name": "Miu App",
+  "launcherName": "Miu App",
   "display": "standalone",
   "themeColor": "#1976D2",
   "navigationColor": "#000000",
@@ -18,8 +18,8 @@
     "path": "/home/adam/projects/miuform/android.keystore",
     "alias": "android"
   },
-  "appVersionName": "2",
-  "appVersionCode": 2,
+  "appVersionName": "1",
+  "appVersionCode": 1,
   "shortcuts": [],
   "generatorApp": "bubblewrap-cli",
   "webManifestUrl": "https://measureit.github.io/MiuForm/manifest.webmanifest",
@@ -37,5 +37,5 @@
   "fingerprints": [],
   "additionalTrustedOrigins": [],
   "retainedBundles": [],
-  "appVersion": "2"
+  "appVersion": "1"
 }

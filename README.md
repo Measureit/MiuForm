@@ -10,8 +10,15 @@ use free icons:
 Generates by 
 ```cmd
 bubblewrap --help
+bubblewrap build --skipSigning
 ```
 from main folder of repository.
+
+file for google:
+./app-release.aab
+
+to generate digical assets links
+bubblewrap fingerprint generateAssetLinks
 
 # Development
 

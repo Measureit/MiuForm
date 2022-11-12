@@ -45,3 +45,5 @@ Thumbs.db
 app/build/
 .gradle/
 *.apk
+*.aab
+*.apk.idsig
