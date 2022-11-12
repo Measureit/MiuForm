@@ -6,8 +6,12 @@
     "CANCEL": "Anuluj"
   },
 	"REPORTS": {
+	  "TITLE": "Raporty",
 		"FILTER_BY_FACTORIES": "Filtruj przez fabrkę",
 		"LOAD_NOACTIVE_FACTORIES": "Nieaktywne"
+	},
+	"PREVIEW_REPORT": {
+	  "TITLE": "Podgląd"
 	},
 	"ITEM": {
 	  "FACTORY": {
