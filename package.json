@@ -28,6 +28,7 @@
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "jspdf": "^2.5.1",
+    "ngx-extended-pdf-viewer": "^15.0.9",
     "pouchdb": "^7.3.0",
     "pouchdb-find": "^7.3.1",
     "rxjs": "~7.5.7",

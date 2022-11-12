@@ -1,3 +1,14 @@
 <h1>{{ 'PREVIEW_REPORT.TITLE' | translate }}</h1>
 
-<p>preview-report works!</p>
+<ngx-extended-pdf-viewer
+    [src]="'file://home/adam/Downloads/test.pdf'"
+    (currentZoomFactor)="updateZoomFactor($event)"
+    [height]="'90vh'"
+    [useBrowserLocale]="true"
+    [(zoom)]="zoomSetting"
+    [showZoomButtons]="true"
+    [minZoom]="minZoom"
+    [maxZoom]="maxZoom"
+    [zoomLevels]="zoomLevels"
+    [enablePinchOnMobile]="enablePinchOnMobile">
+</ngx-extended-pdf-viewer>

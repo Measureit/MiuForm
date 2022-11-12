@@ -6,8 +6,12 @@
     "CANCEL": "Cancel"
   },
 	"REPORTS": {
+	  "TITLE": "Reports",
 		"FILTER_BY_FACTORIES": "Factory filter",
 		"LOAD_NOACTIVE_FACTORIES": "No active"
+	},
+	"PREVIEW_REPORT": {
+	  "TITLE": "Preview"
 	},
 	"ITEM": {
 	  "FACTORY": {
