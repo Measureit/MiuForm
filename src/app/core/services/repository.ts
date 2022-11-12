@@ -20,6 +20,11 @@ export class Repository<T extends DbModel> {
     this.db = new PouchDB(dbName);
   }
 
+  getById(id: string): Observable<T> {
+    this.logger.debug(`getById with ${id} on ${this.dbName}`);
+    return from(this.db.get(id));
+  }
+
   get(withNoActive?: boolean): Observable<T[]> {
     this.logger.debug(`get with ${withNoActive} on ${this.dbName}`);
     return new Observable<Array<T>>((obs) => {

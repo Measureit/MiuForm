@@ -45,7 +45,7 @@ export class FactoriesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`The dialog was closed with result ${result}`);
+      this.logger.debug(`The dialog was closed with result ${result}`);
       if (result === true) {
         this.reloadFactories(this.loadFactoryWithNoActive);  
       }

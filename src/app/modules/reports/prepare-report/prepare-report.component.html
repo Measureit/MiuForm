@@ -1,1 +1,32 @@
-<p>prepare-report works!</p>
+<h1>{{ 'PREPARE_REPORT.TITLE' | translate }}</h1>
+<div *ngIf="report">
+ <p>{{report._id}}</p>
+
+
+    <div fxLayout="column">
+        <div fxLayout="row">
+            <mat-select multiple placeholder="{{ 'REPORTS.FILTER_BY_FACTORIES' | translate }}">
+                <mat-option *ngFor="let factory of factoryItems" [value]="factory._id">{{factory.name}}</mat-option>
+            </mat-select>
+        </div>
+
+        <mat-list>
+            <mat-list-item *ngFor="let item of report.checklist">
+            <!-- <img matListAvatar src="..." alt="...">
+            <h3 matLine> {{message.from}} </h3> -->
+            <p matLine>
+                <span> {{item.content}} </span>
+                <span> {{item.isChecked}} </span>
+                <!-- <span class="demo-2"> -- {{message.content}} </span> -->
+            </p>
+            </mat-list-item>
+        </mat-list>
+
+        <button mat-fab color="primary"  class="mat-fab-bottom-right" (onClick)="generateReport()" >
+            <mat-icon>rebase_edit</mat-icon>
+        </button>
+    </div>
+</div>
+<div *ngIf="!report">
+    <p>Raport nie istnieje.</p>
+</div>

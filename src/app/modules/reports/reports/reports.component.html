@@ -1,7 +1,8 @@
 <div fxLayout="column">
+    <h1>{{ 'REPORTS.TITLE' | translate }</h1>
     <div fxLayout="row">
         <mat-select multiple placeholder="{{ 'REPORTS.FILTER_BY_FACTORIES' | translate }}">
-            <mat-option *ngFor="let factory of factoryList" [value]="factory._id">{{factory.name}}</mat-option>
+            <mat-option *ngFor="let factory of factoryItems" [value]="factory._id">{{factory.name}}</mat-option>
         </mat-select>
         <mat-checkbox 
             (change)="reloadFactories($event.checked)"
@@ -9,4 +10,20 @@
             {{ 'REPORTS.LOAD_NOACTIVE_FACTORIES' | translate}}
         </mat-checkbox>
     </div>
+
+    <mat-list>
+        <mat-list-item *ngFor="let item of items">
+          <!-- <img matListAvatar src="..." alt="...">
+          <h3 matLine> {{message.from}} </h3> -->
+          <p matLine>
+            <span> {{item.dateOfCreation}} </span>
+            <span> {{item.factoryInfoId}} </span>
+            <!-- <span class="demo-2"> -- {{message.content}} </span> -->
+          </p>
+        </mat-list-item>
+    </mat-list>
+
+    <button mat-fab color="primary"  class="mat-fab-bottom-right" [routerLink]="['prepare']" >
+        <mat-icon>add</mat-icon>
+    </button>
 </div>

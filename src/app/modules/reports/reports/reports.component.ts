@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { first, tap } from 'rxjs';
-import { FactoryInfoConfig } from 'src/app/core/models';
+import { FactoryInfoConfig, Report } from 'src/app/core/models';
 import { ReportService } from 'src/app/core/services';
 
 @Component({
@@ -11,7 +11,8 @@ import { ReportService } from 'src/app/core/services';
 export class ReportsComponent implements OnInit {
 
   loadFactoryWithNoActive: boolean = false;
-  factoryList: FactoryInfoConfig[] = [];
+  factoryItems: FactoryInfoConfig[] = [];
+  items: Report[] = [];
 
   constructor(private reportService: ReportService) { }
 
@@ -22,10 +23,9 @@ export class ReportsComponent implements OnInit {
   reloadFactories(loadNoActive: boolean) {
     this.reportService.getFactories(loadNoActive)
       .pipe(
-        tap(x => this.factoryList = x),
+        tap(x => this.factoryItems = x),
         first(),
       )
       .subscribe();
   }
-
 }

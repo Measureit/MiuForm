@@ -15,7 +15,7 @@ const routes: Routes = [
     component: PrepareReportComponent 
   },
   { 
-    path: 'preview', 
+    path: 'preview/:id', 
     component: PreviewReportComponent 
   }
 ];

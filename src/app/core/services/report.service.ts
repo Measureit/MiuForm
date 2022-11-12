@@ -33,6 +33,9 @@ export class ReportService {
       .pipe(map(x => Report.Create(x)));
   }
 
+  getReport(id: string) : Observable<Report> {
+    return this.dbReportRepo.getById(id);
+  }
   getReports(withNoActive: boolean) : Observable<Report[]> {
     return this.dbReportRepo.get(withNoActive);
   }
