@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { first, tap } from 'rxjs';
+import { first, map, mergeMap, Observable, tap } from 'rxjs';
 import { FactoryInfoConfig, Report } from 'src/app/core/models';
 import { ReportService } from 'src/app/core/services';
 
@@ -17,15 +17,26 @@ export class ReportsComponent implements OnInit {
   constructor(private reportService: ReportService) { }
 
   ngOnInit(): void {
-    this.reloadFactories(this.loadFactoryWithNoActive);  
+    this.reloadFactories(this.loadFactoryWithNoActive)
+      .pipe(
+        mergeMap(x => this.reloadReports()),
+        first()
+      )
+      .subscribe();  
+  }
+  reloadReports(): Observable<boolean> {
+    return this.reportService.getReports(true)
+      .pipe(
+        tap(x => this.items = x),
+        map(x => true)
+      );
   }
 
-  reloadFactories(loadNoActive: boolean) {
-    this.reportService.getFactories(loadNoActive)
+  reloadFactories(loadNoActive: boolean): Observable<boolean> {
+    return this.reportService.getFactories(loadNoActive)
       .pipe(
         tap(x => this.factoryItems = x),
-        first(),
-      )
-      .subscribe();
+        map(x => true)
+      )      
   }
 }
