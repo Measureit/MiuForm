@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
+import { first, map, mergeMap, Observable, of } from 'rxjs';
 import { ChecklistItemConfig, DeliveryConfig, FactoryInfoConfig, Report } from '../models';
 import { ConsoleLoggerService, Logger } from './console.logger.service';
 import { DBService } from './db.service';
+import { ReportGeneratorService } from './report-generator.service';
 import { Repository } from "./repository";
 
 @Injectable({
   providedIn: 'root',
 })
 export class ReportService {
+  
   private readonly dbChecklistItemRepo: Repository<ChecklistItemConfig>;
   private readonly dbFactoryInfoConfigRepo: Repository<FactoryInfoConfig>;
   private readonly dbDeliveryConfigRepo: Repository<DeliveryConfig>;
@@ -16,7 +18,8 @@ export class ReportService {
 
   constructor(
     private dbService: DBService,
-    private logger: Logger
+    private logger: Logger,
+    private reportGeneratorService: ReportGeneratorService
   ) {
     this.dbChecklistItemRepo = new Repository<ChecklistItemConfig>(logger, 'miuapp_ChecklistItem');
     this.dbFactoryInfoConfigRepo = new Repository<FactoryInfoConfig>(logger, 'miuapp_FactoryInfoConfig');
@@ -40,9 +43,26 @@ export class ReportService {
     return this.dbReportRepo.get(withNoActive);
   }
 
-  saveReport(report: Report) : Observable<boolean> {
+  updateReport(report: Report) : Observable<boolean> {
     return this.dbReportRepo.update(report);
   }
+
+  generateAndSaveReport(report: Report): Observable<Report> {
+    return this.dbReportRepo.update(report)
+      .pipe(  
+        mergeMap(x => this.reportGeneratorService.generatePdf(report)),
+        map(pdf => pdf.save('test.pdf')),
+        map(x => {
+          report.reportPath = 'test.pdf';
+          report.dateOfGenerating = Date.now();
+          return this.dbReportRepo.update(report);
+        }),
+        map(x => report),
+        first()
+      );
+  }
+
+  
 
   sendReport(report: Report) : Observable<boolean> {
     return of(true);

@@ -2,6 +2,7 @@ import { DATE_PIPE_DEFAULT_TIMEZONE } from "@angular/common";
 import { ChecklistItemConfig } from "./checklist-item-config.model";
 import { DbModel } from "./db.model";
 import * as uuid from "uuid";
+import { FactoryInfoConfig } from "./factory-info-config.model";
 
 //checklist item w reporcie
 export class ReportChecklistItem {    
@@ -32,9 +33,10 @@ export class Report extends DbModel {
     }
 
     dateOfCreation: number = Date.now();
-    factoryInfoId: string;
+    factoryInfo: FactoryInfoConfig;
     checklist: ReportChecklistItem[] = [];
     images: ReportImageItem[] = []; 
     reportPath: string; //path do zapisanego pdf'a
+    dateOfGenerating: number;
     dateOfDelivery?: number;
 }

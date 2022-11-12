@@ -43,6 +43,11 @@ export class PrepareReportComponent implements OnInit {
   }
 
   generateReport() {
-    
+    this.reportService.generateAndSaveReport(this.report)
+      .pipe(
+        first(),
+        map(x => x)
+      )
+      .subscribe();
   }
 }
