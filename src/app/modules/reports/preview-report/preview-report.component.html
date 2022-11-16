@@ -1,9 +1,10 @@
 <h1>{{ 'PREVIEW_REPORT.TITLE' | translate }}</h1>
-
+<div fxLayout="column">
+<button (click)="send()">Send</button>
 <ngx-extended-pdf-viewer
     [src]="'file://home/adam/Downloads/test.pdf'"
     (currentZoomFactor)="updateZoomFactor($event)"
-    [height]="'90vh'"
+    [height]="'80vh'"
     [useBrowserLocale]="true"
     [(zoom)]="zoomSetting"
     [showZoomButtons]="true"
@@ -12,3 +13,4 @@
     [zoomLevels]="zoomLevels"
     [enablePinchOnMobile]="enablePinchOnMobile">
 </ngx-extended-pdf-viewer>
+</div>

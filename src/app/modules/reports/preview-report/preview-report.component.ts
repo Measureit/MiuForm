@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { first } from 'rxjs';
+import { EmailService } from 'src/app/core/services/email.service';
 
 @Component({
   selector: 'app-preview-report',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PreviewReportComponent implements OnInit {
 
-  constructor() { }
+  constructor(private emailService: EmailService) {
+
+  }
 
   ngOnInit(): void {
   }
@@ -33,5 +37,16 @@ export class PreviewReportComponent implements OnInit {
   }
   public updateZoomFactor(zoom: number): void {
     this.currentZoomFactor = zoom;
+  }
+
+  send() {
+    this.emailService.send()
+      // .pipe(first())
+      // .subscribe(
+      //   { 
+      //     next: x => console.log('sent'),
+      //     error: err => console.error(err)
+      //   })
+        ;      
   }
 }
