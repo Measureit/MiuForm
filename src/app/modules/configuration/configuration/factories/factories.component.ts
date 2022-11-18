@@ -76,6 +76,7 @@ export class FactoriesComponent implements OnInit {
   }
 
   deleteItem(id: string) {
+    console.log('delete factory');
     const item = this.configurationService.getFactory(id).
       pipe(
         first(),

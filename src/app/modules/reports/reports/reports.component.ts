@@ -39,4 +39,23 @@ export class ReportsComponent implements OnInit {
         map(x => true)
       )      
   }
+
+  preview(event: any, id: string) {
+    //event.stopPropagation();
+    //event.preventDefault();
+    //event.stopPropagation();
+console.log(`preview ${id}`);
+  }
+
+  prepare(event: any, id: string) {
+    //event.preventDefault();
+    //event.stopPropagation();
+    console.log(`prepare ${id}`);
+    
+    
+  }
+
+  aaa() {
+    console.log('aaa');
+  }
 }

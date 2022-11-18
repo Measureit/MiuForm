@@ -3,9 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PreviewReportComponent } from './preview-report.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'map-pfd', pathMatch: 'full' },
-  {
-    path: 'map-pfd',
+  { path: ':id', pathMatch: 'full',
     component: PreviewReportComponent,
   }
 ];

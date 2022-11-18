@@ -9,9 +9,14 @@ const routes: Routes = [
     component: ReportsComponent 
   },
   { 
-    path: 'prepare', 
+    path: 'prepare/:id', 
     component: PrepareReportComponent 
   },
+  { 
+    path: 'prepare', 
+    pathMatch: 'full',
+    component: PrepareReportComponent 
+  },  
   { 
     path: 'preview', 
     loadChildren: () =>

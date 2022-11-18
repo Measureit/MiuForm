@@ -1,6 +1,6 @@
-<div fxLayout="column">
+<div >
     <h1>{{ 'REPORTS.TITLE' | translate }}</h1>
-    <div fxLayout="row">
+    <div >
         <mat-select multiple placeholder="{{ 'REPORTS.FILTER_BY_FACTORIES' | translate }}">
             <mat-option *ngFor="let factory of factoryItems" [value]="factory._id">{{factory.name}}</mat-option>
         </mat-select>
@@ -12,17 +12,16 @@
     </div>
 
     <mat-list>
-        <mat-list-item *ngFor="let item of items" [routerLink]="['preview', item._id]">
-          <!-- <img matListAvatar src="..." alt="...">
-          <h3 matLine> {{message.from}} </h3> -->
-          <p matLine>
-            <span> {{item.dateOfCreation}} </span>
-            <span> {{item.factoryInfo?.shortName}} </span>
-            <!-- <span class="demo-2"> -- {{message.content}} </span> -->
-          </p>
+        <mat-list-item *ngFor="let item of items" >
+        <!-- </mat-list-item>(click)="preview($event, item._id)"> -->
+          
+        <!-- <span matListItemTitle>{{item.productId}} -> {{item.factoryInfo?.shortName}}</span>
+          <span matListItemLine>{{item.dateOfCreation}}</span> -->
+
+          <div (click)="aaa()">aaaaa</div>
         </mat-list-item>
     </mat-list>
-
+    <button  mat-button typ="button"  (click)="aaa()">RRR</button>
     <button mat-fab color="primary"  class="mat-fab-bottom-right" [routerLink]="['prepare']" >
         <mat-icon>add</mat-icon>
     </button>

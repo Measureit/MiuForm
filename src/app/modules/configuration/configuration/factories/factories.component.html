@@ -12,7 +12,7 @@
       <span matListItemLine>{{item.address}}</span>
       <span matListItemLine>{{item.emails ? item.emails.join(', ') : ''}}</span>
 
-      <span matListItemMeta class='delete-icon' (click)="deleteItem(item._id)"></span>
+      <button matListItemMeta (click)="deleteItem(item._id)"><mat-icon>delete</mat-icon></button>
     </mat-list-item>
   </mat-list>
 
