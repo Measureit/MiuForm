@@ -1,14 +1,9 @@
 <ng-container  >
-  <div
-    fxFlex="column"
-    fxLayoutAlign="start center"
-    fxLayoutGap="10px"
-    class="header"
-  >
+  <div class="header">
     <button mat-icon-button (click)="onSinenavToggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <span [routerLink]="'/'">{{'HEADER.APP_NAME' | translate }}</span>
+    <span class="header-app-name" [routerLink]="'/'">{{'HEADER.APP_NAME' | translate }}</span>
     <span class="spacer"></span>
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>

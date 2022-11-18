@@ -10,7 +10,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
+//import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -113,7 +113,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    FlexLayoutModule,
+    //FlexLayoutModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
@@ -128,7 +128,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ...materialModules,
     FormsModule,
     HttpClientModule,    
-    FlexLayoutModule,
+    //FlexLayoutModule,
     LetDirective,
     TranslateModule,
     WithLoadingPipe,

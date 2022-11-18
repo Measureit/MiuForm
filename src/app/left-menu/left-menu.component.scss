@@ -12,6 +12,19 @@
   padding-right:5px;
 }
 
+mat-nav-list {
+  display: flex; 
+  flex-direction: column; 
+  height: 100%;
+
+  > button {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 5px 5px 5px 0px;     
+  }
+}
+
 mat-icon.menu-item-icon{
   padding: 2px;
   color: v.$base-color;

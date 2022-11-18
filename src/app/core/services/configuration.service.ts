@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { stringToKeyValue } from '@angular/flex-layout/extended/style/style-transforms';
 import { Observable, of } from 'rxjs';
 import { concatMap } from 'rxjs/operators';
 import { ChecklistItemConfig, DeliveryConfig, FactoryInfoConfig } from '../models';
