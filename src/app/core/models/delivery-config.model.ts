@@ -9,9 +9,8 @@ export class DeliveryConfig extends DbModel {
         res.isActive = true;
         return res;
     }
-    emailServer: string;
-    emailServerUser: string;
-    emailServerUserPass: string;
+    emailServerSecretCode: string;
 
-    deliveryEmail: string;
+    fromUser: string; //email from -> email sender
+    deliveryEmails: string[] = []; //emails -> each report will be send to this list of recieviers (+ factory recievers)
 }

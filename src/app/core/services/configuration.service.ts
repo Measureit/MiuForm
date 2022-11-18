@@ -12,6 +12,7 @@ import { Repository } from './repository';
   providedIn: 'root',
 })
 export class ConfigurationService  {
+  
   private readonly dbChecklistItemRepo: Repository<ChecklistItemConfig>;
   private readonly dbFactoryInfoConfigRepo: Repository<FactoryInfoConfig>;
   private readonly dbDeliveryConfigRepo: Repository<DeliveryConfig>;
@@ -28,6 +29,10 @@ export class ConfigurationService  {
   //START FACTORIES
   getFactories(withNoActive: boolean) : Observable<FactoryInfoConfig[]> {
     return this.dbFactoryInfoConfigRepo.get(withNoActive);
+  }
+
+  getFactory(id: string)  : Observable<FactoryInfoConfig> {
+    return this.dbFactoryInfoConfigRepo.getById(id);
   }
 
   addOrUpdateFactory(factory: FactoryInfoConfig) : Observable<boolean> {

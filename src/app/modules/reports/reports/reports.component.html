@@ -1,5 +1,5 @@
 <div fxLayout="column">
-    <h1>{{ 'REPORTS.TITLE' | translate }</h1>
+    <h1>{{ 'REPORTS.TITLE' | translate }}</h1>
     <div fxLayout="row">
         <mat-select multiple placeholder="{{ 'REPORTS.FILTER_BY_FACTORIES' | translate }}">
             <mat-option *ngFor="let factory of factoryItems" [value]="factory._id">{{factory.name}}</mat-option>

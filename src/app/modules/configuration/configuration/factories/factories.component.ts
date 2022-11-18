@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { first, tap } from 'rxjs';
+import { first, mergeMap, tap } from 'rxjs';
 import { EditorActions } from 'src/app/core/enums';
 import { FactoryInfoConfig } from 'src/app/core/models';
 import { ConfigurationService, ConsoleLoggerService, Logger } from 'src/app/core/services';
@@ -35,20 +35,55 @@ export class FactoriesComponent implements OnInit {
   }
 
 
-  add() {
-    const dialogRef = this.dialog.open(EditorComponent, {
+  displayEditor(item: FactoryInfoConfig, action: EditorActions) {
+    return this.dialog.open(EditorComponent, {
       width: '90%',
       data: { 
-        item: FactoryInfoConfig.Create(),
-        action: EditorActions.Create
+        item: item,
+        action: action
       } as FactoryEditorData,
-    });
+    })
+    .afterClosed()
+    .pipe(
+      first(), 
+      tap(res => this.logger.debug(`The dialog was closed with result ${res}, action ${action}`)),
+      tap(res => {
+        if (res === true) {
+          this.reloadFactories(this.loadFactoryWithNoActive);  
+        }
+      })
+    );
+  }
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.logger.debug(`The dialog was closed with result ${result}`);
-      if (result === true) {
-        this.reloadFactories(this.loadFactoryWithNoActive);  
-      }
-    });
+  addItem() {
+    this.displayEditor(FactoryInfoConfig.Create(), EditorActions.Create)
+      .subscribe({
+        next: (val) => {},
+        error: (err) => {}
+      });
+  }
+
+  updateItem(id: string) {
+    const item = this.configurationService.getFactory(id).
+      pipe(
+        first(),
+        mergeMap(item => this.displayEditor(item, EditorActions.Update))
+      )
+      .subscribe({
+        next: (val) => {},
+        error: (err) => {}
+      });    
+  }
+
+  deleteItem(id: string) {
+    const item = this.configurationService.getFactory(id).
+      pipe(
+        first(),
+        mergeMap(item => this.displayEditor(item, EditorActions.Delete))
+      )
+      .subscribe({
+        next: (val) => {},
+        error: (err) => {}
+      });    
   }
 }

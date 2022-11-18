@@ -13,4 +13,6 @@ export class FactoryInfoConfig extends DbModel {
     shortName: string;
     name: string;
     address: string;
+
+    emails: string[] = []; //emails of factory users 
 }

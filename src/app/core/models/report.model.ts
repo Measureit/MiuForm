@@ -4,6 +4,12 @@ import { DbModel } from "./db.model";
 import * as uuid from "uuid";
 import { FactoryInfoConfig } from "./factory-info-config.model";
 
+
+//image w reporcie
+export class ReportImageItem {
+    path: string;
+}
+
 //checklist item w reporcie
 export class ReportChecklistItem {    
     public static Create(checklistConfig: ChecklistItemConfig) : ReportChecklistItem {
@@ -17,12 +23,9 @@ export class ReportChecklistItem {
     content: string; //przepisany z configuracji (moze sie zmieniac w czasie)
     isChecked: boolean;    
     comment: string;
+    pointImages: ReportImageItem[] = []; //images assigned to checklist item
 }
 
-//image w reporcie
-export class ReportImageItem {
-    path: string;
-}
 export class Report extends DbModel {
     public static Create(checklist: ChecklistItemConfig[]) : Report {
         let res = new Report();
@@ -33,6 +36,7 @@ export class Report extends DbModel {
     }
 
     dateOfCreation: number = Date.now();
+    productId: string;
     factoryInfo: FactoryInfoConfig;
     checklist: ReportChecklistItem[] = [];
     images: ReportImageItem[] = []; 
