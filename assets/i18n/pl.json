@@ -1,49 +1,46 @@
 {
-  "COMMON": {
-    "CREATE": "Utwórz",
-    "UPDATE": "Zaktualizuj",
-    "DELETE": "Usuń",
-    "CANCEL": "Anuluj"
-  },
+	"COMMON": {
+		"CREATE": "Utwórz",
+		"UPDATE": "Zaktualizuj",
+		"DELETE": "Usuń",
+		"CANCEL": "Anuluj"
+	},
 	"REPORTS": {
-	  "TITLE": "Raporty",
+		"TITLE": "Raporty",
 		"FILTER_BY_FACTORIES": "Filtruj przez fabrkę",
 		"LOAD_NOACTIVE_FACTORIES": "Nieaktywne"
 	},
 	"PREVIEW_REPORT": {
-	  "TITLE": "Podgląd"
+		"TITLE": "Podgląd"
 	},
 	"ITEM": {
-	  "FACTORY": {
-	    "NAME": "Nazwa",
-	    "SHORTNAME": "Nazwa skrócona",
-	    "ADDRESS": "Adres"
-	  },
-	  "CHECKLISTITEM": {
-	  },
-	  "REPORT": {
-	  }	  
+		"FACTORY": {
+			"NAME": "Nazwa",
+			"SHORTNAME": "Nazwa skrócona",
+			"ADDRESS": "Adres"
+		},
+		"CHECKLISTITEM": {},
+		"REPORT": {}
 	},
 	"CONFIGURATION": {
-	  "TITLE": "Konfiguracja",
-	  "FACTORIES": {
-	    "TITLE": "Fabryki",
-		  "LOAD_NOACTIVE": "Wyświetl również nieaktywne",
-		  
-		  "EDITOR": {
-	      "CREATE": "Utwórz dane fabryki",
-        "UPDATE": "Zaktualizuj dane fabryki",
-        "DELETE": "Usuń dane fabryki"
-		  }
-	  },
-	  "CHECKLIST": {
-	    "TITLE": "Check lista",
-		  "LOAD_NOACTIVE": "Wyświetl również nieaktywne"
-	  },
-	  "DELIVERY": {
-	    "TITLE": "Dostarczanie",
-		  "LOAD_NOACTIVE": "Wyświetl również nieaktywne"
-	  }
+		"TITLE": "Konfiguracja",
+		"FACTORIES": {
+			"TITLE": "Fabryki",
+			"LOAD_NOACTIVE": "Wyświetl również nieaktywne",
+			"EDITOR": {
+				"CREATE": "Utwórz dane fabryki",
+				"UPDATE": "Zaktualizuj dane fabryki",
+				"DELETE": "Usuń dane fabryki"
+			}
+		},
+		"CHECKLIST": {
+			"TITLE": "Check lista",
+			"LOAD_NOACTIVE": "Wyświetl również nieaktywne"
+		},
+		"DELIVERY": {
+			"TITLE": "Dostarczanie",
+			"LOAD_NOACTIVE": "Wyświetl również nieaktywne"
+		}
 	},
 	"HEADER": {
 		"ABOUT": "Informacje",
