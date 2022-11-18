@@ -11,7 +11,10 @@
 		"LOAD_NOACTIVE_FACTORIES": "No active"
 	},
 	"PREVIEW_REPORT": {
-	  "TITLE": "Preview"
+	  "TITLE": "Report Preview"
+	},
+	"PREPARE_REPORT": {
+		"TITLE": "Preparing Report"
 	},
 	"ITEM": {
 	  "FACTORY": {
