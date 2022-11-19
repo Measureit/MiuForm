@@ -12,16 +12,15 @@
     </div>
 
     <mat-list>
-        <mat-list-item *ngFor="let item of items" >
-        <!-- </mat-list-item>(click)="preview($event, item._id)"> -->
-          
-        <!-- <span matListItemTitle>{{item.productId}} -> {{item.factoryInfo?.shortName}}</span>
-          <span matListItemLine>{{item.dateOfCreation}}</span> -->
-
-          <div (click)="aaa()">aaaaa</div>
-        </mat-list-item>
+        <div class="an-list-item" *ngFor="let item of items" (click)="preview($event, item._id)" > 
+            <div class="an-list-item-des" >
+                <span>{{item.productId}} -> {{item.factoryInfo?.shortName}}</span>
+                <span>{{item.dateOfCreation}}</span>
+            </div>
+            <button (click)="prepare($event, item._id)"><mat-icon>edit</mat-icon></button>
+        </div>
     </mat-list>
-    <button  mat-button typ="button"  (click)="aaa()">RRR</button>
+    
     <button mat-fab color="primary"  class="mat-fab-bottom-right" [routerLink]="['prepare']" >
         <mat-icon>add</mat-icon>
     </button>

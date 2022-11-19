@@ -41,21 +41,26 @@ export class ReportsComponent implements OnInit {
   }
 
   preview(event: any, id: string) {
-    //event.stopPropagation();
-    //event.preventDefault();
+    event.stopPropagation();
+    event.preventDefault();
     //event.stopPropagation();
 console.log(`preview ${id}`);
   }
 
   prepare(event: any, id: string) {
-    //event.preventDefault();
-    //event.stopPropagation();
+    event.preventDefault();
+    event.stopPropagation();
     console.log(`prepare ${id}`);
     
     
   }
 
-  aaa() {
+  aaa(event) {
     console.log('aaa');
+
+  }
+
+  bbb() {
+    console.log('bbb');
   }
 }

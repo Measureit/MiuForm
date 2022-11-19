@@ -1,0 +1,20 @@
+.an-list-item {
+    display: flex; 
+    flex-direction: row; 
+    padding: 5px; 
+    margin-top: 5px; 
+    border: 0.5px solid black;
+    border-radius: 5px;
+    > .an-list-item-des {
+        flex-direction: column;
+        > span {
+            display: block;
+        }
+        > span:first-of-type {
+            font-size: 24px;
+        }
+    }
+    button {
+        margin-left: auto;
+    }
+}
