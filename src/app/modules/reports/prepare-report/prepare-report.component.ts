@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { first, flatMap, map, mergeMap, of, tap } from 'rxjs';
 import { Logger, ReportService } from 'src/app/core/services';
@@ -16,6 +16,7 @@ export class PrepareReportComponent implements OnInit {
   itemForm: FormGroup;
 
   constructor(
+    private formBuilder: FormBuilder,
     private logger: Logger,
     private activatedRoute: ActivatedRoute,
     private reportService: ReportService) { }
@@ -37,31 +38,33 @@ export class PrepareReportComponent implements OnInit {
         first(),
         mergeMap(x => {
           this.item = x;
-          this.itemForm = new FormGroup({
-            dateOfCreation: new FormControl(this.item.dateOfCreation),
-            productId: new FormControl(this.item.productId),    
-            factoryInfo: new FormControl(this.item.factoryInfoId),
-            checklist: new FormArray(this.item.checklist.map(
-              x => new FormGroup({
-                checklistItemId: new FormControl(x.checklistItemId),
-                comment: new FormControl(x.comment),
-                pointImages: new FormArray(x.pointImages.map(
-                  x => new FormGroup({
-                    path: new FormControl(x.path)
+          this.itemForm = this.formBuilder.group({
+            _id: [this.item._id],
+            _rev: [this.item._rev],
+            dateOfCreation: [this.item.dateOfCreation],
+            productId: [this.item.productId, [Validators.required, Validators.minLength(3)]],    
+            factoryInfoId: [this.item.factoryInfoId, [Validators.required]],
+            checklist: this.formBuilder.array(this.item.checklist.map(
+              x => this.formBuilder.group({
+                checklistItemId: [x.checklistItemId],
+                comment: [x.comment],
+                pointImages: this.formBuilder.array(x.pointImages.map(
+                  x => this.formBuilder.group({
+                    path: [x.path]
                   })
                 )), 
-                content: new FormControl(x.content),
-                isChecked: new FormControl(x.isChecked)
+                content: [x.content],
+                isChecked: [x.isChecked]
               })
             )), 
-            images: new FormArray(this.item.images.map(
-              x => new FormGroup({
-                path: new FormControl(x.path)
+            images: this.formBuilder.array(this.item.images.map(
+              x => this.formBuilder.group({
+                path: [x.path]
               })
             )), 
-            reportPath: new FormControl(this.item.reportPath),  
-            dateOfGenerating: new FormControl(this.item.dateOfGenerating),  
-            dateOfDelivery: new FormControl(this.item.dateOfDelivery)
+            reportPath: [this.item.reportPath],  
+            dateOfGenerating: [this.item.dateOfGenerating],  
+            dateOfDelivery: [this.item.dateOfDelivery]
           });          
           return this.reportService.getFactories(false);
         }),
@@ -70,8 +73,12 @@ export class PrepareReportComponent implements OnInit {
       ).subscribe();
   }
 
+  getFromFormGroup(): Report {
+    return this.itemForm.getRawValue() as Report;
+  } 
+
   generateReport() {
-    this.reportService.generateAndSaveReport(this.item)
+    this.reportService.generateAndSaveReport(this.getFromFormGroup())
       .pipe(
         first(),
         map(x => x)
@@ -80,7 +87,7 @@ export class PrepareReportComponent implements OnInit {
   }
 
   saveReport() {
-    this.reportService.updateReport(this.item)
+    this.reportService.updateReport(this.getFromFormGroup())
       .pipe(
         first(),
         map(x => x)
