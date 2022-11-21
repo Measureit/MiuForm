@@ -11,9 +11,9 @@ import {  FactoryInfoConfig, Report } from '../../../core/models';
 })
 export class PrepareReportComponent implements OnInit {
 
-  report: Report = undefined;
+  item: Report = undefined;
   factoryItems: FactoryInfoConfig[] = [];
-  reportForm: FormGroup;
+  itemForm: FormGroup;
 
   constructor(
     private logger: Logger,
@@ -36,12 +36,12 @@ export class PrepareReportComponent implements OnInit {
         }),
         first(),
         mergeMap(x => {
-          this.report = x;
-          this.reportForm = new FormGroup({
-            dateOfCreation: new FormControl(this.report.dateOfCreation),
-            productId: new FormControl(this.report.productId),    
-            factoryInfo: new FormControl(this.report.factoryInfoId),
-            checklist: new FormArray(this.report.checklist.map(
+          this.item = x;
+          this.itemForm = new FormGroup({
+            dateOfCreation: new FormControl(this.item.dateOfCreation),
+            productId: new FormControl(this.item.productId),    
+            factoryInfo: new FormControl(this.item.factoryInfoId),
+            checklist: new FormArray(this.item.checklist.map(
               x => new FormGroup({
                 checklistItemId: new FormControl(x.checklistItemId),
                 comment: new FormControl(x.comment),
@@ -54,14 +54,14 @@ export class PrepareReportComponent implements OnInit {
                 isChecked: new FormControl(x.isChecked)
               })
             )), 
-            images: new FormArray(this.report.images.map(
+            images: new FormArray(this.item.images.map(
               x => new FormGroup({
                 path: new FormControl(x.path)
               })
             )), 
-            reportPath: new FormControl(this.report.reportPath),  
-            dateOfGenerating: new FormControl(this.report.dateOfGenerating),  
-            dateOfDelivery: new FormControl(this.report.dateOfDelivery)
+            reportPath: new FormControl(this.item.reportPath),  
+            dateOfGenerating: new FormControl(this.item.dateOfGenerating),  
+            dateOfDelivery: new FormControl(this.item.dateOfDelivery)
           });          
           return this.reportService.getFactories(false);
         }),
@@ -71,7 +71,7 @@ export class PrepareReportComponent implements OnInit {
   }
 
   generateReport() {
-    this.reportService.generateAndSaveReport(this.report)
+    this.reportService.generateAndSaveReport(this.item)
       .pipe(
         first(),
         map(x => x)
@@ -80,7 +80,7 @@ export class PrepareReportComponent implements OnInit {
   }
 
   saveReport() {
-    this.reportService.updateReport(this.report)
+    this.reportService.updateReport(this.item)
       .pipe(
         first(),
         map(x => x)

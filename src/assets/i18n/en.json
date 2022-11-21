@@ -3,7 +3,8 @@
     "CREATE": "Create",
     "UPDATE": "Update",
     "DELETE": "Delete",
-    "CANCEL": "Cancel"
+    "CANCEL": "Cancel",
+	"ACTIVATE": "Activate"
   },
 	"REPORTS": {
 	  "TITLE": "Reports",

@@ -1,9 +1,9 @@
 <h1>{{ 'PREPARE_REPORT.TITLE' | translate }}</h1>
-<div *ngIf="report">
- <p>{{report._id}}</p>
+<div *ngIf="item">
+ <p>{{item._id}}</p>
 
 
-        <form [formGroup]="reportForm" class="an-flex an-flex-direction-column">
+        <form [formGroup]="itemForm" class="an-flex an-flex-direction-column">
             <mat-form-field >
               <mat-label>{{ 'ITEM.REPORT.PRODUCT_ID' | translate}}</mat-label>
               <input matInput placeholder="{{ 'ITEM.REPORT.PRODUCT_ID' | translate}}" formControlName="productId">
@@ -35,6 +35,6 @@
             <mat-icon>rebase_edit</mat-icon>
         </button>
 </div>
-<div *ngIf="!report">
+<div *ngIf="!item">
     <p>Raport nie istnieje.</p>
 </div>

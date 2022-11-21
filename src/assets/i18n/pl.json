@@ -3,7 +3,8 @@
 		"CREATE": "Utwórz",
 		"UPDATE": "Zaktualizuj",
 		"DELETE": "Usuń",
-		"CANCEL": "Anuluj"
+		"CANCEL": "Anuluj",
+		"ACTIVATE": "Przywróć"
 	},
 	"REPORTS": {
 		"TITLE": "Raporty",

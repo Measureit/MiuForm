@@ -39,6 +39,7 @@
 <mat-dialog-actions>
   <button mat-button (click)="onNoClick()">{{ 'COMMON.CANCEL' | translate }}</button>
   <button mat-button (click)="addOrUpdateItem(getFromFormGroup())" cdkFocusInitial *ngIf="data.action === EditorActions.Create">{{ 'COMMON.CREATE' |  translate }}</button>
-  <button mat-button (click)="addOrUpdateItem(getFromFormGroup())" cdkFocusInitial *ngIf="data.action === EditorActions.Update">{{ 'COMMON.UPDATE' |  translate }}</button>
+  <button mat-button (click)="addOrUpdateItem(getFromFormGroup())" cdkFocusInitial *ngIf="data.action === EditorActions.Update && item.isActive">{{ 'COMMON.UPDATE' |  translate }}</button>
+  <button mat-button (click)="item.isActive = true; addOrUpdateItem(item)" cdkFocusInitial *ngIf="data.action === EditorActions.Update && !item.isActive">{{ 'COMMON.ACTIVATE' |  translate }}</button>
   <button mat-button (click)="deleteItem(getFromFormGroup())" cdkFocusInitial *ngIf="data.action === EditorActions.Delete">{{ 'COMMON.DELETE' |  translate }}</button>
 </mat-dialog-actions>

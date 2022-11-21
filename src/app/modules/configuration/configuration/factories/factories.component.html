@@ -12,7 +12,7 @@
         <span >{{item.address}}</span>
         <span >{{item.emails ? item.emails.join(', ') : ''}}</span>
       </div>
-      <button (click)="deleteItem($event, item._id)"><mat-icon>delete</mat-icon></button>
+      <button *ngIf="item.isActive" (click)="deleteItem($event, item._id)"><mat-icon>delete</mat-icon></button>
     </div>
   </mat-list>
 
