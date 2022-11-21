@@ -27,6 +27,7 @@ export class EditorComponent {
 
 
   constructor(
+    private formBuiler: FormBuilder,
     private configurationService: ConfigurationService,
     public dialogRef: MatDialogRef<EditorComponent>,
     @Inject(MAT_DIALOG_DATA) public data: FactoryEditorData,
@@ -35,21 +36,22 @@ export class EditorComponent {
     if (!this.item.emails ) {
       this.item.emails = [];
     }
-    this.itemForm = new FormGroup({      
-      _id: new FormControl(this.item._id),
-      _rev: new FormControl(this.item._rev),
-      isActive: new FormControl(this.item.isActive),
-      shortName: new FormControl(this.item.shortName),
-      name: new FormControl(this.item.name),
-      order: new FormControl(this.item.order),
-      address: new FormControl(this.item.address),
+    this.itemForm = this.formBuiler.group({      
+      _id: [this.item._id],
+      _rev: [this.item._rev],
+      isActive: [this.item.isActive],
+      shortName: [this.item.shortName, [Validators.required, Validators.minLength(2)]],
+      name: [this.item.name, [Validators.required, Validators.minLength(2)]],
+      order: [this.item.order],
+      address: [this.item.address],
 
-      emails: new FormArray(this.item.emails.map(
+      emails: this.formBuiler.array(this.item.emails.map(
         x => //new FormGroup({
-          new FormControl(x)
+          [x]
         //})
       ))
-    })
+    });
+    this.itemForm.markAllAsTouched();
   }
 
   onNoClick(): void {

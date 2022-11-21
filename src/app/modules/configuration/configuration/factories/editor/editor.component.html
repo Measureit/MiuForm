@@ -4,17 +4,32 @@
 <mat-dialog-content >  
   <form [formGroup]="itemForm" class="an-flex an-flex-direction-column">
     <mat-form-field appearance="fill">
-      <mat-label>{{ 'ITEM.FACTORY.NAME' | translate }}</mat-label>
-      <input [readonly]="data.action === EditorActions.Delete" matInput formControlName="name">
-    </mat-form-field>
-    <mat-form-field appearance="fill">
       <mat-label>{{ 'ITEM.FACTORY.SHORTNAME' | translate }}</mat-label>
       <input [readonly]="data.action === EditorActions.Delete" matInput formControlName="shortName">
+      <mat-error class="text-danger" *ngIf="itemForm.get('shortName').errors?.['required']">
+        {{ "FIELD_ERRORS.REQUIRED" | translate }}
+      </mat-error>
+      <mat-error class="text-danger" *ngIf="itemForm.get('shortName').errors?.['minlength']">
+        {{ "FIELD_ERRORS.REQUIRED_MINLENGTH" | translate: { requiredLength: itemForm.get('shortName').errors.minlength.requiredLength } }}
+      </mat-error>
     </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'ITEM.FACTORY.NAME' | translate }}</mat-label>
+      <input [readonly]="data.action === EditorActions.Delete" matInput formControlName="name">
+      <mat-error class="text-danger" *ngIf="itemForm.get('name').hasError('required')">
+        This field is required.
+      </mat-error>
+      <mat-error class="text-danger" *ngIf="itemForm.get('name').hasError('minlength')">
+        The minimum length for this field is {{itemForm.get('name').errors.minlength.requiredLength}} characters.
+      </mat-error>
+    </mat-form-field>
+   
     <mat-form-field appearance="fill">
       <mat-label>{{ 'ITEM.FACTORY.ADDRESS' | translate }}</mat-label>
       <input [readonly]="data.action === EditorActions.Delete" matInput formControlName="address">
     </mat-form-field>
+
     <mat-form-field appearance="fill">
       <mat-chip-grid #chipList formArrayName="emails">
         <mat-chip-row [color]="(item)?'warn':''" selected *ngFor="let item of formEmails.controls; let i=index" 
@@ -38,8 +53,8 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="onNoClick()">{{ 'COMMON.CANCEL' | translate }}</button>
-  <button mat-button (click)="addOrUpdateItem(getFromFormGroup())" cdkFocusInitial *ngIf="data.action === EditorActions.Create">{{ 'COMMON.CREATE' |  translate }}</button>
-  <button mat-button (click)="addOrUpdateItem(getFromFormGroup())" cdkFocusInitial *ngIf="data.action === EditorActions.Update && item.isActive">{{ 'COMMON.UPDATE' |  translate }}</button>
+  <button mat-button [disabled]="!itemForm.valid" (click)="addOrUpdateItem(getFromFormGroup())" cdkFocusInitial *ngIf="data.action === EditorActions.Create">{{ 'COMMON.CREATE' |  translate }}</button>
+  <button mat-button [disabled]="!itemForm.valid" (click)="addOrUpdateItem(getFromFormGroup())" cdkFocusInitial *ngIf="data.action === EditorActions.Update && item.isActive">{{ 'COMMON.UPDATE' |  translate }}</button>
   <button mat-button (click)="item.isActive = true; addOrUpdateItem(item)" cdkFocusInitial *ngIf="data.action === EditorActions.Update && !item.isActive">{{ 'COMMON.ACTIVATE' |  translate }}</button>
   <button mat-button (click)="deleteItem(getFromFormGroup())" cdkFocusInitial *ngIf="data.action === EditorActions.Delete">{{ 'COMMON.DELETE' |  translate }}</button>
 </mat-dialog-actions>

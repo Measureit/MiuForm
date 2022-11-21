@@ -6,6 +6,10 @@
 		"CANCEL": "Anuluj",
 		"ACTIVATE": "Przywróć"
 	},
+	"FIELD_ERRORS": {
+		"REQUIRED": "Pole jest wymagane.",
+		"REQUIRED_MINLENGTH": "Pole musi zawierać conajmniej {{requiredLength}} znaki."
+	},
 	"REPORTS": {
 		"TITLE": "Raporty",
 		"FILTER_BY_FACTORIES": "Filtruj przez fabrkę",
