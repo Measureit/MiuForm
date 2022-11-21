@@ -1,4 +1,3 @@
-import { DATE_PIPE_DEFAULT_TIMEZONE } from "@angular/common";
 import { ChecklistItemConfig } from "./checklist-item-config.model";
 import { DbModel } from "./db.model";
 import * as uuid from "uuid";
@@ -26,20 +25,25 @@ export class ReportChecklistItem {
     pointImages: ReportImageItem[] = []; //images assigned to checklist item
 }
 
-export class Report extends DbModel {
-    public static Create(checklist: ChecklistItemConfig[]) : Report {
-        let res = new Report();
-        res._id = `report_${uuid.v4()}`;
-        res.isActive = true;
-        res.checklist = checklist.map(x => ReportChecklistItem.Create(x));
-        return res;
-    }
+export const CreateReport = (checklist: ChecklistItemConfig[]) : Report => {
+    let res = {} as Report;
+    res._id = `report_${uuid.v4()}`;
+    res.isActive = true;
+    res.checklist = checklist.map(x => ReportChecklistItem.Create(x));
+    res.dateOfCreation = Date.now();
+    res.checklist = [];
+    res.images = []; 
+    return res;
+}
 
-    dateOfCreation: number = Date.now();
+export interface Report extends DbModel {
+    
+
+    dateOfCreation: number;
     productId: string;
     factoryInfoId: string;
-    checklist: ReportChecklistItem[] = [];
-    images: ReportImageItem[] = []; 
+    checklist: ReportChecklistItem[];
+    images: ReportImageItem[]; 
     reportPath: string; //path do zapisanego pdf'a
     dateOfGenerating: number;
     dateOfDelivery?: number;

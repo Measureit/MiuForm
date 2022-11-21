@@ -1,4 +1,5 @@
-export abstract class DbModel {
+export interface DbModel {
     _id: string;
+    _rev: string;
     isActive: boolean;
 }

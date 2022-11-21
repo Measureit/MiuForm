@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { first, map, mergeMap, Observable, of } from 'rxjs';
-import { ChecklistItemConfig, DeliveryConfig, FactoryInfoConfig, Report } from '../models';
+import { ChecklistItemConfig, CreateReport, DeliveryConfig, FactoryInfoConfig, Report } from '../models';
 import { ConsoleLoggerService, Logger } from './console.logger.service';
 import { DBService } from './db.service';
 import { ReportGeneratorService } from './report-generator.service';
@@ -33,7 +33,7 @@ export class ReportService {
 
   createNewReport() : Observable<Report> {
     return this.dbChecklistItemRepo.get(false)
-      .pipe(map(x => Report.Create(x)));
+      .pipe(map(x => CreateReport(x)));
   }
 
   getReport(id: string) : Observable<Report> {

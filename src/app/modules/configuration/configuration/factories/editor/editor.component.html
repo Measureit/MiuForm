@@ -17,11 +17,11 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-chip-grid #chipList formArrayName="emails">
-        <mat-chip-row [color]="(item)?'warn':''" selected *ngFor="let item of item.emails; let i=index" 
+        <mat-chip-row [color]="(item)?'warn':''" selected *ngFor="let item of formEmails.controls; let i=index" 
           [removable]="data.action !== EditorActions.Delete"
-          (removed)="removeEmail(item)" 
+          (removed)="removeEmail(item.value)" 
           required name="chips">
-          {{item}}
+          {{item.value}}
           <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
         </mat-chip-row>
 
@@ -38,7 +38,7 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="onNoClick()">{{ 'COMMON.CANCEL' | translate }}</button>
-  <button mat-button (click)="addOrUpdateItem(item)" cdkFocusInitial *ngIf="data.action === EditorActions.Create">{{ 'COMMON.CREATE' |  translate }}</button>
-  <button mat-button (click)="addOrUpdateItem(item)" cdkFocusInitial *ngIf="data.action === EditorActions.Update">{{ 'COMMON.UPDATE' |  translate }}</button>
-  <button mat-button (click)="deleteItem(item)" cdkFocusInitial *ngIf="data.action === EditorActions.Delete">{{ 'COMMON.DELETE' |  translate }}</button>
+  <button mat-button (click)="addOrUpdateItem(getFromFormGroup())" cdkFocusInitial *ngIf="data.action === EditorActions.Create">{{ 'COMMON.CREATE' |  translate }}</button>
+  <button mat-button (click)="addOrUpdateItem(getFromFormGroup())" cdkFocusInitial *ngIf="data.action === EditorActions.Update">{{ 'COMMON.UPDATE' |  translate }}</button>
+  <button mat-button (click)="deleteItem(getFromFormGroup())" cdkFocusInitial *ngIf="data.action === EditorActions.Delete">{{ 'COMMON.DELETE' |  translate }}</button>
 </mat-dialog-actions>

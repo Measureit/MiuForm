@@ -1,18 +1,21 @@
 import { DbModel } from "./db.model";
 import * as uuid from "uuid";
 
-export class FactoryInfoConfig extends DbModel {
-    public static Create(): FactoryInfoConfig {
-        let res = new FactoryInfoConfig();
-        res._id = `factory_${uuid.v4()}`;
-        res.isActive = true;
-        return res;
-    }
+export const CreateFactoryInfoConfig = (): FactoryInfoConfig => {
+    let res = {} as FactoryInfoConfig;
+    res._id = `factory_${uuid.v4()}`;
+    res.isActive = true;
+    res.emails = [];
+    return res;
+}
+
+export interface FactoryInfoConfig extends DbModel {
+    
     order: number;
 
     shortName: string;
     name: string;
     address: string;
 
-    emails: string[] = []; //emails of factory users 
+    emails: string[]; //emails of factory users 
 }

@@ -1,12 +1,12 @@
-<div fxLayout="column">
-  <div fxLayout="row">
-    <mat-checkbox [checked]="loadFactoryWithNoActive">
+<div >
+  <div >
+    <mat-checkbox [checked]="loadFactoryWithNoActive" (change)="loadFactoryWithNoActiveChange($event.checked)">
       {{ 'CONFIGURATION.FACTORIES.LOAD_NOACTIVE' | translate}}
     </mat-checkbox>
   </div>
 
   <mat-list>
-    <div class="an-list-item" *ngFor="let item of items | hideNoActives : loadFactoryWithNoActive" (click)="updateItem(item._id)">
+    <div class="an-list-item" *ngFor="let item of items | hideNoActives : !loadFactoryWithNoActive" (click)="updateItem(item._id)">
       <div class="an-list-item-des" >
         <span >{{item.shortName}} -> {{item.name}}</span>
         <span >{{item.address}}</span>

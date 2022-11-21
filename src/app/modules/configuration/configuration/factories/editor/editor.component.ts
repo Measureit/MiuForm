@@ -35,8 +35,9 @@ export class EditorComponent {
     if (!this.item.emails ) {
       this.item.emails = [];
     }
-    this.itemForm = new FormGroup({
-      id: new FormControl(this.item._id),
+    this.itemForm = new FormGroup({      
+      _id: new FormControl(this.item._id),
+      _rev: new FormControl(this.item._rev),
       isActive: new FormControl(this.item.isActive),
       shortName: new FormControl(this.item.shortName),
       name: new FormControl(this.item.name),
@@ -44,9 +45,9 @@ export class EditorComponent {
       address: new FormControl(this.item.address),
 
       emails: new FormArray(this.item.emails.map(
-        x => new FormGroup({
-          email: new FormControl(x)
-        })
+        x => //new FormGroup({
+          new FormControl(x)
+        //})
       ))
     })
   }
@@ -55,9 +56,10 @@ export class EditorComponent {
     this.dialogRef.close(false);
   }
 
-  // getFromFormGroup(formGroup: FormGroup): FactoryInfoConfig {
-  //   return 
-  // } 
+  getFromFormGroup(): FactoryInfoConfig {
+    return this.itemForm.getRawValue() as FactoryInfoConfig;
+  } 
+
   addOrUpdateItem(item: FactoryInfoConfig): void {
     this.configurationService.addOrUpdateFactory(item)
       .pipe(
@@ -67,6 +69,7 @@ export class EditorComponent {
   }
 
   deleteItem(item: FactoryInfoConfig): void {
+    item.isActive = false;
     this.configurationService.addOrUpdateFactory(item)
       .pipe(
         first(),
@@ -78,11 +81,16 @@ export class EditorComponent {
   public separatorKeysCodes = [ENTER, COMMA];
   removable = true;
 
+  get formEmails() {
+    return this.itemForm.get("emails") as FormArray;
+  }
+
   addEmail(event): void {
     console.log(event.value)
     if (event.value) {
       if (this.validateEmail(event.value.trim())) {
-        (this.itemForm.get('emails') as FormArray).push(event.value.trim());
+        (this.itemForm.get('emails') as FormArray)
+          .push(new FormControl(event.value.trim()));
         if (event.input) {
           event.input.value = '';
         }
@@ -96,8 +104,9 @@ export class EditorComponent {
 
   removeEmail(data: any): void {
     console.log('Removing ' + data)
-    if ((this.itemForm.get('emails') as FormArray).value.indexOf(data) >= 0) {
-      (this.itemForm.get('emails') as FormArray).value.splice((this.itemForm.get('emails') as FormArray).value.indexOf(data), 1);
+    let inx = this.formEmails.value.indexOf(data);
+    if (inx >= 0) {
+      this.formEmails.removeAt(inx);
     }
   }
   private validateEmail(email) {

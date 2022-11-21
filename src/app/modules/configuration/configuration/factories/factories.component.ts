@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { first, mergeMap, tap } from 'rxjs';
 import { EditorActions } from 'src/app/core/enums';
-import { FactoryInfoConfig } from 'src/app/core/models';
+import { CreateFactoryInfoConfig, FactoryInfoConfig } from 'src/app/core/models';
 import { ConfigurationService, ConsoleLoggerService, Logger } from 'src/app/core/services';
 import { EditorComponent, FactoryEditorData } from './editor/editor.component';
 
@@ -22,11 +22,11 @@ export class FactoriesComponent implements OnInit {
     private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.reloadFactories(false);  
+    this.reloadFactories();  
   }
 
-  reloadFactories(loadNoActive: boolean) {
-    this.configurationService.getFactories(loadNoActive)
+  reloadFactories() {
+    this.configurationService.getFactories(true)
       .pipe(
         tap(x => this.items = x),
         first(),
@@ -34,6 +34,9 @@ export class FactoriesComponent implements OnInit {
       .subscribe();
   }
 
+  loadFactoryWithNoActiveChange(checked: boolean) {
+    this.loadFactoryWithNoActive = checked;
+  }
 
   displayEditor(item: FactoryInfoConfig, action: EditorActions) {
     return this.dialog.open(EditorComponent, {
@@ -49,14 +52,14 @@ export class FactoriesComponent implements OnInit {
       tap(res => this.logger.debug(`The dialog was closed with result ${res}, action ${action}`)),
       tap(res => {
         if (res === true) {
-          this.reloadFactories(false);  
+          this.reloadFactories();  
         }
       })
     );
   }
 
   addItem() {
-    this.displayEditor(FactoryInfoConfig.Create(), EditorActions.Create)
+    this.displayEditor(CreateFactoryInfoConfig(), EditorActions.Create)
       .subscribe({
         next: (val) => {},
         error: (err) => {}
