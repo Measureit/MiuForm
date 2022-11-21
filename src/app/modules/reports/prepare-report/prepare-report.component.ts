@@ -40,7 +40,7 @@ export class PrepareReportComponent implements OnInit {
           this.reportForm = new FormGroup({
             dateOfCreation: new FormControl(this.report.dateOfCreation),
             productId: new FormControl(this.report.productId),    
-            factoryInfo: new FormControl(this.report.factoryInfo),
+            factoryInfo: new FormControl(this.report.factoryInfoId),
             checklist: new FormArray(this.report.checklist.map(
               x => new FormGroup({
                 checklistItemId: new FormControl(x.checklistItemId),

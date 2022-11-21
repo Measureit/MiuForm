@@ -3,6 +3,14 @@ import { jsPDF } from 'jspdf';
 import { Injectable } from "@angular/core";
 import { from, map, mergeMap, Observable, of } from "rxjs";
 import { FactoryInfoConfig, Report, ReportImageItem } from "../models";
+import { ConfigurationService } from './configuration.service';
+
+interface ReportGeneratorContext {
+    doc: jsPDF;
+    factory: FactoryInfoConfig;
+    yPositioin: number;
+    yPage: number;
+}
 
 //https://codesandbox.io/s/dx5v0?file=/src/index.js
 @Injectable({
@@ -10,14 +18,24 @@ import { FactoryInfoConfig, Report, ReportImageItem } from "../models";
 })
 export class ReportGeneratorService {
 
-    generatePdf(report: Report): Observable<jsPDF> {
-        const doc = new jsPDF();
 
-        return this.addFactoryInfo(doc, report.factoryInfo)
+    constructor(private configurationService: ConfigurationService) {
+    }
+
+    getFactoryInfoById(id: string): Observable<FactoryInfoConfig> {
+        return this.configurationService.getFactory(id);
+    }
+
+
+    generatePdf(report: Report): Observable<jsPDF> {
+        return this.getFactoryInfoById(report.productId)
             .pipe(
-                mergeMap(x => this.addHeader(x, new Date(report.dateOfCreation).toISOString())),
-                mergeMap(x => this.addFactoryInfo(x, report.factoryInfo)),
-                mergeMap(x => this.addImages(x, report.images))
+                mergeMap(f => of({ doc: new jsPDF, yPage: 0, yPositioin: 0, factory: f } as ReportGeneratorContext)),
+                mergeMap(x => this.addHeader(x, new Date(report.dateOfCreation).toISOString())),                
+                mergeMap(x => this.addProductId(x, report.productId)),
+                mergeMap(x => this.addFactoryInfo(x, x.factory)),
+                mergeMap(x => this.addImages(x, report.images)),
+                mergeMap(x => of(x.doc))
             );
     }
 
@@ -31,32 +49,37 @@ export class ReportGeneratorService {
         }));
     }
 
-    private addHeader(doc: jsPDF, dateOfCreation: string): Observable<jsPDF> {
-        doc.text(dateOfCreation, 20, 20);
-        return of(doc);
+    private addProductId(context: ReportGeneratorContext, dateOfCreation: string): Observable<ReportGeneratorContext> {
+        context.doc.text(dateOfCreation, 20, 20);
+        return of(context);
     }
 
-    private addFactoryInfo(doc: jsPDF, factoryInfo: FactoryInfoConfig): Observable<jsPDF> {
+    private addHeader(context: ReportGeneratorContext, dateOfCreation: string): Observable<ReportGeneratorContext> {
+        context.doc.text(dateOfCreation, 20, 20);
+        return of(context);
+    }
+
+    private addFactoryInfo(context: ReportGeneratorContext, factoryInfo: FactoryInfoConfig): Observable<ReportGeneratorContext> {
         if (factoryInfo?.shortName) {
-            doc.text(factoryInfo?.shortName, 20, 20);
+            context.doc.text(factoryInfo?.shortName, 20, 20);
         }
-        return of(doc);
+        return of(context);
     }
 
-    private addImages(doc: jsPDF, images: ReportImageItem[]): Observable<jsPDF> {
+    private addImages(context: ReportGeneratorContext, images: ReportImageItem[]): Observable<ReportGeneratorContext> {
         if (images && images.length > 0) {
 
             return from(images).
                 pipe(
                     mergeMap(x => this.addImageProcess(x.path)),
-                    map(x => {
-                        doc.addPage();
-                        return doc.addImage(x, "png", 5, 5, 0, 0);
-                        //return doc;
+                    map(htmlImage => {
+                        context.doc.addPage();
+                        context.doc.addImage(htmlImage, "png", 5, 5, 0, 0);
+                        return context;
                     })
                 )
         }
-        return of(doc);
+        return of(context);
         // for (const [i, reportImageItem] of images.entries()) {
         //     const image = this.addImageProcess(reportImageItem.path);
         //     doc.addPage();

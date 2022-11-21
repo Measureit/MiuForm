@@ -19,13 +19,18 @@ export class ReportsComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.reloadFactories(this.loadFactoryWithNoActive)
+    this.reloadFactories(false)//this.loadFactoryWithNoActive)
       .pipe(
         mergeMap(x => this.reloadReports()),
         first()
       )
       .subscribe();  
   }
+
+  selectFactoryInfoConfig(id: string): FactoryInfoConfig {
+    return this.factoryItems.find(x => x._id === id);
+  }
+
   reloadReports(): Observable<boolean> {
     return this.reportService.getReports(true)
       .pipe(

@@ -51,6 +51,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { OperationMessageComponent } from './components/operation-message/operation-message.component';
 import { ReloadButtonComponent } from './components/reload-button/reload-button.component';
 import { LetDirective } from './directives';
+import { HideNoActivesPipe } from './pipes';
 import { WithLoadingPipe } from './pipes/with-loading.pipe';
 
 const materialModules = [
@@ -133,12 +134,14 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     LetDirective,
     TranslateModule,
     WithLoadingPipe,
+    HideNoActivesPipe,
     ReloadButtonComponent,
   ],
   declarations: [
     OperationMessageComponent,
     LetDirective,
     WithLoadingPipe,
+    HideNoActivesPipe,
     ReloadButtonComponent,
   ],
   providers: [

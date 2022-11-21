@@ -22,7 +22,7 @@ export class FactoriesComponent implements OnInit {
     private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.reloadFactories(this.loadFactoryWithNoActive);  
+    this.reloadFactories(false);  
   }
 
   reloadFactories(loadNoActive: boolean) {
@@ -49,7 +49,7 @@ export class FactoriesComponent implements OnInit {
       tap(res => this.logger.debug(`The dialog was closed with result ${res}, action ${action}`)),
       tap(res => {
         if (res === true) {
-          this.reloadFactories(this.loadFactoryWithNoActive);  
+          this.reloadFactories(false);  
         }
       })
     );

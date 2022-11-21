@@ -19,8 +19,12 @@ export interface FactoryEditorData {
 })
 export class EditorComponent {
 
-  public item: FactoryInfoConfig;
+  item: FactoryInfoConfig;
+  itemForm: FormGroup;
+  
   public EditorActions = EditorActions; //to use in html
+
+
 
   constructor(
     private configurationService: ConfigurationService,
@@ -31,12 +35,29 @@ export class EditorComponent {
     if (!this.item.emails ) {
       this.item.emails = [];
     }
+    this.itemForm = new FormGroup({
+      id: new FormControl(this.item._id),
+      isActive: new FormControl(this.item.isActive),
+      shortName: new FormControl(this.item.shortName),
+      name: new FormControl(this.item.name),
+      order: new FormControl(this.item.order),
+      address: new FormControl(this.item.address),
+
+      emails: new FormArray(this.item.emails.map(
+        x => new FormGroup({
+          email: new FormControl(x)
+        })
+      ))
+    })
   }
 
   onNoClick(): void {
     this.dialogRef.close(false);
   }
 
+  // getFromFormGroup(formGroup: FormGroup): FactoryInfoConfig {
+  //   return 
+  // } 
   addOrUpdateItem(item: FactoryInfoConfig): void {
     this.configurationService.addOrUpdateFactory(item)
       .pipe(
@@ -55,16 +76,13 @@ export class EditorComponent {
 
   //handle emails
   public separatorKeysCodes = [ENTER, COMMA];
-  //public emailList = [];
   removable = true;
-  rulesForm: FormGroup;
-  fb: FormBuilder = new FormBuilder();
 
   addEmail(event): void {
     console.log(event.value)
     if (event.value) {
       if (this.validateEmail(event.value.trim())) {
-        this.item.emails.push(event.value.trim());
+        (this.itemForm.get('emails') as FormArray).push(event.value.trim());
         if (event.input) {
           event.input.value = '';
         }
@@ -78,8 +96,8 @@ export class EditorComponent {
 
   removeEmail(data: any): void {
     console.log('Removing ' + data)
-    if (this.item.emails.indexOf(data) >= 0) {
-      this.item.emails.splice(this.item.emails.indexOf(data), 1);
+    if ((this.itemForm.get('emails') as FormArray).value.indexOf(data) >= 0) {
+      (this.itemForm.get('emails') as FormArray).value.splice((this.itemForm.get('emails') as FormArray).value.indexOf(data), 1);
     }
   }
   private validateEmail(email) {

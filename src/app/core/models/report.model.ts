@@ -37,7 +37,7 @@ export class Report extends DbModel {
 
     dateOfCreation: number = Date.now();
     productId: string;
-    factoryInfo: FactoryInfoConfig;
+    factoryInfoId: string;
     checklist: ReportChecklistItem[] = [];
     images: ReportImageItem[] = []; 
     reportPath: string; //path do zapisanego pdf'a
