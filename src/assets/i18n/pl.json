@@ -23,7 +23,10 @@
 			"ADDRESS": "Adres"
 		},
 		"CHECKLISTITEM": {},
-		"REPORT": {}
+		"REPORT": {
+			"PRODUCT_ID": "Id Produktu",
+			"FACTORY": "Fabryka"
+		}
 	},
 	"CONFIGURATION": {
 		"TITLE": "Konfiguracja",

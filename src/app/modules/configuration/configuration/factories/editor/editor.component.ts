@@ -37,7 +37,7 @@ export class EditorComponent {
     this.dialogRef.close(false);
   }
 
-  addOrUpdate(item: FactoryInfoConfig): void {
+  addOrUpdateItem(item: FactoryInfoConfig): void {
     this.configurationService.addOrUpdateFactory(item)
       .pipe(
         first(),
@@ -45,7 +45,15 @@ export class EditorComponent {
       ).subscribe();    
   }
 
+  deleteItem(item: FactoryInfoConfig): void {
+    this.configurationService.addOrUpdateFactory(item)
+      .pipe(
+        first(),
+        tap(x => this.dialogRef.close(true))        
+      ).subscribe();    
+  }
 
+  //handle emails
   public separatorKeysCodes = [ENTER, COMMA];
   //public emailList = [];
   removable = true;
@@ -55,8 +63,8 @@ export class EditorComponent {
   addEmail(event): void {
     console.log(event.value)
     if (event.value) {
-      if (this.validateEmail(event.value)) {
-        this.item.emails.push(event.value);
+      if (this.validateEmail(event.value.trim())) {
+        this.item.emails.push(event.value.trim());
         if (event.input) {
           event.input.value = '';
         }
@@ -66,9 +74,7 @@ export class EditorComponent {
         console.error('wrong email...');
       }
     }
-    
   }
-
 
   removeEmail(data: any): void {
     console.log('Removing ' + data)

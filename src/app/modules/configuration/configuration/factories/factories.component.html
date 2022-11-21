@@ -6,14 +6,14 @@
   </div>
 
   <mat-list>
-    <mat-list-item *ngFor="let item of items" (click)="updateItem(item._id)">
-      
-      <span matListItemTitle>{{item.shortName}} -> {{item.name}}</span>
-      <span matListItemLine>{{item.address}}</span>
-      <span matListItemLine>{{item.emails ? item.emails.join(', ') : ''}}</span>
-
-      <button matListItemMeta (click)="deleteItem(item._id)"><mat-icon>delete</mat-icon></button>
-    </mat-list-item>
+    <div class="an-list-item" *ngFor="let item of items" (click)="updateItem(item._id)">
+      <div class="an-list-item-des" >
+        <span >{{item.shortName}} -> {{item.name}}</span>
+        <span >{{item.address}}</span>
+        <span >{{item.emails ? item.emails.join(', ') : ''}}</span>
+      </div>
+      <button (click)="deleteItem($event, item._id)"><mat-icon>delete</mat-icon></button>
+    </div>
   </mat-list>
 
   <button mat-fab color="primary" class="mat-fab-bottom-right" (click)="addItem()">

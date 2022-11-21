@@ -21,7 +21,7 @@ export class ReportChecklistItem {
     checklistItemId: string; //id z configuracji
 
     content: string; //przepisany z configuracji (moze sie zmieniac w czasie)
-    isChecked: boolean;    
+    isChecked: boolean | undefined;    
     comment: string;
     pointImages: ReportImageItem[] = []; //images assigned to checklist item
 }

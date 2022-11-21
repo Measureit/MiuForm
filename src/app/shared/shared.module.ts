@@ -127,6 +127,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   exports: [
     ...materialModules,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,    
     //FlexLayoutModule,
     LetDirective,

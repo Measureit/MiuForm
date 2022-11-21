@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { first, flatMap, map, mergeMap, of, tap } from 'rxjs';
 import { Logger, ReportService } from 'src/app/core/services';
@@ -12,6 +13,7 @@ export class PrepareReportComponent implements OnInit {
 
   report: Report = undefined;
   factoryItems: FactoryInfoConfig[] = [];
+  reportForm: FormGroup;
 
   constructor(
     private logger: Logger,
@@ -35,6 +37,32 @@ export class PrepareReportComponent implements OnInit {
         first(),
         mergeMap(x => {
           this.report = x;
+          this.reportForm = new FormGroup({
+            dateOfCreation: new FormControl(this.report.dateOfCreation),
+            productId: new FormControl(this.report.productId),    
+            factoryInfo: new FormControl(this.report.factoryInfo),
+            checklist: new FormArray(this.report.checklist.map(
+              x => new FormGroup({
+                checklistItemId: new FormControl(x.checklistItemId),
+                comment: new FormControl(x.comment),
+                pointImages: new FormArray(x.pointImages.map(
+                  x => new FormGroup({
+                    path: new FormControl(x.path)
+                  })
+                )), 
+                content: new FormControl(x.content),
+                isChecked: new FormControl(x.isChecked)
+              })
+            )), 
+            images: new FormArray(this.report.images.map(
+              x => new FormGroup({
+                path: new FormControl(x.path)
+              })
+            )), 
+            reportPath: new FormControl(this.report.reportPath),  
+            dateOfGenerating: new FormControl(this.report.dateOfGenerating),  
+            dateOfDelivery: new FormControl(this.report.dateOfDelivery)
+          });          
           return this.reportService.getFactories(false);
         }),
         first(),
@@ -44,6 +72,15 @@ export class PrepareReportComponent implements OnInit {
 
   generateReport() {
     this.reportService.generateAndSaveReport(this.report)
+      .pipe(
+        first(),
+        map(x => x)
+      )
+      .subscribe();
+  }
+
+  saveReport() {
+    this.reportService.updateReport(this.report)
       .pipe(
         first(),
         map(x => x)

@@ -1,23 +1,23 @@
 <h1 mat-dialog-title *ngIf="data.action === EditorActions.Create">{{ 'CONFIGURATION.FACTORIES.EDITOR.CREATE' | translate }}</h1>
 <h1 mat-dialog-title *ngIf="data.action === EditorActions.Update">{{ 'CONFIGURATION.FACTORIES.EDITOR.UPDATE' | translate }}</h1>
-<h1 mat-dialog-title *ngIf="data.action === EditorActions.Delete">{{ 'CONFIGURATION.FACTORIES.EDITOR.REMOVE' | translate }}</h1>
+<h1 mat-dialog-title *ngIf="data.action === EditorActions.Delete">{{ 'CONFIGURATION.FACTORIES.EDITOR.DELETE' | translate }}</h1>
 <mat-dialog-content>  
   <mat-form-field appearance="fill">
     <mat-label>{{ 'ITEM.FACTORY.NAME' | translate }}</mat-label>
-    <input matInput [(ngModel)]="item.name" >
+    <input [readonly]="data.action === EditorActions.Delete" matInput [(ngModel)]="item.name" >
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>{{ 'ITEM.FACTORY.SHORTNAME' | translate }}</mat-label>
-    <input matInput [(ngModel)]="item.shortName" >
+    <input [readonly]="data.action === EditorActions.Delete" matInput [(ngModel)]="item.shortName" >
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>{{ 'ITEM.FACTORY.ADDRESS' | translate }}</mat-label>
-    <input matInput [(ngModel)]="item.address" >
+    <input [readonly]="data.action === EditorActions.Delete" matInput [(ngModel)]="item.address" >
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-chip-grid #chipList formArrayName="emails">
 			<mat-chip-row [color]="(item)?'warn':''" selected *ngFor="let item of item.emails; let i=index" 
-        [removable]="removable"
+        [removable]="data.action !== EditorActions.Delete"
 			  (removed)="removeEmail(item)" 
         required name="chips">
         {{item}}
@@ -25,16 +25,18 @@
 			</mat-chip-row>
 
 		</mat-chip-grid>
-    <input placeholder="enter item " 
+    <input 
+      [readonly]="data.action === EditorActions.Delete"
+      placeholder="enter item " 
       [matChipInputFor]="chipList" 
       [matChipInputSeparatorKeyCodes]="separatorKeysCodes " 
-      [matChipInputAddOnBlur]="true "
+      [matChipInputAddOnBlur]="true"
       (matChipInputTokenEnd)="addEmail($event) " />
   </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="onNoClick()">{{ 'COMMON.CANCEL' | translate }}</button>
-  <button mat-button (click)="addOrUpdate(item)" cdkFocusInitial *ngIf="data.action === EditorActions.Create">{{ 'COMMON.CREATE' |  translate }}</button>
-  <button mat-button (click)="addOrUpdate(item)" cdkFocusInitial *ngIf="data.action === EditorActions.Update">{{ 'COMMON.UPDATE' |  translate }}</button>
-  <button mat-button cdkFocusInitial *ngIf="data.action === EditorActions.Delete">{{ 'COMMON.REMOVE' |  translate }}</button>
+  <button mat-button (click)="addOrUpdateItem(item)" cdkFocusInitial *ngIf="data.action === EditorActions.Create">{{ 'COMMON.CREATE' |  translate }}</button>
+  <button mat-button (click)="addOrUpdateItem(item)" cdkFocusInitial *ngIf="data.action === EditorActions.Update">{{ 'COMMON.UPDATE' |  translate }}</button>
+  <button mat-button (click)="deleteItem(item)" cdkFocusInitial *ngIf="data.action === EditorActions.Delete">{{ 'COMMON.DELETE' |  translate }}</button>
 </mat-dialog-actions>

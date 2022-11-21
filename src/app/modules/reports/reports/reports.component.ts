@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { first, map, mergeMap, Observable, tap } from 'rxjs';
 import { FactoryInfoConfig, Report } from 'src/app/core/models';
 import { ReportService } from 'src/app/core/services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reports',
@@ -14,7 +15,8 @@ export class ReportsComponent implements OnInit {
   factoryItems: FactoryInfoConfig[] = [];
   items: Report[] = [];
 
-  constructor(private reportService: ReportService) { }
+  constructor(private reportService: ReportService, 
+    private router: Router) { }
 
   ngOnInit(): void {
     this.reloadFactories(this.loadFactoryWithNoActive)
@@ -40,27 +42,12 @@ export class ReportsComponent implements OnInit {
       )      
   }
 
-  preview(event: any, id: string) {
-    event.stopPropagation();
-    event.preventDefault();
-    //event.stopPropagation();
-console.log(`preview ${id}`);
+  preview(event: any, id: string) {    
+    this.router.navigate(['/reports/preview', id]);
   }
 
   prepare(event: any, id: string) {
-    event.preventDefault();
     event.stopPropagation();
-    console.log(`prepare ${id}`);
-    
-    
-  }
-
-  aaa(event) {
-    console.log('aaa');
-
-  }
-
-  bbb() {
-    console.log('bbb');
+    this.router.navigate(['/reports/prepare', id]);
   }
 }
