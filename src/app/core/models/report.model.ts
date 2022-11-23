@@ -3,10 +3,14 @@ import { DbModel } from "./db.model";
 import * as uuid from "uuid";
 import { FactoryInfoConfig } from "./factory-info-config.model";
 
-
+export class ImageSize {
+    width: number;
+    height: number;
+}
 //image w reporcie
 export class ReportImageItem {
-    path: string;
+    blob: Blob;
+    size: ImageSize;
 }
 
 //checklist item w reporcie

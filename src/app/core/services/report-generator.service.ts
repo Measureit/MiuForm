@@ -4,6 +4,7 @@ import { Injectable } from "@angular/core";
 import { from, map, mergeMap, Observable, of } from "rxjs";
 import { FactoryInfoConfig, Report, ReportImageItem } from "../models";
 import { ConfigurationService } from './configuration.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 interface ReportGeneratorContext {
     doc: jsPDF;
@@ -19,7 +20,8 @@ interface ReportGeneratorContext {
 export class ReportGeneratorService {
 
 
-    constructor(private configurationService: ConfigurationService) {
+    constructor(private configurationService: ConfigurationService,
+        private domSanitizer: DomSanitizer) {
     }
 
     getFactoryInfoById(id: string): Observable<FactoryInfoConfig> {
@@ -40,10 +42,10 @@ export class ReportGeneratorService {
     }
 
 
-    private addImageProcess(src: string): Observable<HTMLImageElement> {
+    private addImageProcess(reportImageItem: ReportImageItem): Observable<HTMLImageElement> {
         return from(new Promise<HTMLImageElement>((resolve, reject) => {
             let img = new Image();
-            img.src = src;
+            img.src = this.domSanitizer.bypassSecurityTrustHtml(URL.createObjectURL(reportImageItem.blob)) as string;
             img.onload = () => resolve(img);
             img.onerror = reject;
         }));
@@ -71,7 +73,7 @@ export class ReportGeneratorService {
 
             return from(images).
                 pipe(
-                    mergeMap(x => this.addImageProcess(x.path)),
+                    mergeMap(x => this.addImageProcess(x)),
                     map(htmlImage => {
                         context.doc.addPage();
                         context.doc.addImage(htmlImage, "png", 5, 5, 0, 0);
