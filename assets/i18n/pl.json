@@ -3,7 +3,12 @@
 		"CREATE": "Utwórz",
 		"UPDATE": "Zaktualizuj",
 		"DELETE": "Usuń",
-		"CANCEL": "Anuluj"
+		"CANCEL": "Anuluj",
+		"ACTIVATE": "Przywróć"
+	},
+	"FIELD_ERRORS": {
+		"REQUIRED": "Pole jest wymagane.",
+		"REQUIRED_MINLENGTH": "Pole musi zawierać conajmniej {{requiredLength}} znaki."
 	},
 	"REPORTS": {
 		"TITLE": "Raporty",
@@ -23,7 +28,10 @@
 			"ADDRESS": "Adres"
 		},
 		"CHECKLISTITEM": {},
-		"REPORT": {}
+		"REPORT": {
+			"PRODUCT_ID": "Id Produktu",
+			"FACTORY": "Fabryka"
+		}
 	},
 	"CONFIGURATION": {
 		"TITLE": "Konfiguracja",

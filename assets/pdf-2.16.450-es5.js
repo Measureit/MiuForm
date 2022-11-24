@@ -4571,7 +4571,7 @@ async function _fetchDocument(worker, source, pdfDataRangeTransport, docId) {
   }
   const workerId = await worker.messageHandler.sendWithPromise("GetDocRequest", {
     docId,
-    apiVersion: '2.16.449',
+    apiVersion: '2.16.450',
     source: {
       data: source.data,
       url: source.url,
@@ -6411,9 +6411,9 @@ var _canvasInUse = {
   writable: true,
   value: new WeakSet()
 };
-const version = '2.16.449';
+const version = '2.16.450';
 exports.version = version;
-const build = '223775989';
+const build = '61e0f7db4';
 exports.build = build;
 
 /***/ }),
@@ -16645,7 +16645,16 @@ exports.XfaLayer = void 0;
 var _xfa_text = __w_pdfjs_require__(149);
 class XfaLayer {
   static setupStorage(html, id, element, storage, intent) {
-    const storedData = storage.getValue(id, {
+    let fieldname = id;
+    let ancestor = html;
+    while (ancestor) {
+      if (ancestor.getAttribute("xfaname")) {
+        fieldname = ancestor.getAttribute("xfaname");
+        break;
+      }
+      ancestor = ancestor.parentElement;
+    }
+    const storedData = storage.getValue(id, fieldname, {
       value: null
     });
     switch (element.name) {
@@ -16657,7 +16666,7 @@ class XfaLayer {
           break;
         }
         html.addEventListener("input", event => {
-          storage.setValue(id, {
+          storage.setValue(id, fieldname, {
             value: event.target.value
           });
         });
@@ -16673,7 +16682,7 @@ class XfaLayer {
             break;
           }
           html.addEventListener("change", event => {
-            storage.setValue(id, {
+            storage.setValue(id, fieldname, {
               value: event.target.checked ? event.target.getAttribute("xfaOn") : event.target.getAttribute("xfaOff")
             });
           });
@@ -16685,7 +16694,7 @@ class XfaLayer {
             break;
           }
           html.addEventListener("input", event => {
-            storage.setValue(id, {
+            storage.setValue(id, fieldname, {
               value: event.target.value
             });
           });
@@ -16702,7 +16711,7 @@ class XfaLayer {
         html.addEventListener("input", event => {
           const options = event.target.options;
           const value = options.selectedIndex === -1 ? "" : options[options.selectedIndex].value;
-          storage.setValue(id, {
+          storage.setValue(id, fieldname, {
             value
           });
         });
@@ -20253,8 +20262,8 @@ var _is_node = __w_pdfjs_require__(142);
 var _text_layer = __w_pdfjs_require__(159);
 var _svg = __w_pdfjs_require__(160);
 var _xfa_layer = __w_pdfjs_require__(158);
-const pdfjsVersion = '2.16.449';
-const pdfjsBuild = '223775989';
+const pdfjsVersion = '2.16.450';
+const pdfjsBuild = '61e0f7db4';
 {
   if (_is_node.isNodeJS) {
     const {
