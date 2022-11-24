@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { first } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { first, map, mergeMap, tap, throwError } from 'rxjs';
+import { Logger, ReportService } from 'src/app/core/services';
 import { EmailService } from 'src/app/core/services/email.service';
 
 @Component({
@@ -8,12 +10,40 @@ import { EmailService } from 'src/app/core/services/email.service';
   styleUrls: ['./preview-report.component.scss']
 })
 export class PreviewReportComponent implements OnInit {
+  reportBlob: Blob;
+  genereting: boolean;
 
-  constructor(private emailService: EmailService) {
+  constructor(
+    private router: Router,
+    private logger: Logger,
+    private activatedRoute: ActivatedRoute,
+    private reportService: ReportService,
+    private emailService: EmailService) {
 
   }
 
   ngOnInit(): void {
+    this.activatedRoute.params
+      .pipe(
+        first(),
+        map(params => params['id']),
+        mergeMap(id => {
+          this.genereting = true; 
+          this.logger.debug(`prepare report for id: ${id}`)
+          if (id !== undefined && id !== '') {
+            return this.reportService.getReport(id);
+          } else {
+            return throwError(() => new Error(`Report with id ${id} does not exist.`));
+          }
+        }),
+        mergeMap(report => this.reportService.generatePdf(report)),
+        tap(x => { this.reportBlob = x })
+      )
+      .subscribe({
+        error: (err) => console.log(err),
+        complete: () => this.genereting = false
+      })
+
   }
 
   public enablePinchOnMobile = true;

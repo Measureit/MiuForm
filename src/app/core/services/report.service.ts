@@ -47,18 +47,10 @@ export class ReportService {
     return this.dbReportRepo.update(report);
   }
 
-  generateAndSaveReport(report: Report): Observable<Report> {
-    return this.dbReportRepo.update(report)
+  generatePdf(report: Report): Observable<Blob> {
+    return this.reportGeneratorService.generatePdf(report)
       .pipe(  
-        mergeMap(x => this.reportGeneratorService.generatePdf(report)),
-        map(pdf => pdf.save('test.pdf')),
-        map(x => {
-          report.reportPath = 'test.pdf';
-          //report.dateOfGenerating = Date.now();
-          //return this.dbReportRepo.update(report);
-          return true;
-        }),
-        map(x => report),
+        map(pdf => pdf.output('blob')),
         first()
       );
   }

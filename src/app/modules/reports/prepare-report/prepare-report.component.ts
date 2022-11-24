@@ -2,7 +2,7 @@ import { R } from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeHtml, SafeUrl } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, first, flatMap, from, map, mergeMap, of, tap, zip } from 'rxjs';
 import { Logger, ReportService } from 'src/app/core/services';
 import { FactoryInfoConfig, ImageSize, Report, ReportImageItem } from '../../../core/models';
@@ -26,6 +26,7 @@ export class PrepareReportComponent implements OnInit {
     private formBuilder: FormBuilder,
     private domSanitizer: DomSanitizer,
     private logger: Logger,
+    private router: Router,
     private activatedRoute: ActivatedRoute,
     private reportService: ReportService) { }
 
@@ -81,17 +82,23 @@ export class PrepareReportComponent implements OnInit {
     return this.itemForm.getRawValue() as Report;
   }
 
-  generateReport() {
-    this.reportService.generateAndSaveReport(this.getFromFormGroup())
+  preview() {
+    let report = this.getFromFormGroup();
+    this.reportService.updateReport(report)
       .pipe(
-        first(),
-        map(x => x)
+        first()
       )
-      .subscribe();
+      .subscribe({
+        next: (b) => {
+          this.router.navigate(['/reports/preview', report._id]);
+        },
+        error: (err) => console.error(err)
+      });
   }
 
   saveReport() {
-    this.reportService.updateReport(this.getFromFormGroup())
+    let report = this.getFromFormGroup();
+    this.reportService.updateReport(report)
       .pipe(
         first(),
         map(x => x)

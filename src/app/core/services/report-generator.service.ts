@@ -32,7 +32,7 @@ export class ReportGeneratorService {
     generatePdf(report: Report): Observable<jsPDF> {
         return this.getFactoryInfoById(report.factoryInfoId)
             .pipe(
-                mergeMap(f => of({ doc: new jsPDF, yPage: 0, yPositioin: 0, factory: f } as ReportGeneratorContext)),
+                mergeMap(f => of({ doc: new jsPDF("p", "mm", "a4", true), yPage: 0, yPositioin: 0, factory: f } as ReportGeneratorContext)),
                 mergeMap(x => this.addHeader(x, new Date(report.dateOfCreation).toISOString())),                
                 mergeMap(x => this.addProductId(x, report.productId)),
                 mergeMap(x => this.addFactoryInfo(x, x.factory)),
