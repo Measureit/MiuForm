@@ -1,6 +1,6 @@
 <h1>{{ 'PREVIEW_REPORT.TITLE' | translate }}</h1>
 <div >
-    <button mat-button (click)="send()">Send</button>
+    <button mat-raised-button color="primary" (click)="send()">{{ 'PREVIEW_REPORT.SEND_EMAIL' | translate }}</button>
     <mat-spinner *ngIf="genereting"></mat-spinner>
     <ngx-extended-pdf-viewer *ngIf="!genereting"
         [src]="reportBlob"

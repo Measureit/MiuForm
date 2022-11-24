@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first, map, mergeMap, tap, throwError } from 'rxjs';
-import { Logger, ReportService } from 'src/app/core/services';
-import { EmailService } from 'src/app/core/services/email.service';
+import { first, map, mergeMap, tap, throwError, zip } from 'rxjs';
+import { Report } from 'src/app/core/models';
+import { ConfigurationService, Logger, ReportService } from 'src/app/core/services';
+import { EmailMessage, EmailService } from 'src/app/core/services/email.service';
 
 @Component({
   selector: 'app-preview-report',
@@ -10,6 +11,7 @@ import { EmailService } from 'src/app/core/services/email.service';
   styleUrls: ['./preview-report.component.scss']
 })
 export class PreviewReportComponent implements OnInit {
+  report: Report;
   reportBlob: Blob;
   genereting: boolean;
 
@@ -18,6 +20,7 @@ export class PreviewReportComponent implements OnInit {
     private logger: Logger,
     private activatedRoute: ActivatedRoute,
     private reportService: ReportService,
+    private configurationService: ConfigurationService,
     private emailService: EmailService) {
 
   }
@@ -36,7 +39,10 @@ export class PreviewReportComponent implements OnInit {
             return throwError(() => new Error(`Report with id ${id} does not exist.`));
           }
         }),
-        mergeMap(report => this.reportService.generatePdf(report)),
+        mergeMap(report => {
+          this.report = report; 
+          return this.reportService.generatePdf(report)
+        }),
         tap(x => { this.reportBlob = x })
       )
       .subscribe({
@@ -70,13 +76,37 @@ export class PreviewReportComponent implements OnInit {
   }
 
   send() {
-    this.emailService.send()
-      // .pipe(first())
-      // .subscribe(
-      //   { 
-      //     next: x => console.log('sent'),
-      //     error: err => console.error(err)
-      //   })
-        ;      
+    if (this.reportBlob && this.reportBlob.size > 0 && this.report) {      
+      let sufix = Date.now().toString();
+      
+      zip(
+        this.configurationService.getDelivery(),
+        this.configurationService.getFactory(this.report.factoryInfoId)
+      )
+      .pipe(
+        map(zipRes => {
+          let delivery = zipRes[0];
+          let factory = zipRes[1];
+          let to = (factory.emails ?? []).concat(delivery.deliveryEmails);
+          return {
+            emailServerUrl: delivery.emailServerUrl, 
+            emailServerSecretCode: delivery.emailServerSecretCode,
+            email: {
+              report: { content: this.reportBlob, name: `${this.report.productId}_${sufix}.pdf`},
+              reportData: { content: JSON.stringify(this.report), name: `${this.report.productId}_${sufix}.pdf`},
+              from: delivery.fromUser,
+              to: to,
+              subject: `Subject -> ${this.report.productId}`,
+              plainContent: `treść maila`
+            } as EmailMessage
+          }
+        }),
+        mergeMap(x => this.emailService.send(x.emailServerUrl, x.emailServerSecretCode, x.email))        
+      )
+      .subscribe({
+        next: (n) => console.log(n),
+        error: (err) => console.error(err)
+      })
+    }
   }
 }

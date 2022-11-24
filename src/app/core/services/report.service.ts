@@ -43,7 +43,7 @@ export class ReportService {
     return this.dbReportRepo.get(withNoActive);
   }
 
-  updateReport(report: Report) : Observable<boolean> {
+  updateReport(report: Report) : Observable<string | undefined> {
     return this.dbReportRepo.update(report);
   }
 

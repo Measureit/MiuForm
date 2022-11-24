@@ -42,7 +42,7 @@ export class Repository<T extends DbModel> {
     });
   }
 
-  changeActive(id: string, isActive: boolean = false): Observable<boolean> {
+  changeActive(id: string, isActive: boolean = false): Observable<string | undefined> {
     this.logger.debug(`changeActive with ${id}, ${isActive} on ${this.dbName}`);
     const checkpoint = from(this.db.get<T>(id))
       .pipe(
@@ -50,14 +50,14 @@ export class Repository<T extends DbModel> {
           checkpoint.isActive = isActive;
           return this.db.put(checkpoint);
         }),
-        map(i => true)
+        map(x => x.ok ? x.rev : undefined)
       );
     return checkpoint;
   }
 
-  update(item: T) : Observable<boolean> {
+  update(item: T) : Observable<string | undefined> {
     this.logger.debug(`update with ${item._id} on ${this.dbName}`);
     return from(this.db.put(item))
-      .pipe(map(x => x.ok))
+      .pipe(map(x => x.ok ? x.rev : undefined))
   }
 }

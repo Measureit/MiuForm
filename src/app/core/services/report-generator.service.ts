@@ -95,14 +95,5 @@ export class ReportGeneratorService {
                 )
         }
         return of(context);
-        // for (const [i, reportImageItem] of images.entries()) {
-        //     const image = this.addImageProcess(reportImageItem.path);
-        //     doc.addPage();
-        //     doc.addImage(image, "png", 5, 5, 0, 0);
-        //     // if (i !== images.length - 1) {
-        //     //     doc.addPage();
-        //     // }
-        // }
-        // return doc;
     }
 }

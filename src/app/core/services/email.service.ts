@@ -1,7 +1,21 @@
 
 
 import { Injectable } from '@angular/core';
-import { from, map } from 'rxjs';
+import { from, map, mergeMap, Observable } from 'rxjs';
+import { ConfigurationService } from './configuration.service';
+
+export interface Attachment {
+  content: Blob | string;
+  name: string;
+}
+export interface EmailMessage {
+  from: string;
+  to: string[];
+  subject: string;
+  plainContent: string;
+  report: Attachment;
+  reportData: Attachment;
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -10,43 +24,54 @@ export class EmailService {
     
   }
 
-  send() {
+  send(serverUrl: string, serverSecureCode: string, emailMessage: EmailMessage): Observable<any> {
 
-    var payload = {
-      "personalizations": [
-        {
-          "to": [
-            {
-              "email": "adamus79@gmail.com"
-            }
-          ],
-          "subject": "Hello, World!"
-        }
-      ],
-      "from": {
-        "email": "adamus79@gmail.com"
-      },
-      "content": [
-        {
-          "type": "text/plain",
-          "value": "Hello, World!"
-        }
-      ]
-    };
-    var myHeaders = new Headers({
-      "Content-Type": "application/json",
-      "Authorization": "Bearer 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",
-    });
-    var data = new FormData();
-    data.append( "json", JSON.stringify( payload ) );
-    fetch("https://api.sendgrid.com/v3/mail/send",
-    {
-        method: "POST",
-        headers: myHeaders,
-        body: data
-    })
-    .then(function(res){ return res.json(); })
-    .then(function(data){ console.log( JSON.stringify( data ) ) })
+    let formData = new FormData();
+      let sufix = Date.now().toString();
+      formData.append('key', serverSecureCode);
+      formData.append('report', emailMessage.report.content, emailMessage.report.name);
+      formData.append('report_data', new Blob([emailMessage.reportData.content], { type: 'application/json' }), emailMessage.reportData.name);
+      formData.append('from', emailMessage.from);
+      formData.append('to', JSON.stringify(emailMessage.to));
+      formData.append('subject', emailMessage.subject);
+      formData.append('plainContent', emailMessage.plainContent);
+
+    // var payload = {
+    //   "personalizations": [
+    //     {
+    //       "to": [
+    //         {
+    //           "email": "adamus79@gmail.com"
+    //         }
+    //       ],
+    //       "subject": "Hello, World!"
+    //     }
+    //   ],
+    //   "from": {
+    //     "email": "adamus79@gmail.com"
+    //   },
+    //   "content": [
+    //     {
+    //       "type": "text/plain",
+    //       "value": "Hello, World!"
+    //     }
+    //   ]
+    // };
+    // var myHeaders = new Headers({
+    //   "Content-Type": "application/json",
+    //   "Authorization": "Bearer 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",
+    // });
+    // var data = new FormData();
+    // data.append( "json", JSON.stringify( payload ) );
+    return from(fetch(serverUrl,
+      {
+          method: "POST",
+          //headers: myHeaders,
+          body: formData
+      }))
+      .pipe(
+        mergeMap(res => res.json())
+      );
 
 //SENDGRID    
 // sgMail.setApiKey(process.env.SENDGRID_API_KEY);

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { concatMap } from 'rxjs/operators';
-import { ChecklistItemConfig, DeliveryConfig, FactoryInfoConfig } from '../models';
+import { ChecklistItemConfig, DeliveryConfig, DeliveryId, FactoryInfoConfig } from '../models';
 import { ConsoleLoggerService, Logger } from './console.logger.service';
 import { DBService } from './db.service';
 import { Repository } from './repository';
@@ -34,15 +34,25 @@ export class ConfigurationService  {
     return this.dbFactoryInfoConfigRepo.getById(id);
   }
 
-  addOrUpdateFactory(factory: FactoryInfoConfig) : Observable<boolean> {
+  addOrUpdateFactory(factory: FactoryInfoConfig) : Observable<string | undefined> {
     return this.dbFactoryInfoConfigRepo.update(factory);
   }
 
-  changeActive(id: string, isActive: boolean) : Observable<boolean> {
+  changeActive(id: string, isActive: boolean) : Observable<string | undefined> {
     return this.dbFactoryInfoConfigRepo.changeActive(id, isActive);
   }
 
   //END FACTORIES
+
+  //START DELIVERY 
+  getDelivery(): Observable<DeliveryConfig> {
+    return this.dbDeliveryConfigRepo.getById(DeliveryId);
+  }
+
+  updateDelivery(deliveryConfig: DeliveryConfig): Observable<string | undefined> {
+    return this.dbDeliveryConfigRepo.update(deliveryConfig);
+  }
+  //END DELIVERY
 }
 
 

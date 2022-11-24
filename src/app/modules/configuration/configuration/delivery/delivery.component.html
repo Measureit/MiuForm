@@ -1,1 +1,68 @@
-<p>delivery works!</p>
+<mat-card>
+    <mat-card-header>{{ 'DELIVERY.TITLE' | translate }}</mat-card-header>
+    <mat-card-content>
+        <form *ngIf="!loading" [formGroup]="itemForm" class="an-flex an-flex-direction-column">
+            <mat-form-field appearance="fill">
+                <mat-label>{{ 'ITEM.DELIVERY.EMAIL_SERVER_SECRET_CODE' | translate }}</mat-label>
+                <input matInput formControlName="emailServerSecretCode">
+                <mat-error class="text-danger" *ngIf="itemForm.get('emailServerSecretCode').errors?.['required']">
+                    {{ "FIELD_ERRORS.REQUIRED" | translate }}
+                </mat-error>
+                <mat-error class="text-danger" *ngIf="itemForm.get('emailServerSecretCode').errors?.['minlength']">
+                    {{ "FIELD_ERRORS.REQUIRED_MINLENGTH" | translate: { requiredLength:
+                    itemForm.get('emailServerSecretCode').errors.minlength.requiredLength } }}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>{{ 'ITEM.DELIVERY.EMAIL_SERVER_URL' | translate }}</mat-label>
+                <input matInput formControlName="emailServerUrl">
+                <mat-error class="text-danger" *ngIf="itemForm.get('emailServerUrl').hasError('required')">
+                    This field is required.
+                </mat-error>
+                <mat-error class="text-danger" *ngIf="itemForm.get('emailServerUrl').hasError('minlength')">
+                    The minimum length for this field is
+                    {{itemForm.get('emailServerUrl').errors.minlength.requiredLength}} characters.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>{{ 'ITEM.DELIVERY.FROM_USER' | translate }}</mat-label>
+                <input matInput formControlName="fromUser">
+                <mat-error class="text-danger" *ngIf="itemForm.get('fromUser').hasError('required')">
+                    This field is required.
+                </mat-error>
+                <mat-error class="text-danger" *ngIf="itemForm.get('fromUser').hasError('minlength')">
+                    The minimum length for this field is {{itemForm.get('fromUser').errors.minlength.requiredLength}}
+                    characters.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-chip-grid #chipList formArrayName="deliveryEmails">
+                    <mat-chip-row [color]="(item)?'warn':''" selected
+                        *ngFor="let item of formEmails.controls; let i=index" [removable]="true"
+                        (removed)="removeEmail(item.value)" required name="chips">
+                        {{item.value}}
+                        <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip-row>
+
+                </mat-chip-grid>
+                <input placeholder="enter item" [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
+                    (matChipInputTokenEnd)="addEmail($event) " />
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    <mat-card-actions style="margin-left: auto">
+        <button (click)="saveDelivery()" mat-raised-button color="primary">{{'COMMON.SAVE' |  translate}}</button>
+    </mat-card-actions>
+</mat-card>
+
+<mat-card style="margin-top: 5px">
+    <mat-card-header>{{ 'CONFIGURATION_MANAGEMENT.TITLE' | translate }}</mat-card-header>
+    <mat-card-actions style="margin-left: auto">
+        <button mat-raised-button color="primary">{{'CONFIGURATION_MANAGEMENT.SAVE_CONFIGURATION' |  translate}}</button>
+        <button mat-raised-button color="primary">{{'CONFIGURATION_MANAGEMENT.LOAD_CONFIGURATION' |  translate}}</button>
+    </mat-card-actions>
+</mat-card>
