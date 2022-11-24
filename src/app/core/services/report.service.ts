@@ -54,8 +54,9 @@ export class ReportService {
         map(pdf => pdf.save('test.pdf')),
         map(x => {
           report.reportPath = 'test.pdf';
-          report.dateOfGenerating = Date.now();
-          return this.dbReportRepo.update(report);
+          //report.dateOfGenerating = Date.now();
+          //return this.dbReportRepo.update(report);
+          return true;
         }),
         map(x => report),
         first()

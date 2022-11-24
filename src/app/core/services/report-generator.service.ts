@@ -1,7 +1,7 @@
 //let jsPDF = require('jspdf');
 import { jsPDF } from 'jspdf';
 import { Injectable } from "@angular/core";
-import { from, map, mergeMap, Observable, of } from "rxjs";
+import { from, map, mergeMap, Observable, of, zip } from "rxjs";
 import { FactoryInfoConfig, Report, ReportImageItem } from "../models";
 import { ConfigurationService } from './configuration.service';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -30,7 +30,7 @@ export class ReportGeneratorService {
 
 
     generatePdf(report: Report): Observable<jsPDF> {
-        return this.getFactoryInfoById(report.productId)
+        return this.getFactoryInfoById(report.factoryInfoId)
             .pipe(
                 mergeMap(f => of({ doc: new jsPDF, yPage: 0, yPositioin: 0, factory: f } as ReportGeneratorContext)),
                 mergeMap(x => this.addHeader(x, new Date(report.dateOfCreation).toISOString())),                
@@ -68,16 +68,29 @@ export class ReportGeneratorService {
         return of(context);
     }
 
+    private blobToBase64 = (blob: Blob) : Promise<string> => {
+        return new Promise((resolve, _) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result as string);
+          reader.readAsDataURL(blob);
+        });
+      }
     private addImages(context: ReportGeneratorContext, images: ReportImageItem[]): Observable<ReportGeneratorContext> {
         if (images && images.length > 0) {
 
-            return from(images).
+            return zip(images.map(x => from(this.blobToBase64(x.blob)))).
                 pipe(
-                    mergeMap(x => this.addImageProcess(x)),
-                    map(htmlImage => {
-                        context.doc.addPage();
-                        context.doc.addImage(htmlImage, "png", 5, 5, 0, 0);
-                        return context;
+                    
+                    mergeMap((a) => {
+                        a.forEach(x => 
+                        { 
+                            console.log(x);
+                            context.doc.addPage();
+                            context.doc.addImage(
+                                x
+                                , "png", 5, 5, 0, 0);
+                        })
+                        return of(context);
                     })
                 )
         }
