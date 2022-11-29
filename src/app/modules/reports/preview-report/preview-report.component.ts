@@ -99,14 +99,14 @@ export class PreviewReportComponent implements OnInit {
           let delivery = zipRes[0];
           let factory = zipRes[1];
           let to = (factory.emails ?? []).concat(delivery.deliveryEmails);
-          let reportBase64 = zipRes[2];
+          let reportBase64 = zipRes[2].replace(/^data:(.*,)?/, '');
           return {
             emailServerUrl: delivery.emailServerUrl, 
-            emailServerSecretCode: delivery.emailServerSecretCode,
+            options: { serverSecureCode: delivery.emailServerSecretCode },
             email: {
               report: reportBase64, 
               reportName: `${this.report.productId}_${sufix}.pdf`,
-              reportData: JSON.stringify(this.report),
+              //reportData: JSON.stringify(this.report),
               from: delivery.fromUser,
               to: to,
               subject: `Subject -> ${this.report.productId}`,
@@ -114,7 +114,7 @@ export class PreviewReportComponent implements OnInit {
             } as EmailMessage
           }
         }),
-        mergeMap(x => this.emailService.send(x.emailServerUrl, x.emailServerSecretCode, x.email))        
+        mergeMap(x => this.emailService.send(x.emailServerUrl, "sendinblue", x.options, x.email))        
       )
       .subscribe({
         next: (n) => console.log(n),
