@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first, map, mergeMap, tap, throwError, zip } from 'rxjs';
+import { first, from, map, mergeMap, tap, throwError, zip } from 'rxjs';
 import { Report } from 'src/app/core/models';
 import { ConfigurationService, Logger, ReportService } from 'src/app/core/services';
 import { EmailMessage, EmailService } from 'src/app/core/services/email.service';
@@ -75,25 +75,38 @@ export class PreviewReportComponent implements OnInit {
     this.currentZoomFactor = zoom;
   }
 
+  blobToBase64 = (blob: Blob) : Promise<string> => {
+    const reader = new FileReader();
+    reader.readAsDataURL(blob);
+    return new Promise<string>(resolve => {
+      reader.onloadend = () => {
+        resolve(reader.result.toString()); //todo: and tostring dodane
+      };
+    });
+  };
+
   send() {
     if (this.reportBlob && this.reportBlob.size > 0 && this.report) {      
       let sufix = Date.now().toString();
       
       zip(
         this.configurationService.getDelivery(),
-        this.configurationService.getFactory(this.report.factoryInfoId)
+        this.configurationService.getFactory(this.report.factoryInfoId),
+        from(this.blobToBase64(this.reportBlob))
       )
       .pipe(
         map(zipRes => {
           let delivery = zipRes[0];
           let factory = zipRes[1];
           let to = (factory.emails ?? []).concat(delivery.deliveryEmails);
+          let reportBase64 = zipRes[2];
           return {
             emailServerUrl: delivery.emailServerUrl, 
             emailServerSecretCode: delivery.emailServerSecretCode,
             email: {
-              report: { content: this.reportBlob, name: `${this.report.productId}_${sufix}.pdf`},
-              reportData: { content: JSON.stringify(this.report), name: `${this.report.productId}_${sufix}.pdf`},
+              report: reportBase64, 
+              reportName: `${this.report.productId}_${sufix}.pdf`,
+              reportData: JSON.stringify(this.report),
               from: delivery.fromUser,
               to: to,
               subject: `Subject -> ${this.report.productId}`,

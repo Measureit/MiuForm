@@ -4,17 +4,14 @@ import { Injectable } from '@angular/core';
 import { from, map, mergeMap, Observable } from 'rxjs';
 import { ConfigurationService } from './configuration.service';
 
-export interface Attachment {
-  content: Blob | string;
-  name: string;
-}
 export interface EmailMessage {
   from: string;
   to: string[];
   subject: string;
   plainContent: string;
-  report: Attachment;
-  reportData: Attachment;
+  reportName: string;
+  report: string; //base64
+  reportData: string;
 }
 @Injectable({
   providedIn: 'root',
@@ -26,15 +23,15 @@ export class EmailService {
 
   send(serverUrl: string, serverSecureCode: string, emailMessage: EmailMessage): Observable<any> {
 
-    let formData = new FormData();
-      let sufix = Date.now().toString();
-      formData.append('key', serverSecureCode);
-      formData.append('report', emailMessage.report.content, emailMessage.report.name);
-      formData.append('report_data', new Blob([emailMessage.reportData.content], { type: 'application/json' }), emailMessage.reportData.name);
-      formData.append('from', emailMessage.from);
-      formData.append('to', JSON.stringify(emailMessage.to));
-      formData.append('subject', emailMessage.subject);
-      formData.append('plainContent', emailMessage.plainContent);
+    //let formData = new FormData();
+      //let sufix = Date.now().toString();
+      // formData.append('key', serverSecureCode);
+      // formData.append('report', emailMessage.report.content, emailMessage.report.name);
+      // formData.append('report_data', new Blob([emailMessage.reportData.content], { type: 'application/json' }), emailMessage.reportData.name);
+      // formData.append('from', emailMessage.from);
+      // formData.append('to', JSON.stringify(emailMessage.to));
+      // formData.append('subject', emailMessage.subject);
+      // formData.append('plainContent', emailMessage.plainContent);
 
     // var payload = {
     //   "personalizations": [
@@ -63,11 +60,26 @@ export class EmailService {
     // });
     // var data = new FormData();
     // data.append( "json", JSON.stringify( payload ) );
-    return from(fetch(serverUrl,
+
+    var myHeaders = new Headers({
+      "Content-Type": "application/json",
+    });
+
+    // var jsonBody = {
+    //   'key': serverSecureCode,
+    //   'report_name':  emailMessage.report.name,
+    //   'report': emailMessage.report.content, 
+    //   'report_data': emailMessage.reportData.content,
+    //   'from': emailMessage.from,
+    //   'to': emailMessage.to,
+    //   'subject': emailMessage.subject,
+    //   'plainContent': emailMessage.plainContent,
+    // };
+    return from(fetch(serverUrl, 
       {
           method: "POST",
-          //headers: myHeaders,
-          body: formData
+          headers: myHeaders,
+          body: JSON.stringify({ serverSecureCode: serverSecureCode, emailMessage: emailMessage })
       }))
       .pipe(
         mergeMap(res => res.json())
