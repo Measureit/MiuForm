@@ -6,8 +6,8 @@ import { FactoriesComponent } from './configuration/factories/factories.componen
 import { ChecklistComponent } from './configuration/checklist/checklist.component';
 import { GeneralComponent } from './configuration/general/general.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { EditorComponent } from './configuration/factories/editor/editor.component';
-
+import { FactoryEditorComponent } from './configuration/factories/editor/editor.component';
+import { ChecklistItemEditorComponent } from './configuration/checklist/editor/editor.component';
 
 
 @NgModule({
@@ -16,7 +16,8 @@ import { EditorComponent } from './configuration/factories/editor/editor.compone
     FactoriesComponent,
     ChecklistComponent,
     GeneralComponent,
-    EditorComponent
+    FactoryEditorComponent,
+    ChecklistItemEditorComponent
   ],
   imports: [
     CommonModule,

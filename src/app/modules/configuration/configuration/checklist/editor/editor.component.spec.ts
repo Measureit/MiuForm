@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FactoryEditorComponent } from './editor.component';
+import { ChecklistItemEditorComponent } from './editor.component';
 
 describe('EditorComponent', () => {
-  let component: FactoryEditorComponent;
-  let fixture: ComponentFixture<FactoryEditorComponent>;
+  let component: ChecklistItemEditorComponent;
+  let fixture: ComponentFixture<ChecklistItemEditorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FactoryEditorComponent ]
+      declarations: [ ChecklistItemEditorComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FactoryEditorComponent);
+    fixture = TestBed.createComponent(ChecklistItemEditorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

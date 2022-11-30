@@ -17,7 +17,7 @@ export interface FactoryEditorData {
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.scss']
 })
-export class EditorComponent {
+export class FactoryEditorComponent {
 
   item: FactoryInfoConfig;
   itemForm: FormGroup;
@@ -29,7 +29,7 @@ export class EditorComponent {
   constructor(
     private formBuiler: FormBuilder,
     private configurationService: ConfigurationService,
-    public dialogRef: MatDialogRef<EditorComponent>,
+    public dialogRef: MatDialogRef<FactoryEditorComponent>,
     @Inject(MAT_DIALOG_DATA) public data: FactoryEditorData,
   ) {
     this.item = data.item;

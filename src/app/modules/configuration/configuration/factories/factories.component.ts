@@ -4,7 +4,7 @@ import { first, mergeMap, tap } from 'rxjs';
 import { EditorActions } from 'src/app/core/enums';
 import { CreateFactoryInfoConfig, FactoryInfoConfig } from 'src/app/core/models';
 import { ConfigurationService, ConsoleLoggerService, Logger } from 'src/app/core/services';
-import { EditorComponent, FactoryEditorData } from './editor/editor.component';
+import { FactoryEditorComponent, FactoryEditorData } from './editor/editor.component';
 
 @Component({
   selector: 'app-factories',
@@ -39,7 +39,7 @@ export class FactoriesComponent implements OnInit {
   }
 
   displayEditor(item: FactoryInfoConfig, action: EditorActions) {
-    return this.dialog.open(EditorComponent, {
+    return this.dialog.open(FactoryEditorComponent, {
       width: '90%',
       data: { 
         item: item,

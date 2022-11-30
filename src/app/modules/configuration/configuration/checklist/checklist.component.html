@@ -1,1 +1,20 @@
-<p>checklist works!</p>
+<div >
+    <div >
+      <mat-checkbox [checked]="loadFactoryWithNoActive" (change)="loadChecklistWithNoActiveChange($event.checked)">
+        {{ 'CONFIG.CHECKLIST.LOAD_NOACTIVE' | translate}}
+      </mat-checkbox>
+    </div>
+  
+    <mat-list>
+      <div class="an-list-item" *ngFor="let item of items | hideNoActives : !loadFactoryWithNoActive" (click)="updateItem(item._id)">
+        <div class="an-list-item-des" >
+          <span >{{item.content}}</span>
+        </div>
+        <button *ngIf="item.isActive" (click)="deleteItem($event, item._id)"><mat-icon>delete</mat-icon></button>
+      </div>
+    </mat-list>
+  
+    <button mat-fab color="primary" class="mat-fab-bottom-right" (click)="addItem()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>

@@ -17,8 +17,7 @@ export interface Configuration {
   providedIn: 'root',
 })
 export class ConfigurationService  {
-  
-  
+
   private readonly dbChecklistItemRepo: Repository<ChecklistItemConfig>;
   private readonly dbFactoryInfoConfigRepo: Repository<FactoryInfoConfig>;
   private readonly dbDeliveryConfigRepo: Repository<DeliveryConfig>;
@@ -50,6 +49,23 @@ export class ConfigurationService  {
   }
 
   //END FACTORIES
+
+  //START CHECK LIST
+  getChecklistItem(id: string) : Observable<ChecklistItemConfig> {
+    return this.dbChecklistItemRepo.getById(id);
+  }
+
+  getChecklistItems(isActive: boolean): Observable<ChecklistItemConfig[]> {
+    return this.dbChecklistItemRepo.get(isActive)
+    .pipe(
+      map(x => x.sort(x => x.order))
+    );
+  }
+
+  addOrUpdateCheckListItem(item: ChecklistItemConfig) : Observable<string | undefined> {
+    return this.dbChecklistItemRepo.update(item);
+  }
+  //END CHECK LIST
 
   //START DELIVERY 
   getDelivery(): Observable<DeliveryConfig> {
