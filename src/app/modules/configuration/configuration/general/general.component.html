@@ -62,7 +62,7 @@
 <mat-card style="margin-top: 5px">
     <mat-card-header>{{ 'CONFIG.GENERAL.PERSIST.TITLE' | translate }}</mat-card-header>
     <mat-card-actions style="margin-left: auto">
-        <button mat-raised-button color="primary" style="margin-right: 5px">{{'CONFIG.GENERAL.PERSIST.SAVE_CONFIG' |  translate}}</button>
-        <button mat-raised-button color="primary">{{'CONFIG.GENERAL.PERSIST.LOAD_CONFIG' |  translate}}</button>
+        <button (click)="saveConfig()" mat-raised-button color="primary" style="margin-right: 5px">{{'CONFIG.GENERAL.PERSIST.SAVE_CONFIG' |  translate}}</button>
+        <button (click)="loadConfig()" mat-raised-button color="primary">{{'CONFIG.GENERAL.PERSIST.LOAD_CONFIG' |  translate}}</button>
     </mat-card-actions>
 </mat-card>

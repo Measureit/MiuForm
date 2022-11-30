@@ -2,17 +2,18 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
 import { Form, FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { TitleStrategy } from '@angular/router';
-import { first } from 'rxjs';
+import { first, tap } from 'rxjs';
 import { CreateDeliveryConfig, DeliveryConfig } from 'src/app/core/models';
 import { ConfigurationService } from 'src/app/core/services';
 
 @Component({
-  selector: 'app-delivery',
-  templateUrl: './delivery.component.html',
-  styleUrls: ['./delivery.component.scss']
+  selector: 'app-general',
+  templateUrl: './general.component.html',
+  styleUrls: ['./general.component.scss']
 })
-export class DeliveryComponent implements OnInit {
+export class GeneralComponent implements OnInit {
 
+  
   delivery: DeliveryConfig;
   itemForm: FormGroup;
   loading: boolean = false;
@@ -62,6 +63,7 @@ export class DeliveryComponent implements OnInit {
   getFromFormGroup(): DeliveryConfig {
     return this.itemForm.getRawValue() as DeliveryConfig;
   }
+  
   saveDelivery() {
     let deliveryToSave = this.getFromFormGroup();
     this.configurationService.updateDelivery(deliveryToSave)
@@ -72,6 +74,32 @@ export class DeliveryComponent implements OnInit {
         next: (x) => console.log(x),
         error: (err) => console.error(err)
       })
+  }
+
+  download(content, fileName, contentType) {
+    var a = document.createElement("a");
+    var file = new Blob([content], {type: contentType});
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+  }
+
+  saveConfig() {
+    this.configurationService.getConfig()
+    .pipe(
+      first(),
+      tap(x => {        
+        this.download(JSON.stringify(x), 'miu_config.json', 'text/plain');
+      })
+    )
+    .subscribe({
+      next: (x) => {},
+      error: (err) => console.log(err)
+    })
+  }
+
+  loadConfig() {
+    //this.configurationService.setConfig()
   }
 
   //EMAILS
