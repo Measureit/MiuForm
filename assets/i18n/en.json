@@ -58,7 +58,7 @@
 		"GENERAL": {
 			"TITLE": "General",
 			"DELIVERY": {
-				"TITLE": "Delivery",
+				"TITLE": "Delivery"
 			},
 			"PERSIST": {
 				"TITLE": "Save/Load configuration",
