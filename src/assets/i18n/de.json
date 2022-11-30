@@ -18,7 +18,7 @@
 	},
 	"PREVIEW_REPORT": {
 		"TITLE": "Report Preview",
-		"SEND_BY_EMAIL": "Wyślij emailem"
+		"SEND_BY_EMAIL": "Send by email"
 	},
 	"PREPARE_REPORT": {
 		"TITLE": "Preparing Report"
@@ -58,7 +58,7 @@
 		"GENERAL": {
 			"TITLE": "General",
 			"DELIVERY": {
-				"TITLE": "Delivery",
+				"TITLE": "Delivery"
 			},
 			"PERSIST": {
 				"TITLE": "Save/Load configuration",
