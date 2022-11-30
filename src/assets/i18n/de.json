@@ -1,66 +1,83 @@
 {
 	"COMMON": {
-	  "CREATE": "Create",
-	  "UPDATE": "Update",
-	  "DELETE": "Delete",
-	  "CANCEL": "Cancel",
-	  "ACTIVATE": "Activate"
+		"CREATE": "Create",
+		"UPDATE": "Update",
+		"DELETE": "Delete",
+		"CANCEL": "Cancel",
+		"ACTIVATE": "Activate",
+		"SAVE": "Save"
 	},
-	  "REPORTS": {
+	"FIELD_ERRORS": {
+		"REQUIRED": "The field is required.",
+		"REQUIRED_MINLENGTH": "The minimum length for this field is {{requiredLength}} characters."
+	},
+	"REPORTS": {
 		"TITLE": "Reports",
-		  "FILTER_BY_FACTORIES": "Factory filter",
-		  "LOAD_NOACTIVE_FACTORIES": "No active"
-	  },
-	  "PREVIEW_REPORT": {
-		"TITLE": "Report Preview"
-	  },
-	  "PREPARE_REPORT": {
-		  "TITLE": "Preparing Report"
-	  },
-	  "ITEM": {
+		"FILTER_BY_FACTORIES": "Factory filter",
+		"LOAD_NOACTIVE_FACTORIES": "No active"
+	},
+	"PREVIEW_REPORT": {
+		"TITLE": "Report Preview",
+		"SEND_BY_EMAIL": "Wyślij emailem"
+	},
+	"PREPARE_REPORT": {
+		"TITLE": "Preparing Report"
+	},
+	"ITEM": {
 		"FACTORY": {
-		  "NAME": "Name",
-		  "SHORTNAME": "Short Name",
-		  "ADDRESS": "Address"
+			"NAME": "Name",
+			"SHORTNAME": "Short Name",
+			"ADDRESS": "Address"
 		},
-		"CHECKLISTITEM": {
-		},
+		"CHECKLISTITEM": {},
 		"REPORT": {
-		}	  
-	  },
-	  "CONFIGURATION": {
+			"PRODUCT_ID": "Product Id",
+			"FACTORY": "Factory"
+		},		
+		"DELIVERY": {
+			"FROM_USER": "Sender",
+			"EMAIL_SERVER_SECRET_CODE": "Email server secret code",
+			"EMAIL_SERVER_URL": "Email server url"
+		}
+	},
+	"CONFIG": {
 		"TITLE": "Configuration",
 		"FACTORIES": {
-		  "TITLE": "Factories",
+			"TITLE": "Factories",
 			"LOAD_NOACTIVE": "Display also inactive items",
-			
 			"EDITOR": {
-			"CREATE": "Create factory info",
-		  "UPDATE": "update factory info",
-		  "DELETE": "Delete factory info"
+				"CREATE": "Create factory info",
+				"UPDATE": "update factory info",
+				"DELETE": "Delete factory info"
 			}
 		},
 		"CHECKLIST": {
-		  "TITLE": "Checklist",
-		  "LOAD_NOACTIVE": "Display also inactive items"
+			"TITLE": "Checklist",
+			"LOAD_NOACTIVE": "Display also inactive items"
 		},
-		"DELIVERY": {
-		  "TITLE": "Delivery",
-		  "LOAD_NOACTIVE": "Display also inactive items"
+		"GENERAL": {
+			"TITLE": "General",
+			"DELIVERY": {
+				"TITLE": "Delivery",
+			},
+			"PERSIST": {
+				"TITLE": "Save/Load configuration",
+				"SAVE_CONFIG": "Save configuration",
+				"LOAD_CONFIG": "Load configuration"
+			}
 		}
-	  },
-	  "HEADER": {
-		  "ABOUT": "About",
-		  "APP_NAME": "Miu App",
-		  "ENGLISH": "English",
-		  "GERMAN": "German",
-		  "LANGUAGES": "Languages",
-		  "POLISH": "Polish",
-		  "PRIVATE_POLICY": "Private Policy"
-	  },
-	  "LEFT_MENU": {
-		  "REPORTS": "Reports",
-		  "CONFIGURATION": "Configuration"
-	  }
-  }
-  
+	},
+	"HEADER": {
+		"ABOUT": "About",
+		"APP_NAME": "Miu App",
+		"ENGLISH": "English",
+		"GERMAN": "German",
+		"LANGUAGES": "Languages",
+		"POLISH": "Polish",
+		"PRIVATE_POLICY": "Private Policy"
+	},
+	"LEFT_MENU": {
+		"REPORTS": "Reports",
+		"CONFIGURATION": "Configuration"
+	}
+}

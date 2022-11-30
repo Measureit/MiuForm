@@ -1,5 +1,5 @@
 <mat-card>
-    <mat-card-header>{{ 'DELIVERY.TITLE' | translate }}</mat-card-header>
+    <mat-card-header>{{ 'CONFIG.GENERAL.DELIVERY.TITLE' | translate }}</mat-card-header>
     <mat-card-content>
         <form *ngIf="!loading" [formGroup]="itemForm" class="an-flex an-flex-direction-column">
             <mat-form-field appearance="fill">
@@ -60,9 +60,9 @@
 </mat-card>
 
 <mat-card style="margin-top: 5px">
-    <mat-card-header>{{ 'CONFIGURATION_MANAGEMENT.TITLE' | translate }}</mat-card-header>
+    <mat-card-header>{{ 'CONFIG.GENERAL.PERSIST.TITLE' | translate }}</mat-card-header>
     <mat-card-actions style="margin-left: auto">
-        <button mat-raised-button color="primary">{{'CONFIGURATION_MANAGEMENT.SAVE_CONFIGURATION' |  translate}}</button>
-        <button mat-raised-button color="primary">{{'CONFIGURATION_MANAGEMENT.LOAD_CONFIGURATION' |  translate}}</button>
+        <button mat-raised-button color="primary" style="margin-right: 5px">{{'CONFIG.GENERAL.PERSIST.SAVE_CONFIG' |  translate}}</button>
+        <button mat-raised-button color="primary">{{'CONFIG.GENERAL.PERSIST.LOAD_CONFIG' |  translate}}</button>
     </mat-card-actions>
 </mat-card>
