@@ -4,7 +4,8 @@
 		"UPDATE": "Update",
 		"DELETE": "Delete",
 		"CANCEL": "Cancel",
-		"ACTIVATE": "Activate"
+		"ACTIVATE": "Activate",
+		"SAVE": "Save"
 	},
 	"FIELD_ERRORS": {
 		"REQUIRED": "The field is required.",
@@ -16,7 +17,8 @@
 		"LOAD_NOACTIVE_FACTORIES": "No active"
 	},
 	"PREVIEW_REPORT": {
-		"TITLE": "Report Preview"
+		"TITLE": "Report Preview",
+		"SEND_BY_EMAIL": "Send by email"
 	},
 	"PREPARE_REPORT": {
 		"TITLE": "Preparing Report"
@@ -28,9 +30,17 @@
 			"ADDRESS": "Address"
 		},
 		"CHECKLISTITEM": {},
-		"REPORT": {}
+		"REPORT": {
+			"PRODUCT_ID": "Product Id",
+			"FACTORY": "Factory"
+		},		
+		"DELIVERY": {
+			"FROM_USER": "Sender",
+			"EMAIL_SERVER_SECRET_CODE": "Email server secret code",
+			"EMAIL_SERVER_URL": "Email server url"
+		}
 	},
-	"CONFIGURATION": {
+	"CONFIG": {
 		"TITLE": "Configuration",
 		"FACTORIES": {
 			"TITLE": "Factories",
@@ -45,9 +55,16 @@
 			"TITLE": "Checklist",
 			"LOAD_NOACTIVE": "Display also inactive items"
 		},
-		"DELIVERY": {
-			"TITLE": "Delivery",
-			"LOAD_NOACTIVE": "Display also inactive items"
+		"GENERAL": {
+			"TITLE": "General",
+			"DELIVERY": {
+				"TITLE": "Delivery",
+			},
+			"PERSIST": {
+				"TITLE": "Save/Load configuration",
+				"SAVE_CONFIG": "Save configuration",
+				"LOAD_CONFIG": "Load configuration"
+			}
 		}
 	},
 	"HEADER": {

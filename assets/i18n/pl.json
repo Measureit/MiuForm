@@ -4,7 +4,8 @@
 		"UPDATE": "Zaktualizuj",
 		"DELETE": "Usuń",
 		"CANCEL": "Anuluj",
-		"ACTIVATE": "Przywróć"
+		"ACTIVATE": "Przywróć",
+		"SAVE": "Zapisz"
 	},
 	"FIELD_ERRORS": {
 		"REQUIRED": "Pole jest wymagane.",
@@ -16,7 +17,8 @@
 		"LOAD_NOACTIVE_FACTORIES": "Nieaktywne"
 	},
 	"PREVIEW_REPORT": {
-		"TITLE": "Podgląd raportu"
+		"TITLE": "Podgląd raportu",
+		"SEND_BY_EMAIL": "Wyślij wiadomość email"
 	},
 	"PREPARE_REPORT": {
 		"TITLE": "Przygotowanie raportu"
@@ -31,9 +33,14 @@
 		"REPORT": {
 			"PRODUCT_ID": "Id Produktu",
 			"FACTORY": "Fabryka"
+		},		
+		"DELIVERY": {
+			"FROM_USER": "Nadawca",
+			"EMAIL_SERVER_SECRET_CODE": "Kod serwera email",
+			"EMAIL_SERVER_URL": "Adres serwera email"
 		}
 	},
-	"CONFIGURATION": {
+	"CONFIG": {
 		"TITLE": "Konfiguracja",
 		"FACTORIES": {
 			"TITLE": "Fabryki",
@@ -48,9 +55,16 @@
 			"TITLE": "Check lista",
 			"LOAD_NOACTIVE": "Wyświetl również nieaktywne"
 		},
-		"DELIVERY": {
-			"TITLE": "Dostarczanie",
-			"LOAD_NOACTIVE": "Wyświetl również nieaktywne"
+		"GENERAL": {
+			"TITLE": "Ogólne",
+			"DELIVERY": {
+				"TITLE": "Dostarczanie"
+			},
+			"PERSIST": {
+				"TITLE": "Zapis/ładowanie konfiguracji",
+				"SAVE_CONFIG": "Zapisz konfigurację",
+				"LOAD_CONFIG": "Załaduj konfigurację"
+			}
 		}
 	},
 	"HEADER": {
