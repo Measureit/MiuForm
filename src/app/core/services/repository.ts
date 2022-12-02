@@ -1,11 +1,12 @@
 import PouchDB from 'pouchdb';
 import { from, Observable } from 'rxjs';
-import { map, mergeMap } from 'rxjs/operators';
+import { map, mergeMap, tap } from 'rxjs/operators';
 import { DbModel } from '../models';
 import { ConsoleLoggerService, Logger } from './console.logger.service';
 
 
 export class Repository<T extends DbModel> {
+
     
   private readonly dbName: string;
   private readonly db: PouchDB.Database<T>;
@@ -61,11 +62,9 @@ export class Repository<T extends DbModel> {
         return readItems;
       }),
       map(readItems => { 
-        console.log('set: ' + JSON.stringify(readItems));
         return this.db.bulkDocs(readItems);
       }),
       mergeMap(x => {
-        console.log('set: ' + JSON.stringify(x));
         return this.get(true)
       })
     );
@@ -88,5 +87,12 @@ export class Repository<T extends DbModel> {
     this.logger.debug(`update with ${item._id} on ${this.dbName}`);
     return from(this.db.put(item))
       .pipe(map(x => x.ok ? x.rev : undefined))
+  }
+
+  updateAll(items: T[]): Observable<boolean> {
+    return from(this.db.bulkDocs(items))
+      .pipe(
+        map(x => true)
+      );
   }
 }

@@ -88,7 +88,6 @@ export class FactoryEditorComponent {
   }
 
   addEmail(event): void {
-    console.log(event.value)
     if (event.value) {
       if (this.validateEmail(event.value.trim())) {
         (this.itemForm.get('emails') as FormArray)

@@ -58,13 +58,18 @@ export class ConfigurationService  {
   getChecklistItems(isActive: boolean): Observable<ChecklistItemConfig[]> {
     return this.dbChecklistItemRepo.get(isActive)
     .pipe(
-      map(x => x.sort(x => x.order))
+      map(x => x.sort((n1,n2) => n1.order - n2.order))
     );
   }
 
   addOrUpdateCheckListItem(item: ChecklistItemConfig) : Observable<string | undefined> {
     return this.dbChecklistItemRepo.update(item);
   }
+
+  updateAllChecklistItems(items: ChecklistItemConfig[]): Observable<boolean> {
+    return this.dbChecklistItemRepo.updateAll(items);
+  }
+
   //END CHECK LIST
 
   //START DELIVERY 

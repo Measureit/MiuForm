@@ -16,7 +16,6 @@ export class SidenavService {
   }
 
   private checkWindowWidth() : void {
-    console.log('resize');
     if(window.innerWidth > 768){
       this.sideNavState$.next(true);
     }else{

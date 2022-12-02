@@ -7,6 +7,7 @@
 // import { CdkStepperModule } from '@angular/cdk/stepper';
 // import { CdkTableModule } from '@angular/cdk/table';
 // import { CdkTreeModule } from '@angular/cdk/tree';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -60,7 +61,7 @@ const materialModules = [
   // CdkStepperModule,
   // CdkTableModule,
   // CdkTreeModule,
-  // DragDropModule,
+  DragDropModule,
   // MatAutocompleteModule,
   // MatBadgeModule,
   // MatBottomSheetModule,
