@@ -45,6 +45,10 @@ export class ReportsComponent implements OnInit {
     
   }
 
+  clearFilter() {
+    
+  }
+
   reloadFactories(loadNoActive: boolean): Observable<boolean> {
     return this.reportService.getFactories(loadNoActive)
       .pipe(

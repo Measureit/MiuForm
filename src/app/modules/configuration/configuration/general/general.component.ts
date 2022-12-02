@@ -102,13 +102,12 @@ export class GeneralComponent implements OnInit {
       if (event.target.files && event.target.files.length > 0) {
         var file: File = event.target.files[0];
         var myReader: FileReader = new FileReader();
-        //var fileType = inputValue.parentElement.id;
         myReader.onloadend = (e) => {
             var config = JSON.parse(myReader.result as string) as Configuration;
             if (config) {
               this.configurationService.setConfig(config)
               .pipe(map(x => {
-                //window.location.reload();
+                window.location.reload();
               }))
               .subscribe({
                 next: (x) => console.log(x),

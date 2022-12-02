@@ -6,7 +6,8 @@
 		"CANCEL": "Cancel",
 		"ACTIVATE": "Activate",
 		"SAVE": "Save",
-		"FILTER": "Filter"
+		"FILTER": "Filter",
+		"CLEAR_FILTER": "Clear"
 	},
 	"FIELD_ERRORS": {
 		"REQUIRED": "The field is required.",

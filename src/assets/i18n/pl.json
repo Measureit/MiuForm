@@ -6,7 +6,8 @@
 		"CANCEL": "Anuluj",
 		"ACTIVATE": "Przywróć",
 		"SAVE": "Zapisz",
-		"FILTER": "Filtruj"
+		"FILTER": "Filtruj",
+		"CLEAR_FILTER": "Wyczyść"
 	},
 	"FIELD_ERRORS": {
 		"REQUIRED": "Pole jest wymagane.",

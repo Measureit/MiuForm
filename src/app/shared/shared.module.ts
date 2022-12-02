@@ -54,8 +54,10 @@ import { ReloadButtonComponent } from './components/reload-button/reload-button.
 import { LetDirective } from './directives';
 import { HideNoActivesPipe } from './pipes';
 import { WithLoadingPipe } from './pipes/with-loading.pipe';
+import {CdkAccordionModule} from '@angular/cdk/accordion';
 
 const materialModules = [
+  CdkAccordionModule,
   // A11yModule,
   // ClipboardModule,
   // CdkStepperModule,
