@@ -5,7 +5,8 @@
 		"DELETE": "Usuń",
 		"CANCEL": "Anuluj",
 		"ACTIVATE": "Przywróć",
-		"SAVE": "Zapisz"
+		"SAVE": "Zapisz",
+		"FILTER": "Filtruj"
 	},
 	"FIELD_ERRORS": {
 		"REQUIRED": "Pole jest wymagane.",
@@ -13,8 +14,9 @@
 	},
 	"REPORTS": {
 		"TITLE": "Raporty",
-		"FILTER_BY_FACTORIES": "Filtruj przez fabrkę",
-		"LOAD_NOACTIVE_FACTORIES": "Nieaktywne"
+		"FILTER": "Filtr",
+		"FILTER_BY_FACTORIES": "Filtruj po fabryce",
+		"LOAD_NOACTIVE_FACTORIES": "Pokaż rónież nieaktywne"
 	},
 	"PREVIEW_REPORT": {
 		"TITLE": "Podgląd raportu",

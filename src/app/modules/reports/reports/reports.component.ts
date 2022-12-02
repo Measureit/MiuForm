@@ -15,6 +15,8 @@ export class ReportsComponent implements OnInit {
   factoryItems: FactoryInfoConfig[] = [];
   items: Report[] = [];
 
+  productIdFilter: string = '';
+
   constructor(private reportService: ReportService, 
     private router: Router) { }
 
@@ -37,6 +39,10 @@ export class ReportsComponent implements OnInit {
         tap(x => this.items = x),
         map(x => true)
       );
+  }
+
+  filter() {
+    
   }
 
   reloadFactories(loadNoActive: boolean): Observable<boolean> {

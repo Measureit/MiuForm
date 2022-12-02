@@ -1,28 +1,44 @@
-<div >
+<div>
     <h1>{{ 'REPORTS.TITLE' | translate }}</h1>
-    <div >
-        <mat-select multiple placeholder="{{ 'REPORTS.FILTER_BY_FACTORIES' | translate }}">
-            <mat-option *ngFor="let factory of factoryItems" [value]="factory._id">{{factory.shortName}}-{{factory.name}}</mat-option>
-        </mat-select>
-        <mat-checkbox 
-            (change)="reloadFactories($event.checked)"
-            [checked]="loadFactoryWithNoActive">
-            {{ 'REPORTS.LOAD_NOACTIVE_FACTORIES' | translate}}
-        </mat-checkbox>
-    </div>
-    
+    <mat-card>
+        <mat-card-header>{{ 'REPORTS.FILTER' | translate }}</mat-card-header>
+        <mat-card-content>
+            <mat-form-field appearance="outline" style="width: 100%">
+                <mat-label>{{ 'ITEM.REPORT.PRODUCT_ID' | translate }}</mat-label>
+                <input matInput type="text" name="value" [(ngModel)]="productIdFilter">
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="width: 100%">
+                <mat-select multiple placeholder="{{ 'REPORTS.FILTER_BY_FACTORIES' | translate }}" >
+                    <mat-option *ngFor="let factory of factoryItems" [value]="factory._id">
+                        {{factory.shortName}}-{{factory.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <!-- <mat-form-field> -->
+                <mat-checkbox (change)="reloadFactories($event.checked)" [checked]="loadFactoryWithNoActive">
+                    {{ 'REPORTS.LOAD_NOACTIVE_FACTORIES' | translate}}
+                </mat-checkbox>
+            <!-- </mat-form-field> -->
+        </mat-card-content>
+        <mat-card-actions style="margin-left: auto">
+            <button (click)="filter()" mat-raised-button color="primary">{{'COMMON.FILTER' |  translate}}</button>
+            
+        </mat-card-actions>
+    </mat-card>
+
     <mat-list>
-        <div class="an-list-item" *ngFor="let item of items" (click)="preview($event, item._id)" > 
-            <div class="an-list-item-des" >
+        <div class="an-list-item" *ngFor="let item of items" (click)="preview($event, item._id)">
+            <div class="an-list-item-des">
                 <span>{{item.productId}}</span>
                 <span>{{selectFactoryInfoConfig(item.factoryInfoId)?.shortName}}-{{selectFactoryInfoConfig(item.factoryInfoId)?.name}}</span>
                 <span>{{item.dateOfCreation | date: 'YYYY-MM-d, H:mm:ss'}}</span>
             </div>
-            <button (click)="prepare($event, item._id)"><mat-icon>edit</mat-icon></button>
+            <button (click)="prepare($event, item._id)">
+                <mat-icon>edit</mat-icon>
+            </button>
         </div>
     </mat-list>
-    
-    <button mat-fab color="primary"  class="mat-fab-bottom-right" [routerLink]="['prepare']" >
+
+    <button mat-fab color="primary" class="mat-fab-bottom-right" [routerLink]="['prepare']">
         <mat-icon>add</mat-icon>
     </button>
 </div>
