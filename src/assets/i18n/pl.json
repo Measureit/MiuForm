@@ -31,8 +31,11 @@
 		},
 		"CHECKLISTITEM": {},
 		"REPORT": {
+			"PRODUCT_NAME": "Nazwa Produktu",
+			"PRODUCT_COLOR": "Kolor Produktu",
 			"PRODUCT_ID": "Id Produktu",
 			"FACTORY": "Fabryka"
+			
 		},		
 		"DELIVERY": {
 			"FROM_USER": "Nadawca",

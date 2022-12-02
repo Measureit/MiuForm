@@ -52,6 +52,8 @@ export class PrepareReportComponent implements OnInit {
             _rev: [this.item._rev],
             dateOfCreation: [this.item.dateOfCreation],
             productId: [this.item.productId, [Validators.required, Validators.minLength(3)]],
+            productName: [this.item.productName, [Validators.required, Validators.minLength(3)]],
+            productColor: [this.item.productColor, [Validators.required, Validators.minLength(3)]],
             factoryInfoId: [this.item.factoryInfoId, [Validators.required]],
             checklist: this.formBuilder.array(this.item.checklist.map(
               x => this.formBuilder.group({
@@ -68,7 +70,6 @@ export class PrepareReportComponent implements OnInit {
               x => this.formBuilder.group({...x})
             )),
             reportPath: [this.item.reportPath],
-            dateOfGenerating: [this.item.dateOfGenerating],
             dateOfDelivery: [this.item.dateOfDelivery]
           });
           return this.reportService.getFactories(false);

@@ -1,56 +1,65 @@
 <h1>{{ 'PREPARE_REPORT.TITLE' | translate }}</h1>
 <div *ngIf="item">
- <p>{{item._id}}</p>
+    <p>{{item._id}}</p>
 
 
-        <form [formGroup]="itemForm" class="an-flex an-flex-direction-column">
-            <mat-form-field >
-              <mat-label>{{ 'ITEM.REPORT.PRODUCT_ID' | translate}}</mat-label>
-              <input matInput placeholder="{{ 'ITEM.REPORT.PRODUCT_ID' | translate}}" formControlName="productId">
-            </mat-form-field>
+    <form [formGroup]="itemForm" class="an-flex an-flex-direction-column">
+        <mat-form-field>
+            <mat-label>{{ 'ITEM.REPORT.PRODUCT_NAME' | translate}}</mat-label>
+            <input matInput placeholder="{{ 'ITEM.REPORT.PRODUCT_NAME' | translate}}" formControlName="productName">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>{{ 'ITEM.REPORT.PRODUCT_COLOR' | translate}}</mat-label>
+            <input matInput placeholder="{{ 'ITEM.REPORT.PRODUCT_COLOR' | translate}}" formControlName="productColor">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>{{ 'ITEM.REPORT.PRODUCT_ID' | translate}}</mat-label>
+            <input matInput placeholder="{{ 'ITEM.REPORT.PRODUCT_ID' | translate}}" formControlName="productId">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select formControlName="factoryInfoId" placeholder="{{ 'ITEM.REPORT.FACTORY' | translate }}">
+                <mat-option *ngFor="let factory of factoryItems" [value]="factory._id">
+                    {{factory.shortName}}-{{factory.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
 
-            <mat-form-field >
-                <mat-select formControlName="factoryInfoId" placeholder="{{ 'ITEM.REPORT.FACTORY' | translate }}">
-                    <mat-option *ngFor="let factory of factoryItems" [value]="factory._id">{{factory.shortName}}-{{factory.name}}</mat-option>
-                </mat-select>
-            </mat-form-field>
+        <div style="display: flex; flex-direction: row; ">
+            <button mat-fab (click)="fileInput.click()">
+                <mat-icon>library_add</mat-icon>
+                <input #fileInput type="file" (change)="onFileInput($event)" style="display:none;"
+                    accept="image/x-png,image/jpeg,image/gif" multiple="multiple" />
+            </button>
+            <button mat-fab (click)="fileInput.click()">
+                <mat-icon>delete</mat-icon>
+            </button>
 
-            <div style="display: flex; flex-direction: row; ">                
-                    <button mat-fab (click)="fileInput.click()">
-                        <mat-icon>library_add</mat-icon>
-                        <input #fileInput type="file" (change)="onFileInput($event)" style="display:none;"
-                            accept="image/x-png,image/jpeg,image/gif"  multiple="multiple" />
-                    </button>
-                    <button mat-fab (click)="fileInput.click()">
-                        <mat-icon>delete</mat-icon>
-                    </button>
+            <button mat-fab (click)="fileInput.click()">
+                <mat-icon>done_all</mat-icon>
+            </button>
 
-                    <button mat-fab (click)="fileInput.click()">
-                        <mat-icon>done_all</mat-icon>
-                    </button>
+            <button mat-fab (click)="fileInput.click()">
+                <mat-icon>remove_done</mat-icon>
+            </button>
+        </div>
 
-                    <button mat-fab (click)="fileInput.click()">
-                        <mat-icon>remove_done</mat-icon>
-                    </button>                
-            </div>
-
-            <div style="display: flex; flex-direction: row; flex-flow: wrap; " >
-                <div style="margin: 3px; border: 1px solid black" formArrayName="images" *ngFor="let image of images?.controls; let i = index">
-                    <div [formGroupName]="i" style="width: 200px; height: 200px; display: flex;  justify-content: center;"> 
-                        <img  [src]="blobToSrc(image.get('blob').value)" 
-                            style="display: block; max-width: 200px; max-height: 200px; width: auto; height: auto; margin: auto"/>
-                    </div>
+        <div style="display: flex; flex-direction: row; flex-flow: wrap; ">
+            <div style="margin: 3px; border: 1px solid black" formArrayName="images"
+                *ngFor="let image of images?.controls; let i = index">
+                <div [formGroupName]="i" style="width: 200px; height: 200px; display: flex;  justify-content: center;">
+                    <img [src]="blobToSrc(image.get('blob').value)"
+                        style="display: block; max-width: 200px; max-height: 200px; width: auto; height: auto; margin: auto" />
                 </div>
-            </div> 
+            </div>
+        </div>
 
-        </form>
+    </form>
 
-        <button mat-fab color="primary"  class="mat-fab-bottom-right-second" (click)="saveReport()" >
-            <mat-icon>save</mat-icon>
-        </button>
-        <button mat-fab color="primary"  class="mat-fab-bottom-right" (click)="preview()" >
-            <mat-icon>rebase_edit</mat-icon>
-        </button>
+    <button mat-fab color="primary" class="mat-fab-bottom-right-second" (click)="saveReport()">
+        <mat-icon>save</mat-icon>
+    </button>
+    <button mat-fab color="primary" class="mat-fab-bottom-right" (click)="preview()">
+        <mat-icon>rebase_edit</mat-icon>
+    </button>
 </div>
 <div *ngIf="!item">
     <p>Raport nie istnieje.</p>

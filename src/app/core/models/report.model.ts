@@ -44,11 +44,14 @@ export interface Report extends DbModel {
     
 
     dateOfCreation: number;
+    productName: string;
+    productColor: string;
     productId: string;
     factoryInfoId: string;
     checklist: ReportChecklistItem[];
     images: ReportImageItem[]; 
     reportPath: string; //path do zapisanego pdf'a
-    dateOfGenerating: number;
+    //dateOfGenerating: number;
+
     dateOfDelivery?: number;
 }

@@ -31,6 +31,8 @@
 		},
 		"CHECKLISTITEM": {},
 		"REPORT": {
+			"PRODUCT_NAME": "Product Name",
+			"PRODUCT_COLOR": "Produkt Color",			
 			"PRODUCT_ID": "Product Id",
 			"FACTORY": "Factory"
 		},		
