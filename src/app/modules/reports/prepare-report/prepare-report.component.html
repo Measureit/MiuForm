@@ -15,23 +15,23 @@
                 </mat-select>
             </mat-form-field>
 
-            <div style="display: flex; flex-direction: row; ">
-                <button mat-fab (click)="fileInput.click()">
-                    <mat-icon>library_add</mat-icon>
-                    <input #fileInput type="file" (change)="onFileInput($event)" style="display:none;"
-                        accept="image/x-png,image/jpeg,image/gif"  multiple="multiple" />
-                </button>
-                <button mat-fab (click)="fileInput.click()">
-                    <mat-icon>delete</mat-icon>
-                </button>
+            <div style="display: flex; flex-direction: row; ">                
+                    <button mat-fab (click)="fileInput.click()">
+                        <mat-icon>library_add</mat-icon>
+                        <input #fileInput type="file" (change)="onFileInput($event)" style="display:none;"
+                            accept="image/x-png,image/jpeg,image/gif"  multiple="multiple" />
+                    </button>
+                    <button mat-fab (click)="fileInput.click()">
+                        <mat-icon>delete</mat-icon>
+                    </button>
 
-                <button mat-fab (click)="fileInput.click()">
-                    <mat-icon>done_all</mat-icon>
-                </button>
+                    <button mat-fab (click)="fileInput.click()">
+                        <mat-icon>done_all</mat-icon>
+                    </button>
 
-                <button mat-fab (click)="fileInput.click()">
-                    <mat-icon>remove_done</mat-icon>
-                </button>
+                    <button mat-fab (click)="fileInput.click()">
+                        <mat-icon>remove_done</mat-icon>
+                    </button>                
             </div>
 
             <div style="display: flex; flex-direction: row; flex-flow: wrap; " >

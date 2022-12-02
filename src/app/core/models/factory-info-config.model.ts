@@ -1,9 +1,13 @@
 import { DbModel } from "./db.model";
 import * as uuid from "uuid";
 
+export const CreateIdFactoryInfoConfig = (): string => {
+    return `factory_${uuid.v4()}`;
+}
+
 export const CreateFactoryInfoConfig = (): FactoryInfoConfig => {
     let res = {} as FactoryInfoConfig;
-    res._id = `factory_${uuid.v4()}`;
+    res._id = CreateIdFactoryInfoConfig();
     res.isActive = true;
     res.emails = [];
     return res;

@@ -6,7 +6,7 @@ import { ConsoleLoggerService, Logger } from './console.logger.service';
 
 
 export class Repository<T extends DbModel> {
-
+    
   private readonly dbName: string;
   private readonly db: PouchDB.Database<T>;
   private readonly logger: Logger;
@@ -40,6 +40,34 @@ export class Repository<T extends DbModel> {
           obs.error(err);
         });
     });
+  }
+
+  set(items: T[], factoryId: () => string, clone: (org: T, newV: T) => void): Observable<T[]> {
+    return this.get(true)
+    .pipe(
+      map(readItems => {
+        readItems.forEach(e => e._deleted = true);
+        items.forEach(it => {
+          let t = readItems.find(p => p._id == it._id); 
+          if (t) {
+            t._deleted = false;
+            clone(t, it);            
+          } else {
+            it._id ??= factoryId();
+            readItems.push(it);
+          }           
+        });
+        return readItems;
+      }),
+      map(readItems => { 
+        console.log('set: ' + JSON.stringify(readItems));
+        return this.db.bulkDocs(readItems);
+      }),
+      mergeMap(x => {
+        console.log('set: ' + JSON.stringify(x));
+        return this.get(true)
+      })
+    );
   }
 
   changeActive(id: string, isActive: boolean = false): Observable<string | undefined> {

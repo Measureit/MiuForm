@@ -63,6 +63,8 @@
     <mat-card-header>{{ 'CONFIG.GENERAL.PERSIST.TITLE' | translate }}</mat-card-header>
     <mat-card-actions style="margin-left: auto">
         <button (click)="saveConfig()" mat-raised-button color="primary" style="margin-right: 5px">{{'CONFIG.GENERAL.PERSIST.SAVE_CONFIG' |  translate}}</button>
-        <button (click)="loadConfig()" mat-raised-button color="primary">{{'CONFIG.GENERAL.PERSIST.LOAD_CONFIG' |  translate}}</button>
+        <button (click)="fileInput.click()" mat-raised-button color="primary">{{'CONFIG.GENERAL.PERSIST.LOAD_CONFIG' |  translate}}
+            <input #fileInput type="file" (change)="loadConfig($event)" style="display:none;" accept=".json,application/json"  />
+        </button>
     </mat-card-actions>
 </mat-card>

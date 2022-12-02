@@ -2,9 +2,9 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
 import { Form, FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { TitleStrategy } from '@angular/router';
-import { first, tap } from 'rxjs';
+import { first, map, tap } from 'rxjs';
 import { CreateDeliveryConfig, DeliveryConfig } from 'src/app/core/models';
-import { ConfigurationService } from 'src/app/core/services';
+import { Configuration, ConfigurationService } from 'src/app/core/services';
 
 @Component({
   selector: 'app-general',
@@ -98,8 +98,29 @@ export class GeneralComponent implements OnInit {
     })
   }
 
-  loadConfig() {
-    //this.configurationService.setConfig()
+  loadConfig = (event) => {
+      if (event.target.files && event.target.files.length > 0) {
+        var file: File = event.target.files[0];
+        var myReader: FileReader = new FileReader();
+        //var fileType = inputValue.parentElement.id;
+        myReader.onloadend = (e) => {
+            var config = JSON.parse(myReader.result as string) as Configuration;
+            if (config) {
+              this.configurationService.setConfig(config)
+              .pipe(map(x => {
+                //window.location.reload();
+              }))
+              .subscribe({
+                next: (x) => console.log(x),
+                error: (err) => console.error(err)
+              })
+            } else {
+              console.error('Config - No parse correctly.');
+            } 
+        }
+
+        myReader.readAsText(file); 
+      }
   }
 
   //EMAILS

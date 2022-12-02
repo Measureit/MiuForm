@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable, of, zip } from 'rxjs';
-import { concatMap, map } from 'rxjs/operators';
-import { ChecklistItemConfig, DeliveryConfig, DeliveryId, FactoryInfoConfig } from '../models';
+import { concatMap, map, mergeMap } from 'rxjs/operators';
+import { ChecklistItemConfig, CreateIdChecklistItemConfig, CreateIdFactoryInfoConfig, DeliveryConfig, DeliveryId, FactoryInfoConfig } from '../models';
 import { ConsoleLoggerService, Logger } from './console.logger.service';
 import { DBService } from './db.service';
 import { Repository } from './repository';
@@ -90,6 +90,39 @@ export class ConfigurationService  {
           checklistItems: x[1],
           delivery: x[2]
         } as Configuration
+      })
+    );
+  }
+
+  setConfig(conf: Configuration): Observable<Configuration> {
+    return this.dbDeliveryConfigRepo.getById(DeliveryId)
+    .pipe(
+      mergeMap(x => {
+        if (conf.delivery) {
+          conf.delivery._rev = x._rev;
+          return this.dbDeliveryConfigRepo.update(conf.delivery)
+        } 
+        return of('');
+      }),
+      mergeMap(x => 
+        this.dbFactoryInfoConfigRepo.set(conf.factories, CreateIdFactoryInfoConfig, (org: FactoryInfoConfig, newIt: FactoryInfoConfig) => {
+          org.address = newIt.address;
+          org.emails = newIt.emails;
+          org.isActive = newIt.isActive;
+          org.name = newIt.name;
+          org.order = newIt.order;
+          org.shortName = newIt.shortName;
+        }),        
+      ),
+      mergeMap(x => 
+        this.dbChecklistItemRepo.set(conf.checklistItems, CreateIdChecklistItemConfig, (org: ChecklistItemConfig, newIt: ChecklistItemConfig) => {
+          org.content = newIt.content;
+          org.isActive = newIt.isActive;
+          org.order = newIt.order;
+        }),
+      ),
+      map(x => {
+        return conf;
       })
     );
   }
