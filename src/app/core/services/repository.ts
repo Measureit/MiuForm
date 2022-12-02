@@ -54,6 +54,7 @@ export class Repository<T extends DbModel> {
             clone(t, it);            
           } else {
             it._id ??= factoryId();
+            it._rev = undefined;
             readItems.push(it);
           }           
         });

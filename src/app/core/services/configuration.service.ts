@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Observable, of, zip } from 'rxjs';
-import { concatMap, map, mergeMap } from 'rxjs/operators';
-import { ChecklistItemConfig, CreateIdChecklistItemConfig, CreateIdFactoryInfoConfig, DeliveryConfig, DeliveryId, FactoryInfoConfig } from '../models';
+import { Observable, of, pipe, zip } from 'rxjs';
+import { catchError, concatMap, map, mergeMap } from 'rxjs/operators';
+import { ChecklistItemConfig, CreateDeliveryConfig, CreateIdChecklistItemConfig, CreateIdFactoryInfoConfig, DeliveryConfig, DeliveryId, FactoryInfoConfig } from '../models';
 import { ConsoleLoggerService, Logger } from './console.logger.service';
 import { DBService } from './db.service';
 import { Repository } from './repository';
@@ -82,7 +82,11 @@ export class ConfigurationService  {
     return zip(
       this.dbFactoryInfoConfigRepo.get(true),
       this.dbChecklistItemRepo.get(true),
-      this.dbDeliveryConfigRepo.getById(DeliveryId))
+      this.dbDeliveryConfigRepo.getById(DeliveryId)
+      .pipe(
+        catchError(err => of(CreateDeliveryConfig()))
+      )
+    )
     .pipe(
       map(x => {
         return {
@@ -97,6 +101,7 @@ export class ConfigurationService  {
   setConfig(conf: Configuration): Observable<Configuration> {
     return this.dbDeliveryConfigRepo.getById(DeliveryId)
     .pipe(
+      catchError(err => of(CreateDeliveryConfig())),
       mergeMap(x => {
         if (conf.delivery) {
           conf.delivery._rev = x._rev;
