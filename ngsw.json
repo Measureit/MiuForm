@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1669942191357,
+  "timestamp": 1670023127400,
   "index": "/MiuForm/index.html",
   "assetGroups": [
     {
@@ -12,19 +12,19 @@
       },
       "urls": [
         "/MiuForm/159.aeaf0434716cbc2a.js",
-        "/MiuForm/472.c021b84b2c4a47d2.js",
+        "/MiuForm/472.21f7727939371946.js",
         "/MiuForm/489.595b57cf57769e34.js",
-        "/MiuForm/501.112cd5a472f7758d.js",
+        "/MiuForm/501.5374f9a224457948.js",
         "/MiuForm/735.568392a83276faa4.js",
         "/MiuForm/992.73a9c400e6b027f0.js",
         "/MiuForm/common.2eb59eef1569385a.js",
         "/MiuForm/favicon.ico",
         "/MiuForm/index.html",
-        "/MiuForm/main.13e2b4bb59783f8f.js",
+        "/MiuForm/main.d190305f0ff427fe.js",
         "/MiuForm/manifest.webmanifest",
         "/MiuForm/polyfills.95c34e3366b2d476.js",
-        "/MiuForm/runtime.b62b067ae2c92fb8.js",
-        "/MiuForm/styles.dfdeef46c59fb597.css"
+        "/MiuForm/runtime.3bf4e9ce3941f73c.js",
+        "/MiuForm/styles.323f64f5d99f4248.css"
       ],
       "patterns": []
     },
@@ -523,9 +523,9 @@
   "dataGroups": [],
   "hashTable": {
     "/MiuForm/159.aeaf0434716cbc2a.js": "788e00f4c221300060ce7e9ea0d81d7db6de10d7",
-    "/MiuForm/472.c021b84b2c4a47d2.js": "6b5463fe7617473387eb5681797f0dac746cec5d",
+    "/MiuForm/472.21f7727939371946.js": "85bf00080b055b33ad8ca8b032ede355ff9ef0c7",
     "/MiuForm/489.595b57cf57769e34.js": "c799afb05672d36da807c1aef9cb5993cec6db3d",
-    "/MiuForm/501.112cd5a472f7758d.js": "9dfdb709f4a0100a4876b34212dcbedd5d9af0d5",
+    "/MiuForm/501.5374f9a224457948.js": "33a306ba1305bc6130d6e3713cc2d0e7e5153a1b",
     "/MiuForm/735.568392a83276faa4.js": "1e38e461332860c52210c58e733190f2b5d769e9",
     "/MiuForm/992.73a9c400e6b027f0.js": "52a0c0c42b7f6a79bca9bd145623452de585c3f5",
     "/MiuForm/assets/additional-locale/de.properties": "a5ae42a3cdab02fca17e6a65b2edf7d50c193f69",
@@ -705,9 +705,9 @@
     "/MiuForm/assets/cmaps/UniKS-UTF8-V.bcmap": "586c64948a67e4cb12de64e221b0dc3d9e47dedf",
     "/MiuForm/assets/cmaps/V.bcmap": "99790f12ca21a196bc1d836ae5bf0ad7af95e079",
     "/MiuForm/assets/cmaps/WP-Symbol.bcmap": "3a6417abad460a1a083be75636c014f3a73937b5",
-    "/MiuForm/assets/i18n/de.json": "6873108d73df69fdb5f054b041ed0e998b1fa2a2",
-    "/MiuForm/assets/i18n/en.json": "6873108d73df69fdb5f054b041ed0e998b1fa2a2",
-    "/MiuForm/assets/i18n/pl.json": "81efbf2be97350e9026ee78d796380b0b023e914",
+    "/MiuForm/assets/i18n/de.json": "d20f7d580fc86bb5abb37df26f279a05ab853e08",
+    "/MiuForm/assets/i18n/en.json": "7def99fc3cf5ecbba6b41a9fecb345004876594e",
+    "/MiuForm/assets/i18n/pl.json": "457c1036591004e579bc85dffc57fa912cf81bf6",
     "/MiuForm/assets/icons/icon-128x128.png": "ee531ed70d9b2edb27784d9909e227758cd0f826",
     "/MiuForm/assets/icons/icon-144x144.png": "6f8c5e4ec47d7f898e8d091209d4fee2e64f6d14",
     "/MiuForm/assets/icons/icon-152x152.png": "69dbfbe133fccfb2155f5e6b30998e3ed1d13193",
@@ -1010,12 +1010,12 @@
     "/MiuForm/assets/viewer-2.16.450.min.js": "bd193bbc937240c41633880d1fddcdc73b5f2faa",
     "/MiuForm/common.2eb59eef1569385a.js": "c3f10cd2b0623022f6c52cb03b3682bf7fb6473b",
     "/MiuForm/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/MiuForm/index.html": "d2329a97ca9f167fd2b8353af5fa06e6729f4626",
-    "/MiuForm/main.13e2b4bb59783f8f.js": "14e934e0f6e19eb00254cb873a23e7a7eee20837",
+    "/MiuForm/index.html": "bc1dce5a78465fe88790fc499a2591999010c1d4",
+    "/MiuForm/main.d190305f0ff427fe.js": "456d9256ba4e235c93dc5beac82fe00368964c60",
     "/MiuForm/manifest.webmanifest": "bb33ce81f78d544452dfba6b32046d490a524c44",
     "/MiuForm/polyfills.95c34e3366b2d476.js": "403f9d168c370ee67147a1d65db932dcda44a123",
-    "/MiuForm/runtime.b62b067ae2c92fb8.js": "fda241d8a1429234dc99f4cca9ddeda036721a69",
-    "/MiuForm/styles.dfdeef46c59fb597.css": "0e6b9915e4ccfca44e80b371f01942e9dd27a65d"
+    "/MiuForm/runtime.3bf4e9ce3941f73c.js": "d463855bfde5e2214e2d66ec7ae8a8d9f16364c6",
+    "/MiuForm/styles.323f64f5d99f4248.css": "9cebb80cc50b2aa1e7246fecad9c70fd562a85d8"
   },
   "navigationUrls": [
     {

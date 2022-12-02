@@ -5,7 +5,9 @@
 		"DELETE": "Usuń",
 		"CANCEL": "Anuluj",
 		"ACTIVATE": "Przywróć",
-		"SAVE": "Zapisz"
+		"SAVE": "Zapisz",
+		"FILTER": "Filtruj",
+		"CLEAR_FILTER": "Wyczyść"
 	},
 	"FIELD_ERRORS": {
 		"REQUIRED": "Pole jest wymagane.",
@@ -13,8 +15,9 @@
 	},
 	"REPORTS": {
 		"TITLE": "Raporty",
-		"FILTER_BY_FACTORIES": "Filtruj przez fabrkę",
-		"LOAD_NOACTIVE_FACTORIES": "Nieaktywne"
+		"FILTER": "Filtr",
+		"FILTER_BY_FACTORIES": "Filtruj po fabryce",
+		"LOAD_NOACTIVE_FACTORIES": "Pokaż rónież nieaktywne"
 	},
 	"PREVIEW_REPORT": {
 		"TITLE": "Podgląd raportu",
@@ -31,8 +34,11 @@
 		},
 		"CHECKLISTITEM": {},
 		"REPORT": {
+			"PRODUCT_NAME": "Nazwa Produktu",
+			"PRODUCT_COLOR": "Kolor Produktu",
 			"PRODUCT_ID": "Id Produktu",
 			"FACTORY": "Fabryka"
+			
 		},		
 		"DELIVERY": {
 			"FROM_USER": "Nadawca",
