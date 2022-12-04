@@ -5,12 +5,14 @@ import { PrepareReportComponent } from './prepare-report/prepare-report.componen
 import { ReportsRoutingModule } from './reports-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ImagesSelectorComponent } from './components/images-selector/images-selector.component';
+import { ChecklistItemComponent } from './components/checklist-item/checklist-item.component';
 
 
 
 @NgModule({
   declarations: [
     ImagesSelectorComponent,
+    ChecklistItemComponent,
     ReportsComponent,
     PrepareReportComponent
   ],

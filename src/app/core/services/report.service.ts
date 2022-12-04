@@ -32,7 +32,14 @@ export class ReportService {
   }
 
   getChecklist() : Observable<ChecklistItemConfig[]> {
-    return this.dbChecklistItemRepo.get(false);
+    return this.dbChecklistItemRepo.get(false)
+      .pipe(
+        map(x => {
+          let result = x.sort((x, y) => x.order - y.order);
+          console.log('getChecklist: ' + JSON.stringify(result));
+          return result;
+        })
+      )
   }
 
   // createNewReport() : Observable<Report> {

@@ -103,6 +103,7 @@ export class PrepareReportComponent implements OnInit {
               x => this.formBuilder.group({
                 checklistItemId: [x.checklistItemId],
                 comment: [x.comment],
+                order: [x.order],
                 pointImages: this.formBuilder.array(x.pointImages.map(
                   x => this.formBuilder.group({ ...x })
                 )),
@@ -114,7 +115,6 @@ export class PrepareReportComponent implements OnInit {
               x => this.formBuilder.group({ ...x })
             )),
             comment: [this.item.comment],
-            reportPath: [this.item.reportPath],
             dateOfDelivery: [this.item.dateOfDelivery]
           });
           return this.reportService.getFactories();
@@ -186,8 +186,9 @@ export class PrepareReportComponent implements OnInit {
     return this.itemForm.get('images') as FormArray;
   }
 
-  get checklist(): FormArray {
-    return this.itemForm.get('checklist') as FormArray;
+  get checklistItemFormGroups(): FormGroup[] {
+    const fa = this.itemForm.get('checklist') as FormArray;
+    return fa.controls.map(x => x as FormGroup);
   }
 
   getFromFormGroup(): Report {

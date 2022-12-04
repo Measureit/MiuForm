@@ -20,12 +20,13 @@ export class ReportChecklistItem {
         res.checklistItemId = checklistConfig._id;
         res.content = checklistConfig.content;
         res.order = checklistConfig.order;
+        res.isChecked = null;
         return res;
     }
 
     checklistItemId: string; //id z configuracji
     content: string; //przepisany z configuracji (moze sie zmieniac w konfiguracji po wygeneroaniu raportu)
-    isChecked: boolean | undefined;    
+    isChecked: boolean | null;    
     comment: string;
     order: number; //przepisany z configuracji (moze sie zmieniac w konfiguracji po wygeneroaniu raportu)
     pointImages: ReportImageItem[] = []; //images assigned to checklist item
@@ -37,14 +38,11 @@ export const CreateReport = (checklist: ChecklistItemConfig[]) : Report => {
     res.isActive = true;
     res.checklist = checklist.map(x => ReportChecklistItem.Create(x));
     res.dateOfCreation = Date.now();
-    res.checklist = [];
     res.images = []; 
     return res;
 }
 
 export interface Report extends DbModel {
-    
-
     dateOfCreation: number;
     productName: string;
     productColor: string;
@@ -53,8 +51,6 @@ export interface Report extends DbModel {
     factoryInfoId: string;
     checklist: ReportChecklistItem[];
     images: ReportImageItem[]; 
-    reportPath: string; //path do zapisanego pdf'a
-    //dateOfGenerating: number;
 
     dateOfDelivery?: number;
 }
