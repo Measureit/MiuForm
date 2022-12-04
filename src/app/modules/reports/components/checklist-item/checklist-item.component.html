@@ -1,16 +1,23 @@
 <mat-card [formGroup]="checklistItemFormGroup">
     <mat-card-header>
-        <div style="display: flex; flex-direction: row; gap: 5px; min-height: 50px;"
+        <div style="display: flex; flex-direction: row; flex-grow: 1; gap: 5px; min-height: 50px;"
             (click)="onClickChecked()">
-            <h4><mat-icon  [ngClass]="{
+            <mat-icon style="flex: 0 0 40px; transform: scale(1.7);" [ngClass]="{
                 'positive' : isChecked === true,
                 'negative' : isChecked === false,
                 'notChoose' : isChecked === null 
-             }">check_circle</mat-icon> {{checklistItemFormGroup.get('order').value + 1}}. {{checklistItemFormGroup.get('content').value}}</h4>
+             }">check_circle</mat-icon> 
+             <h4 style="flex: 1;">{{checklistItemFormGroup.get('order').value + 1}}. {{checklistItemFormGroup.get('content').value}}</h4>
+             <mat-icon (click)="showDetails($event)" style="flex: 0 0 40px; transform: scale(1.7); margin-left: auto;" [ngClass]="{
+                'positive' : hasDetails,
+                'negative' : !hasDetails 
+             }"
+              
+             >assistant</mat-icon>
         </div>        
     </mat-card-header>
 
-    <mat-card-content>
+    <mat-card-content [ngStyle]="{'display': detailsShown ? 'flex' : 'none'}">
         <mat-form-field style="width: 100%">
             <mat-label>{{ 'ITEM.CHECKLIST.COMMENT' | translate}}</mat-label>
             <input matInput placeholder="{{ 'ITEM.CHECKLIST.COMMENT' | translate}}" formControlName="comment">

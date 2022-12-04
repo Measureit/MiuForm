@@ -44,10 +44,10 @@
         </mat-card>
     </form>
 
-    <button mat-fab color="primary" class="mat-fab-bottom-right-second" (click)="saveReport()">
+    <button mat-fab color="primary" [disabled]="!itemForm.valid" class="mat-fab-bottom-right-second" (click)="saveReport()">
         <mat-icon>save</mat-icon>
     </button>
-    <button mat-fab color="primary" class="mat-fab-bottom-right" (click)="preview()">
+    <button mat-fab color="primary" [disabled]="!itemForm.valid" class="mat-fab-bottom-right" (click)="preview()">
         <mat-icon>rebase_edit</mat-icon>
     </button>
 </div>
