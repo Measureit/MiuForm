@@ -23,7 +23,21 @@
             </mat-select>
         </mat-form-field>
 
+        <div style="display: flex; flex-direction: row; flex-flow: wrap; " [formGroup]="itemForm">
+            <div style="margin: 3px; border: 1px solid black" formArrayName="checklist" 
+                *ngFor="let image of checklist?.controls; let i = index">
+                <div [formGroupName]="i" style="width: 200px; height: 200px; display: flex;  justify-content: center;">
+                    <p>AAA</p>
+                </div>
+            </div>
+        </div>
+
         <app-images-selector [imagesFormArray]="images" imagesFormArrayName="images" [parentImagesFormGroup]="itemForm" ></app-images-selector>
+        <mat-form-field>
+            <mat-label>{{ 'ITEM.REPORT.COMMENT' | translate}}</mat-label>
+            <input matInput placeholder="{{ 'ITEM.REPORT.COMMENT' | translate}}" formControlName="comment">
+        </mat-form-field>
+        
     </form>
 
     <button mat-fab color="primary" class="mat-fab-bottom-right-second" (click)="saveReport()">

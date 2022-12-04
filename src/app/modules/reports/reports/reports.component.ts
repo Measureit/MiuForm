@@ -50,7 +50,7 @@ export class ReportsComponent implements OnInit {
   }
 
   reloadFactories(loadNoActive: boolean): Observable<boolean> {
-    return this.reportService.getFactories(loadNoActive)
+    return this.reportService.getFactories()
       .pipe(
         tap(x => this.factoryItems = x),
         map(x => true)

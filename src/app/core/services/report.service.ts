@@ -27,14 +27,18 @@ export class ReportService {
     this.dbReportRepo = new Repository<Report>(logger, 'miuapp_Report');
   }
 
-  getFactories(withNoActive: boolean) : Observable<FactoryInfoConfig[]> {
-    return this.dbFactoryInfoConfigRepo.get(withNoActive);
+  getFactories() : Observable<FactoryInfoConfig[]> {
+    return this.dbFactoryInfoConfigRepo.get(false);
   }
 
-  createNewReport() : Observable<Report> {
-    return this.dbChecklistItemRepo.get(false)
-      .pipe(map(x => CreateReport(x)));
+  getChecklist() : Observable<ChecklistItemConfig[]> {
+    return this.dbChecklistItemRepo.get(false);
   }
+
+  // createNewReport() : Observable<Report> {
+  //   return this.dbChecklistItemRepo.get(false)
+  //     .pipe(map(x => CreateReport(x)));
+  // }
 
   getReport(id: string) : Observable<Report> {
     return this.dbReportRepo.getById(id);

@@ -19,13 +19,15 @@ export class ReportChecklistItem {
         let res = new ReportChecklistItem();
         res.checklistItemId = checklistConfig._id;
         res.content = checklistConfig.content;
+        res.order = checklistConfig.order;
         return res;
     }
-    checklistItemId: string; //id z configuracji
 
-    content: string; //przepisany z configuracji (moze sie zmieniac w czasie)
+    checklistItemId: string; //id z configuracji
+    content: string; //przepisany z configuracji (moze sie zmieniac w konfiguracji po wygeneroaniu raportu)
     isChecked: boolean | undefined;    
     comment: string;
+    order: number; //przepisany z configuracji (moze sie zmieniac w konfiguracji po wygeneroaniu raportu)
     pointImages: ReportImageItem[] = []; //images assigned to checklist item
 }
 
@@ -47,6 +49,7 @@ export interface Report extends DbModel {
     productName: string;
     productColor: string;
     productId: string;
+    comment: string;
     factoryInfoId: string;
     checklist: ReportChecklistItem[];
     images: ReportImageItem[]; 
