@@ -2,13 +2,11 @@
     <mat-card-header>
         <div style="display: flex; flex-direction: row; gap: 5px; min-height: 50px;"
             (click)="onClickChecked()">
-            <mat-icon aria-hidden="false" [ngClass]="{
+            <h4><mat-icon  [ngClass]="{
                 'positive' : isChecked === true,
                 'negative' : isChecked === false,
                 'notChoose' : isChecked === null 
-             }">check_circle</mat-icon>
-            <mat-label >{{checklistItemFormGroup.get('order').value + 1}}.</mat-label>
-            <mat-label >{{checklistItemFormGroup.get('content').value}}</mat-label>
+             }">check_circle</mat-icon> {{checklistItemFormGroup.get('order').value + 1}}. {{checklistItemFormGroup.get('content').value}}</h4>
         </div>        
     </mat-card-header>
 

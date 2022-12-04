@@ -23,20 +23,20 @@
             </mat-select>
         </mat-form-field>
 
-        <div style="display: flex; flex-direction: column; " [formGroup]="itemForm">
-            <div style="margin-top: 5px" *ngFor="let checklistItemFormGroup of checklistItemFormGroups">
+        <div style="display: flex; flex-direction: column; gap: 5px" [formGroup]="itemForm">
+            <div  *ngFor="let checklistItemFormGroup of checklistItemFormGroups">
                 <app-checklist-item [checklistItemFormGroup]="checklistItemFormGroup"></app-checklist-item>
             </div>
         </div>
 
-        <mat-card>
+        <mat-card style="margin-top: 5px">
             <mat-card-header>
                 {{ 'PREPARE_REPORT.SUMMARY' | translate}}
             </mat-card-header>
             <mat-card-content>
                 <app-images-selector [imagesFormArray]="images" imagesFormArrayName="images"
                     [parentImagesFormGroup]="itemForm"></app-images-selector>
-                <mat-form-field>
+                <mat-form-field style="width: 100%">
                     <mat-label>{{ 'ITEM.REPORT.COMMENT' | translate}}</mat-label>
                     <input matInput placeholder="{{ 'ITEM.REPORT.COMMENT' | translate}}" formControlName="comment">
                 </mat-form-field>
