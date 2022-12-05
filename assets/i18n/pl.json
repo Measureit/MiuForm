@@ -7,7 +7,9 @@
 		"ACTIVATE": "Przywróć",
 		"SAVE": "Zapisz",
 		"FILTER": "Filtruj",
-		"CLEAR_FILTER": "Wyczyść"
+		"CLEAR_FILTER": "Wyczyść",
+		"YES": "Tak",
+		"NO": "Nie"
 	},
 	"FIELD_ERRORS": {
 		"REQUIRED": "Pole jest wymagane.",
@@ -24,7 +26,10 @@
 		"SEND_BY_EMAIL": "Wyślij wiadomość email"
 	},
 	"PREPARE_REPORT": {
-		"TITLE": "Przygotowanie raportu"
+		"TITLE": "Przygotowanie raportu",
+		"SUMMARY": "Podsumowanie",
+		"UPDATE_CHECKLIST_QUESTION_TITLE": "Update checklisty",
+		"UPDATE_CHECKLIST_QUESTION": "Checklista się zmieniła, chcesz ją uaktualnić?"
 	},
 	"ITEM": {
 		"FACTORY": {
@@ -32,13 +37,15 @@
 			"SHORTNAME": "Nazwa skrócona",
 			"ADDRESS": "Adres"
 		},
-		"CHECKLISTITEM": {},
+		"CHECKLISTITEM": {
+			"COMMENT": "Komentarz"
+		},
 		"REPORT": {
 			"PRODUCT_NAME": "Nazwa Produktu",
 			"PRODUCT_COLOR": "Kolor Produktu",
 			"PRODUCT_ID": "Id Produktu",
-			"FACTORY": "Fabryka"
-			
+			"FACTORY": "Fabryka",
+			"COMMENT": "Komentarz"
 		},		
 		"DELIVERY": {
 			"FROM_USER": "Nadawca",
