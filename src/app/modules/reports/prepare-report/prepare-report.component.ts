@@ -105,14 +105,14 @@ export class PrepareReportComponent implements OnInit {
                 comment: [x.comment],
                 order: [x.order],
                 pointImages: this.formBuilder.array(x.pointImages.map(
-                  x => this.formBuilder.group({ ...x })
+                  x => this.formBuilder.group({ selected: false, ...x })
                 )),
                 content: [x.content],
                 isChecked: [x.isChecked]
               })
             )),
             images: this.formBuilder.array(this.item.images.map(
-              x => this.formBuilder.group({ ...x })
+              x => this.formBuilder.group({ selected: false, ...x })
             )),
             comment: [this.item.comment],
             dateOfDelivery: [this.item.dateOfDelivery]

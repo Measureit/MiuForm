@@ -19,7 +19,24 @@ export class ImagesSelectorComponent implements OnInit {
   constructor(private domSanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
-    console.log('a');
+    //console.log('a');
+  }
+
+  get selectedImages() : FormGroup[] {
+    return (this.imagesFormArray.controls ?? []).map(x => x as FormGroup).filter(x => x && x.get('selected').value as boolean === true);
+  }
+  selectImage(formGroup) {
+    const fg = formGroup as FormGroup;
+    const isSelected = fg.get('selected').value as boolean ?? false;
+    fg.get('selected').setValue(!isSelected);
+  }
+  deleteSelected() {
+    this.selectedImages.forEach(x => {
+      const index = this.imagesFormArray.controls.indexOf(x, 0);
+      if (index > -1) {
+        this.imagesFormArray.controls.splice(index, 1);
+      }
+    });
   }
 
   onFileInput = (event) => {
@@ -35,6 +52,7 @@ export class ImagesSelectorComponent implements OnInit {
             //let newArray = cur.concat(y);
             //this.itemForm.get('images').reset();
             y.forEach(x => this.imagesFormArray.push(new FormGroup({
+              'selected': new FormControl(false),
               'blob': new FormControl(x.blob),
               'size': new FormControl(x.size),
             })));
