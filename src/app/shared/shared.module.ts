@@ -55,6 +55,7 @@ import { LetDirective } from './directives';
 import { HideNoActivesPipe } from './pipes';
 import { WithLoadingPipe } from './pipes/with-loading.pipe';
 import {CdkAccordionModule} from '@angular/cdk/accordion';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 const materialModules = [
   CdkAccordionModule,
@@ -139,6 +140,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     WithLoadingPipe,
     HideNoActivesPipe,
     ReloadButtonComponent,
+    ConfirmDialogComponent
   ],
   declarations: [
     OperationMessageComponent,
@@ -146,6 +148,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     WithLoadingPipe,
     HideNoActivesPipe,
     ReloadButtonComponent,
+    ConfirmDialogComponent
   ],
   providers: [
     TranslateService

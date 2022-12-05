@@ -1,11 +1,13 @@
 import { P, R } from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer, SafeHtml, SafeUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { combineLatest, first, flatMap, from, map, mergeMap, of, tap, zip } from 'rxjs';
 import { Logger, ReportService } from 'src/app/core/services';
+import { ConfirmDialogComponent, ConfirmDialogModel } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
 import { ChecklistItemConfig, CreateReport, FactoryInfoConfig, ImageSize, Report, ReportChecklistItem, ReportImageItem } from '../../../core/models';
 import { ChecklistComponent } from '../../configuration/configuration/checklist/checklist.component';
 
@@ -46,6 +48,7 @@ export class PrepareReportComponent implements OnInit {
     private translateService: TranslateService,
     private logger: Logger,
     private router: Router,
+    private dialog: MatDialog,
     private activatedRoute: ActivatedRoute,
     private reportService: ReportService) { }
 
@@ -66,16 +69,28 @@ export class PrepareReportComponent implements OnInit {
                   console.log(JSON.stringify(compareResult));
                   if (compareResult.length > 0) {
                     //todo: spytać czy user chce zaktualizowac checkliste
-                    return this.translateService.get('PREPARE_REPORT.UPDATE_CHECKLIST_QUESTION')
+                    return zip(
+                      this.translateService.get('PREPARE_REPORT.UPDATE_CHECKLIST_QUESTION_TITLE'),
+                      this.translateService.get('PREPARE_REPORT.UPDATE_CHECKLIST_QUESTION')
+                    )
                     .pipe(
+                      mergeMap(x => {
+                        const dialogData = new ConfirmDialogModel(x[0], x[1]);
+                    
+                        const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+                          maxWidth: "400px",
+                          data: dialogData
+                        });
+                    
+                        return dialogRef.afterClosed();
+                      }),
                       map(x => {
-                        if(confirm(x)) {
+                        if (x === true) {//dialog result
                           r.checklist = this.updateChecklist(r.checklist, compareResult, this.checklistItems);
                         }
                         return r;
                       }),
                       map(r => {
-                        console.log(JSON.stringify(r));
                         return this.reportService.updateReport(r)                        
                       }),
                       mergeMap(x => this.reportService.getReport(id)),
@@ -159,7 +174,7 @@ export class PrepareReportComponent implements OnInit {
       !wereRemoved.some(y => y._id === x._id)
       && !wereAdded.some(y => y._id === x._id));
     const wereChanged = onlyInLeft(checklistToCompareSameId, checklistFromConfigToCompareSameId,
-      (a: CompareChecklistInput, b: CompareChecklistInput) => a._id === b._id && a.content === a.content);
+      (a: CompareChecklistInput, b: CompareChecklistInput) => a._id === b._id && a.content === b.content);
 
     let result: CompareChecklistResult[] = [];
     result = result.concat(wereRemoved.map(x => { return { checkListItem: x, reason: CompareChecklistReason.REMOVED } as CompareChecklistResult}));
@@ -181,7 +196,11 @@ export class PrepareReportComponent implements OnInit {
           //todo: result.
           break;
         case CompareChecklistReason.CHANGED:
-          //todo:   
+          let itemToChange = result.find(y => x.checkListItem._id === y.checklistItemId);
+          let newItem = checklistItems.find(y => x.checkListItem._id === y._id);
+          if (itemToChange) {
+            itemToChange.content = newItem.content;
+          }
           break;
       }
     })

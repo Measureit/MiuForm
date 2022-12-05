@@ -23,7 +23,7 @@
                     <mat-form-field appearance="outline" style="width: 100%">
                         <mat-select multiple placeholder="{{ 'REPORTS.FILTER_BY_FACTORIES' | translate }}">
                             <mat-option *ngFor="let factory of factoryItems" [value]="factory._id">
-                                {{factory.shortName}}-{{factory.name}}</mat-option>
+                                {{factory.shortName}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <!-- <mat-form-field> -->
@@ -49,9 +49,8 @@
     <mat-list>
         <div class="an-list-item" *ngFor="let item of items" (click)="preview($event, item._id)">
             <div class="an-list-item-des">
-                <span>{{item.productId}}</span>
-                <span>{{item.productName}}</span>
-                <span>{{selectFactoryInfoConfig(item.factoryInfoId)?.shortName}}-{{selectFactoryInfoConfig(item.factoryInfoId)?.name}}</span>
+                <span>{{item.productName}} => {{item.productId}}</span>
+                <span>{{selectFactoryInfoConfig(item.factoryInfoId)?.shortName}} - {{selectFactoryInfoConfig(item.factoryInfoId)?.name}}</span>
                 <span>{{item.dateOfCreation | date: 'YYYY-MM-d, H:mm:ss'}}</span>
             </div>
             <div class="an-list-item-actions">

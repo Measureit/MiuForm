@@ -18,7 +18,7 @@
         <mat-form-field>
             <mat-select formControlName="factoryInfoId" placeholder="{{ 'ITEM.REPORT.FACTORY' | translate }}">
                 <mat-option *ngFor="let factory of factoryItems" [value]="factory._id">
-                    {{factory.shortName}}-{{factory.name}}</mat-option>
+                    {{factory.shortName}}</mat-option>
             </mat-select>
         </mat-form-field>
 

@@ -19,8 +19,8 @@
 
     <mat-card-content [ngStyle]="{'display': detailsShown ? 'block' : 'none'}">
         <mat-form-field style="width: 100%">
-            <mat-label>{{ 'ITEM.CHECKLIST.COMMENT' | translate}}</mat-label>
-            <input matInput placeholder="{{ 'ITEM.CHECKLIST.COMMENT' | translate}}" formControlName="comment">
+            <mat-label>{{ 'ITEM.CHECKLISTITEM.COMMENT' | translate}}</mat-label>
+            <input matInput placeholder="{{ 'ITEM.CHECKLISTITEM.COMMENT' | translate}}" formControlName="comment">
         </mat-form-field>
 
         <app-images-selector [imagesFormArray]="pointImages" imagesFormArrayName="pointImages" [parentImagesFormGroup]="checklistItemFormGroup" ></app-images-selector>
