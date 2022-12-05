@@ -8,11 +8,14 @@
   <mat-list>
     <div class="an-list-item" *ngFor="let item of items | hideNoActives : !loadFactoryWithNoActive" (click)="updateItem(item._id)">
       <div class="an-list-item-des" >
-        <span >{{item.shortName}} -> {{item.name}}</span>
+        <span >{{item.shortName}}</span>
+        <span>{{item.name}}</span>
         <span >{{item.address}}</span>
         <span >{{item.emails ? item.emails.join(', ') : ''}}</span>
       </div>
-      <button *ngIf="item.isActive" (click)="deleteItem($event, item._id)"><mat-icon>delete</mat-icon></button>
+      <!-- <button > -->
+        <mat-icon class="an-list-item-actions" *ngIf="item.isActive" (click)="deleteItem($event, item._id)">delete</mat-icon>
+      <!-- </button> -->
     </div>
   </mat-list>
 

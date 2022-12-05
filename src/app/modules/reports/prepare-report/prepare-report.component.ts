@@ -39,7 +39,7 @@ export class PrepareReportComponent implements OnInit {
   itemForm: FormGroup;
 
   file0src: SafeHtml; //string | ArrayBuffer;
-
+  loading: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -50,7 +50,7 @@ export class PrepareReportComponent implements OnInit {
     private reportService: ReportService) { }
 
   ngOnInit(): void {
-
+    this.loading = true;
     this.reportService.getChecklist()
       .pipe(
         tap(cls => this.checklistItems = cls),
@@ -123,8 +123,14 @@ export class PrepareReportComponent implements OnInit {
 
         first(),
       ).subscribe({
-        next: (x) => console.log('init success'),
-        error: (err) => console.error(err)
+        next: (x) => {
+          console.log('init success');
+          this.loading = false;
+        },
+        error: (err) => {
+          console.error(err);
+          this.loading = false;
+        }
       });
   }
 

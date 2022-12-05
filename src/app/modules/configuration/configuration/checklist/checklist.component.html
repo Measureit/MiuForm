@@ -11,10 +11,12 @@
           drag_indicator
         </mat-icon>
   
-        <div class="an-list-item-des" >
+        <div  >
           <span >{{item.content}}</span>
         </div>
-        <button *ngIf="item.isActive" (click)="deleteItem($event, item._id)"><mat-icon>delete</mat-icon></button>
+        <!-- <button > -->
+          <mat-icon class="an-list-item-actions"  *ngIf="item.isActive" (click)="deleteItem($event, item._id)">delete</mat-icon>
+        <!-- </button> -->
       </div>
     </div>
   

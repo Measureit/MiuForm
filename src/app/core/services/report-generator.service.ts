@@ -36,6 +36,7 @@ export class ReportGeneratorService {
                 mergeMap(x => this.addHeader(x, new Date(report.dateOfCreation).toISOString())),                
                 mergeMap(x => this.addProductId(x, report.productId)),
                 mergeMap(x => this.addFactoryInfo(x, x.factory)),
+                mergeMap(x => this.addComment(x, report.comment)),
                 mergeMap(x => this.addImages(x, report.images)),
                 mergeMap(x => of(x.doc))
             );
@@ -94,6 +95,10 @@ export class ReportGeneratorService {
                     })
                 )
         }
+        return of(context);
+    }
+
+    private addComment(context: ReportGeneratorContext, comment: string): Observable<ReportGeneratorContext> {
         return of(context);
     }
 }

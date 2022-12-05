@@ -20,7 +20,9 @@ export class GeneralComponent implements OnInit {
 
   constructor(private formBuiler: FormBuilder,
     private configurationService: ConfigurationService,) { 
+  }
 
+  ngOnInit(): void {
     this.loading = true;
     this.configurationService.getDelivery()
       .pipe(
@@ -38,10 +40,7 @@ export class GeneralComponent implements OnInit {
           this.createForm(this.delivery);
           this.loading = false;     
         }
-      })
-  }
-
-  ngOnInit(): void {
+      });
   }
 
   createForm(delivery: DeliveryConfig) {

@@ -1,8 +1,7 @@
 <h1>{{ 'PREPARE_REPORT.TITLE' | translate }}</h1>
-<div *ngIf="item">
-    <p>{{item._id}}</p>
-
-
+<mat-spinner *ngIf="loading"></mat-spinner>
+<div *ngIf="!loading && item">
+    <!-- <p>{{item._id}}</p> -->
     <form [formGroup]="itemForm" class="an-flex an-flex-direction-column">
         <mat-form-field>
             <mat-label>{{ 'ITEM.REPORT.PRODUCT_NAME' | translate}}</mat-label>
@@ -51,6 +50,6 @@
         <mat-icon>rebase_edit</mat-icon>
     </button>
 </div>
-<div *ngIf="!item">
+<div *ngIf="!item && !loading">
     <p>Raport nie istnieje.</p>
 </div>

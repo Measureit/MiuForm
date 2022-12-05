@@ -90,11 +90,13 @@ mat-card.container {
 .an-list-item {
   display: flex; 
   flex-direction: row; 
+  flex-grow: 1;
   padding: 5px; 
   margin-top: 5px; 
   border: 0.5px solid black;
   border-radius: 5px;
   > mat-icon {
+    flex: 0 0 40px;
     margin-right: 5px;
   }
   > .an-list-item-des {
@@ -103,11 +105,13 @@ mat-card.container {
           display: block;
       }
       > span:first-of-type {
-          font-size: 24px;
+          font-size: 20px;
       }
   }
-  button {
+  > .an-list-item-actions {   
+      flex: 0 0 40px; 
       margin-left: auto;
+      color:green;
   }
 }
 
