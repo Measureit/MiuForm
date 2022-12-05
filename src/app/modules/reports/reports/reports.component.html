@@ -49,7 +49,7 @@
     <mat-list>
         <div class="an-list-item" *ngFor="let item of items" (click)="preview($event, item._id)">
             <div class="an-list-item-des">
-                <span>{{item.productName}} => {{item.productId}}</span>
+                <span>{{item.productName}} ({{item.productId}}), {{item.productColor}}</span>
                 <span>{{selectFactoryInfoConfig(item.factoryInfoId)?.shortName}} - {{selectFactoryInfoConfig(item.factoryInfoId)?.name}}</span>
                 <span>{{item.dateOfCreation | date: 'YYYY-MM-d, H:mm:ss'}}</span>
             </div>
