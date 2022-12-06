@@ -9,7 +9,7 @@ export class ImageSize {
 }
 //image w reporcie
 export class ReportImageItem {
-    blob: Blob;
+    base64: string;
     size: ImageSize;
 }
 

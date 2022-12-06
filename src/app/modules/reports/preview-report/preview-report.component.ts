@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first, from, map, mergeMap, tap, throwError, zip } from 'rxjs';
 import { Report } from 'src/app/core/models';
-import { ConfigurationService, Logger, ReportService } from 'src/app/core/services';
+import { blobToBase64, ConfigurationService, Logger, ReportService } from 'src/app/core/services';
 import { EmailMessage, EmailService } from 'src/app/core/services/email.service';
 
 @Component({
@@ -46,7 +46,7 @@ export class PreviewReportComponent implements OnInit {
         tap(x => { this.reportBlob = x })
       )
       .subscribe({
-        error: (err) => console.log(err),
+        error: (err) => { this.genereting = false; console.error(err); },
         complete: () => this.genereting = false
       })
 
@@ -75,15 +75,15 @@ export class PreviewReportComponent implements OnInit {
     this.currentZoomFactor = zoom;
   }
 
-  blobToBase64 = (blob: Blob) : Promise<string> => {
-    const reader = new FileReader();
-    reader.readAsDataURL(blob);
-    return new Promise<string>(resolve => {
-      reader.onloadend = () => {
-        resolve(reader.result.toString()); //todo: and tostring dodane
-      };
-    });
-  };
+  // blobToBase64 = (blob: Blob) : Promise<string> => {
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(blob);
+  //   return new Promise<string>(resolve => {
+  //     reader.onloadend = () => {
+  //       resolve(reader.result.toString()); //todo: and tostring dodane
+  //     };
+  //   });
+  // };
 
   send() {
     if (this.reportBlob && this.reportBlob.size > 0 && this.report) {      
@@ -92,7 +92,7 @@ export class PreviewReportComponent implements OnInit {
       zip(
         this.configurationService.getDelivery(),
         this.configurationService.getFactory(this.report.factoryInfoId),
-        from(this.blobToBase64(this.reportBlob))
+        from(blobToBase64(this.reportBlob))
       )
       .pipe(
         map(zipRes => {

@@ -6,6 +6,14 @@ import { DBService } from './db.service';
 import { ReportGeneratorService } from './report-generator.service';
 import { Repository } from "./repository";
 
+export const blobToBase64 = (blob: Blob) : Promise<string> => {
+  return new Promise((resolve, _) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result as string);
+    reader.readAsDataURL(blob);
+  });
+}
+
 @Injectable({
   providedIn: 'root',
 })

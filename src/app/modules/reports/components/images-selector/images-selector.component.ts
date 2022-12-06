@@ -1,11 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { first, map, mergeMap, Observable, tap, zip } from 'rxjs';
 import { FactoryInfoConfig, ImageSize, Report, ReportImageItem } from 'src/app/core/models';
-import { ReportService } from 'src/app/core/services';
+import { blobToBase64, ReportService } from 'src/app/core/services';
 import { Router } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
+interface ReportImageItemBeforePrepare {
+  blob: Blob;
+  size: ImageSize;
+}
 @Component({
   selector: 'app-images-selector',
   templateUrl: './images-selector.component.html',
@@ -46,14 +50,14 @@ export class ImagesSelectorComponent implements OnInit {
         Array.from<File>(event.target.files)
           .map(y => this.resizeImage(y, 1200, 1200)))        
         .subscribe({
-          next: (y) => { 
+          next:  (y) => { 
             console.log(y);
             //let cur = (this.itemForm.get('images').value ?? []) as Array<ReportImageItem>;
             //let newArray = cur.concat(y);
             //this.itemForm.get('images').reset();
-            y.forEach(x => this.imagesFormArray.push(new FormGroup({
+            y.forEach(async x => this.imagesFormArray.push(new FormGroup({
               'selected': new FormControl(false),
-              'blob': new FormControl(x.blob),
+              'base64': new FormControl(await blobToBase64(x.blob)),
               'size': new FormControl(x.size),
             })));
             console.log(this.imagesFormArray)
@@ -63,10 +67,10 @@ export class ImagesSelectorComponent implements OnInit {
     }
   }
 
-  blobToSrc(blob: Blob): SafeUrl {
-    console.log('blobToSrc: ' + blob );
-    return this.domSanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
-  }
+  // blobToSrc(blob: Blob): SafeUrl {
+  //   console.log('blobToSrc: ' + blob );
+  //   return this.domSanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
+  // }
 
   getScale(originalSize: ImageSize, maxWidth: number, maxHeight: number): ImageSize {
     if (originalSize.width <= maxWidth && originalSize.height <= maxHeight) {
@@ -85,7 +89,7 @@ export class ImagesSelectorComponent implements OnInit {
     }
     return { width: newWidth, height: newHeight };
   }
-  resizeImage(file: File, maxWidth: number, maxHeight: number): Promise<ReportImageItem> {
+  resizeImage(file: File, maxWidth: number, maxHeight: number): Promise<ReportImageItemBeforePrepare> {
     return new Promise((resolve, reject) => {
       let image = new Image();
       image.src = URL.createObjectURL(file);
@@ -116,7 +120,7 @@ export class ImagesSelectorComponent implements OnInit {
 
         context.drawImage(image, 0, 0, newWidth, newHeight);
         let resolve2 = (a: Blob): void => {
-          resolve({ blob: a, size: { width: newWidth, height: newHeight }} as ReportImageItem);
+          resolve({ blob: a, size: { width: newWidth, height: newHeight }} as ReportImageItemBeforePrepare);
         }
         canvas.toBlob(resolve2, file.type)
       };
