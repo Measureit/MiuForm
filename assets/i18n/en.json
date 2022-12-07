@@ -23,7 +23,8 @@
 	},
 	"PREVIEW_REPORT": {
 		"TITLE": "Report Preview",
-		"SEND_BY_EMAIL": "Send by email"
+		"SEND_BY_EMAIL": "Send by email",
+		"EDIT_REPORT": "Edit"
 	},
 	"PREPARE_REPORT": {
 		"TITLE": "Preparing Report",
@@ -51,6 +52,11 @@
 			"FROM_USER": "Sender",
 			"EMAIL_SERVER_SECRET_CODE": "Email server secret code",
 			"EMAIL_SERVER_URL": "Email server url"
+		},
+		"INSPECTION_DATA": {
+			"COMPANY_NAME": "Company name",
+			"COMPANY_ADDRESS": "Company address",
+			"INSPECTION_SIGN": "Sign"
 		}
 	},
 	"CONFIG": {
@@ -77,7 +83,10 @@
 				"TITLE": "Save/Load configuration",
 				"SAVE_CONFIG": "Save configuration",
 				"LOAD_CONFIG": "Load configuration"
-			}
+			},
+			"INSPECTION_DATA": {
+				"TITLE": "Inspection Data"
+			}	
 		}
 	},
 	"HEADER": {
