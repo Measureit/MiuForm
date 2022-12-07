@@ -109,8 +109,8 @@ export class PreviewReportComponent implements OnInit {
               //reportData: JSON.stringify(this.report),
               from: delivery.fromUser,
               to: to,
-              subject: `Subject -> ${this.report.productId}`,
-              plainContent: `treść maila`
+              subject: `Raport pokontrolny -> ${this.report.productName} (${this.report.productId}) ${this.report.productColor}`,
+              plainContent: `Dzień dobry,\n w załączniku znajduje się raport pokontrolny produktu ${this.report.productName} (${this.report.productId}) ${this.report.productColor}\n\n\n`
             } as EmailMessage
           }
         }),
