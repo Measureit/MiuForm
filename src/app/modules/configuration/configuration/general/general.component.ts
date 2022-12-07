@@ -1,9 +1,11 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Component, OnInit } from '@angular/core';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { Form, FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { TitleStrategy } from '@angular/router';
-import { first, map, tap } from 'rxjs';
+import { catchError, first, map, mergeMap, of, take, tap } from 'rxjs';
 import { CreateDeliveryConfig, DeliveryConfig } from 'src/app/core/models';
+import { CreateInspectorInfo, InspectorInfo } from 'src/app/core/models/inspector-info.model';
 import { Configuration, ConfigurationService } from 'src/app/core/services';
 
 @Component({
@@ -12,13 +14,21 @@ import { Configuration, ConfigurationService } from 'src/app/core/services';
   styleUrls: ['./general.component.scss']
 })
 export class GeneralComponent implements OnInit {
+  @ViewChild('autosize') autosize: CdkTextareaAutosize;
 
-  
+  triggerResize() {
+    // Wait for changes to be applied, then trigger textarea resize.
+    this._ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent(true));
+  }
+
   delivery: DeliveryConfig;
-  itemForm: FormGroup;
+  inspectorInfo: InspectorInfo;
+  itemDeliveryConfigForm: FormGroup;
+  itemInspectorInfoForm: FormGroup;
   loading: boolean = false;
 
-  constructor(private formBuiler: FormBuilder,
+  constructor(private _ngZone: NgZone,
+    private formBuiler: FormBuilder,
     private configurationService: ConfigurationService,) { 
   }
 
@@ -26,26 +36,55 @@ export class GeneralComponent implements OnInit {
     this.loading = true;
     this.configurationService.getDelivery()
       .pipe(
-        first()
+        map((read) => {
+          this.delivery = read;
+          this.createDeliveryConfigForm(this.delivery);
+          return this.delivery ;
+        }),
+        catchError(err => {
+          console.error(err);// first time is not error (delivery does not exists)
+          this.delivery = CreateDeliveryConfig();   
+          this.createDeliveryConfigForm(this.delivery);
+          return of(this.delivery);     
+        }),
+        mergeMap(x => this.configurationService.getInspectorInfo()),
+        map((read) => {
+          this.inspectorInfo = read;
+          this.createInspectorInfoForm(this.inspectorInfo);
+          return this.delivery ;
+        }),
+        catchError(err => {
+          console.error(err);// first time is not error (delivery does not exists)
+          this.inspectorInfo = CreateInspectorInfo();   
+          this.createInspectorInfoForm(this.inspectorInfo);
+          return of(this.delivery);     
+        }),
+        first(),       
       )
       .subscribe({
-        next: (read) => {
-          this.delivery = read;
-          this.createForm(this.delivery);
+        next: (x) => {
+          console.log('SUcc');
           this.loading = false;
         },
         error: (err) => {
-          console.error(err);// first time is not error (delivery does not exists)
-          this.delivery = CreateDeliveryConfig();   
-          this.createForm(this.delivery);
-          this.loading = false;     
+          console.error(err);
+          this.loading = false;
         }
-      });
+       })
   }
 
-  createForm(delivery: DeliveryConfig) {
-    console.log('creatForm fun');
-    this.itemForm = this.formBuiler.group({
+  createInspectorInfoForm(inspectorInfo: InspectorInfo) {
+    this.itemInspectorInfoForm = this.formBuiler.group({
+      _id: [inspectorInfo._id],
+      _rev: [inspectorInfo._rev],
+      companyName: [inspectorInfo.companyName],
+      companyAddress: [inspectorInfo.companyAddress],
+      inspectorSign: [inspectorInfo.inspectorSign],
+    });
+  }
+
+  createDeliveryConfigForm(delivery: DeliveryConfig) {
+    this.itemDeliveryConfigForm = this.formBuiler.group({
       _id: [delivery._id],
       _rev: [delivery._rev],
       emailServerSecretCode: [delivery.emailServerSecretCode],
@@ -59,12 +98,28 @@ export class GeneralComponent implements OnInit {
     });
   }
 
-  getFromFormGroup(): DeliveryConfig {
-    return this.itemForm.getRawValue() as DeliveryConfig;
+  getDeliveryConfigFromFormGroup(): DeliveryConfig {
+    return this.itemDeliveryConfigForm.getRawValue() as DeliveryConfig;
+  }
+
+  getInspectorInfoFromFormGroup(): InspectorInfo {
+    return this.itemInspectorInfoForm.getRawValue() as InspectorInfo;
   }
   
+  saveInspectorInfo() {
+    let inspectorInfo = this.getInspectorInfoFromFormGroup();
+    this.configurationService.updateInspectorInfo(inspectorInfo)
+      .pipe(
+        first()
+      )
+      .subscribe({
+        next: (x) => console.log(x),
+        error: (err) => console.error(err)
+      })
+  }
+
   saveDelivery() {
-    let deliveryToSave = this.getFromFormGroup();
+    let deliveryToSave = this.getDeliveryConfigFromFormGroup();
     this.configurationService.updateDelivery(deliveryToSave)
       .pipe(
         first()
@@ -126,7 +181,7 @@ export class GeneralComponent implements OnInit {
   removable = true;
 
   get formEmails() {
-    return this.itemForm.get("deliveryEmails") as FormArray;
+    return this.itemDeliveryConfigForm.get("deliveryEmails") as FormArray;
   }
 
   addEmail(event): void {

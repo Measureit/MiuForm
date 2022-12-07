@@ -122,4 +122,8 @@ export class PreviewReportComponent implements OnInit {
       })
     }
   }
+
+  editReport() {
+    this.router.navigate(['/reports/prepare', this.report._id]);
+  }
 }

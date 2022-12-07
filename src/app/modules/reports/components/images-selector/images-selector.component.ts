@@ -72,23 +72,7 @@ export class ImagesSelectorComponent implements OnInit {
   //   return this.domSanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
   // }
 
-  getScale(originalSize: ImageSize, maxWidth: number, maxHeight: number): ImageSize {
-    if (originalSize.width <= maxWidth && originalSize.height <= maxHeight) {
-      return { width: originalSize.width, height: originalSize.height };
-    }
-
-    let newWidth: number;
-    let newHeight: number;
-
-    if (originalSize.width > originalSize.height) {
-      newHeight = originalSize.height * (maxWidth / originalSize.width);
-      newWidth = maxWidth;
-    } else {
-      newWidth = originalSize.width * (maxHeight / originalSize.height);
-      newHeight = maxHeight;
-    }
-    return { width: newWidth, height: newHeight };
-  }
+  
   resizeImage(file: File, maxWidth: number, maxHeight: number): Promise<ReportImageItemBeforePrepare> {
     return new Promise((resolve, reject) => {
       let image = new Image();

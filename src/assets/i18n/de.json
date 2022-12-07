@@ -23,7 +23,8 @@
 	},
 	"PREVIEW_REPORT": {
 		"TITLE": "Report Preview",
-		"SEND_BY_EMAIL": "Send by email"
+		"SEND_BY_EMAIL": "Send by email",
+		"EDIT_REPORT": "Edit"
 	},
 	"PREPARE_REPORT": {
 		"TITLE": "Preparing Report",

@@ -86,7 +86,7 @@ export class Repository<T extends DbModel> {
   update(item: T) : Observable<string | undefined> {
     this.logger.debug(`update with ${item._id} on ${this.dbName}`);
     return from(this.db.put(item))
-      .pipe(map(x => x.ok ? x.rev : undefined))
+      .pipe(map(x => x.ok ? x.id : undefined))
   }
 
   updateAll(items: T[]): Observable<boolean> {

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer, SafeHtml, SafeUrl } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, TitleStrategy } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { combineLatest, first, flatMap, from, map, mergeMap, of, tap, zip } from 'rxjs';
 import { Logger, ReportService } from 'src/app/core/services';
@@ -237,10 +237,18 @@ export class PrepareReportComponent implements OnInit {
   saveReport() {
     let report = this.getFromFormGroup();
     this.reportService.updateReport(report)
-      .pipe(
+      .pipe(        
+        mergeMap(x => this.reportService.getReport(x)),
+        tap(x => {
+          this.item = x;
+          this.itemForm.get('_id').setValue(this.item._id);
+          this.itemForm.get('_rev').setValue(this.item._rev);
+        }),
         first(),
-        map(x => x)
       )
-      .subscribe();
+      .subscribe({
+        next: (x ) => console.log('success'),
+        error: (err) => console.error(err)
+      });
   }
 }

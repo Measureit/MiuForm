@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable, of, pipe, zip } from 'rxjs';
 import { catchError, concatMap, map, mergeMap } from 'rxjs/operators';
 import { ChecklistItemConfig, CreateDeliveryConfig, CreateIdChecklistItemConfig, CreateIdFactoryInfoConfig, DeliveryConfig, DeliveryId, FactoryInfoConfig } from '../models';
+import { CreateInspectorInfo, InspectorInfo, InspectorInfoId } from '../models/inspector-info.model';
 import { ConsoleLoggerService, Logger } from './console.logger.service';
 import { DBService } from './db.service';
 import { Repository } from './repository';
@@ -11,16 +12,19 @@ export interface Configuration {
   factories: FactoryInfoConfig[];
   checklistItems: ChecklistItemConfig[];
   delivery: DeliveryConfig;
+  inspectorInfo: InspectorInfo;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConfigurationService  {
+  
 
   private readonly dbChecklistItemRepo: Repository<ChecklistItemConfig>;
   private readonly dbFactoryInfoConfigRepo: Repository<FactoryInfoConfig>;
   private readonly dbDeliveryConfigRepo: Repository<DeliveryConfig>;
+  private readonly dbInspectorInfoRepo: Repository<InspectorInfo>;
 
   constructor(
     private dbService: DBService,
@@ -29,6 +33,7 @@ export class ConfigurationService  {
     this.dbChecklistItemRepo = new Repository<ChecklistItemConfig>(logger, 'miuapp_ChecklistItem');
     this.dbFactoryInfoConfigRepo = new Repository<FactoryInfoConfig>(logger, 'miuapp_FactoryInfoConfig');
     this.dbDeliveryConfigRepo = new Repository<DeliveryConfig>(logger, 'miuapp_DeliveryConfig');
+    this.dbInspectorInfoRepo = new Repository<InspectorInfo>(logger, 'miuapp_InspectorInfo');
   }
 
   //START FACTORIES
@@ -82,6 +87,16 @@ export class ConfigurationService  {
   }
   //END DELIVERY
 
+  //START INSPECTION INFO 
+  getInspectorInfo(): Observable<InspectorInfo> {
+    return this.dbInspectorInfoRepo.getById(InspectorInfoId);
+  }
+
+  updateInspectorInfo(inspectionInfo: InspectorInfo): Observable<string | undefined> {
+    return this.dbInspectorInfoRepo.update(inspectionInfo);
+  }
+  //END INSPECTION INFO 
+
   //START CONFIG
   getConfig(): Observable<Configuration> {
     return zip(
@@ -90,6 +105,10 @@ export class ConfigurationService  {
       this.dbDeliveryConfigRepo.getById(DeliveryId)
       .pipe(
         catchError(err => of(CreateDeliveryConfig()))
+      ),
+      this.dbInspectorInfoRepo.getById(InspectorInfoId)
+      .pipe(
+        catchError(err => of(CreateInspectorInfo()))
       )
     )
     .pipe(
@@ -97,7 +116,8 @@ export class ConfigurationService  {
         return {
           factories: x[0],
           checklistItems: x[1],
-          delivery: x[2]
+          delivery: x[2],
+          inspectorInfo: x[3]
         } as Configuration
       })
     );
@@ -111,6 +131,15 @@ export class ConfigurationService  {
         if (conf.delivery) {
           conf.delivery._rev = x._rev;
           return this.dbDeliveryConfigRepo.update(conf.delivery)
+        } 
+        return of('');
+      }),
+      mergeMap(x => this.dbInspectorInfoRepo.getById(InspectorInfoId)),
+      catchError(err => of(CreateInspectorInfo())),
+      mergeMap(x => {
+        if (conf.inspectorInfo) {
+          conf.inspectorInfo._rev = x._rev;
+          return this.dbInspectorInfoRepo.update(conf.inspectorInfo)
         } 
         return of('');
       }),

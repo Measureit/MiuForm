@@ -13,6 +13,7 @@ export class ReportImageItem {
     size: ImageSize;
 }
 
+
 //checklist item w reporcie
 export class ReportChecklistItem {    
     public static Create(checklistConfig: ChecklistItemConfig) : ReportChecklistItem {
@@ -41,7 +42,7 @@ export const CreateReport = (checklist: ChecklistItemConfig[]) : Report => {
     res.images = []; 
     return res;
 }
-
+    
 export interface Report extends DbModel {
     dateOfCreation: number;
     productName: string;

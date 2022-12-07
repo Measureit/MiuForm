@@ -1,39 +1,91 @@
 <mat-card>
+    <mat-card-header>{{ 'CONFIG.GENERAL.INSPECTION_DATA.TITLE' | translate }}</mat-card-header>
+    <mat-card-content>
+        <form *ngIf="!loading" [formGroup]="itemInspectorInfoForm" class="an-flex an-flex-direction-column">
+            <mat-form-field appearance="fill">
+                <mat-label>{{ 'ITEM.INSPECTION_DATA.COMPANY_NAME' | translate }}</mat-label>
+                <input matInput formControlName="companyName">
+                <mat-error class="text-danger" *ngIf="itemInspectorInfoForm.get('companyName').errors?.['required']">
+                    {{ "FIELD_ERRORS.REQUIRED" | translate }}
+                </mat-error>
+                <mat-error class="text-danger" *ngIf="itemInspectorInfoForm.get('companyName').errors?.['minlength']">
+                    {{ "FIELD_ERRORS.REQUIRED_MINLENGTH" | translate: { requiredLength:
+                        itemInspectorInfoForm.get('companyName').errors.minlength.requiredLength } }}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>{{ 'ITEM.INSPECTION_DATA.COMPANY_ADDRESS' | translate }}</mat-label>
+                <input matInput formControlName="companyAddress">
+                <mat-error class="text-danger" *ngIf="itemInspectorInfoForm.get('companyAddress').hasError('required')">
+                    This field is required.
+                </mat-error>
+                <mat-error class="text-danger" *ngIf="itemInspectorInfoForm.get('companyAddress').hasError('minlength')">
+                    The minimum length for this field is
+                    {{itemInspectorInfoForm.get('companyAddress').errors.minlength.requiredLength}} characters.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>{{ 'ITEM.INSPECTION_DATA.INSPECTION_SIGN' | translate }}</mat-label>
+                <!-- <input matInput formControlName="inspectorSign"> -->
+                <textarea matInput formControlName="inspectorSign"
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"></textarea>
+
+                <mat-error class="text-danger" *ngIf="itemInspectorInfoForm.get('inspectorSign').hasError('required')">
+                    This field is required.
+                </mat-error>
+                <mat-error class="text-danger" *ngIf="itemInspectorInfoForm.get('inspectorSign').hasError('minlength')">
+                    The minimum length for this field is {{itemInspectorInfoForm.get('inspectorSign').errors.minlength.requiredLength}}
+                    characters.
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    <mat-card-actions style="margin-left: auto">
+        <button (click)="saveInspectorInfo()" mat-raised-button color="primary">{{'COMMON.SAVE' |  translate}}</button>
+    </mat-card-actions>
+</mat-card>
+
+<mat-card style="margin-top: 15px">
     <mat-card-header>{{ 'CONFIG.GENERAL.DELIVERY.TITLE' | translate }}</mat-card-header>
     <mat-card-content>
-        <form *ngIf="!loading" [formGroup]="itemForm" class="an-flex an-flex-direction-column">
+        <form *ngIf="!loading" [formGroup]="itemDeliveryConfigForm" class="an-flex an-flex-direction-column">
             <mat-form-field appearance="fill">
                 <mat-label>{{ 'ITEM.DELIVERY.EMAIL_SERVER_SECRET_CODE' | translate }}</mat-label>
                 <input matInput formControlName="emailServerSecretCode">
-                <mat-error class="text-danger" *ngIf="itemForm.get('emailServerSecretCode').errors?.['required']">
+                <mat-error class="text-danger" *ngIf="itemDeliveryConfigForm.get('emailServerSecretCode').errors?.['required']">
                     {{ "FIELD_ERRORS.REQUIRED" | translate }}
                 </mat-error>
-                <mat-error class="text-danger" *ngIf="itemForm.get('emailServerSecretCode').errors?.['minlength']">
+                <mat-error class="text-danger" *ngIf="itemDeliveryConfigForm.get('emailServerSecretCode').errors?.['minlength']">
                     {{ "FIELD_ERRORS.REQUIRED_MINLENGTH" | translate: { requiredLength:
-                    itemForm.get('emailServerSecretCode').errors.minlength.requiredLength } }}
+                        itemDeliveryConfigForm.get('emailServerSecretCode').errors.minlength.requiredLength } }}
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="fill">
                 <mat-label>{{ 'ITEM.DELIVERY.EMAIL_SERVER_URL' | translate }}</mat-label>
                 <input matInput formControlName="emailServerUrl">
-                <mat-error class="text-danger" *ngIf="itemForm.get('emailServerUrl').hasError('required')">
+                <mat-error class="text-danger" *ngIf="itemDeliveryConfigForm.get('emailServerUrl').hasError('required')">
                     This field is required.
                 </mat-error>
-                <mat-error class="text-danger" *ngIf="itemForm.get('emailServerUrl').hasError('minlength')">
+                <mat-error class="text-danger" *ngIf="itemDeliveryConfigForm.get('emailServerUrl').hasError('minlength')">
                     The minimum length for this field is
-                    {{itemForm.get('emailServerUrl').errors.minlength.requiredLength}} characters.
+                    {{itemDeliveryConfigForm.get('emailServerUrl').errors.minlength.requiredLength}} characters.
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="fill">
                 <mat-label>{{ 'ITEM.DELIVERY.FROM_USER' | translate }}</mat-label>
                 <input matInput formControlName="fromUser">
-                <mat-error class="text-danger" *ngIf="itemForm.get('fromUser').hasError('required')">
+                <mat-error class="text-danger" *ngIf="itemDeliveryConfigForm.get('fromUser').hasError('required')">
                     This field is required.
                 </mat-error>
-                <mat-error class="text-danger" *ngIf="itemForm.get('fromUser').hasError('minlength')">
-                    The minimum length for this field is {{itemForm.get('fromUser').errors.minlength.requiredLength}}
+                <mat-error class="text-danger" *ngIf="itemDeliveryConfigForm.get('fromUser').hasError('minlength')">
+                    The minimum length for this field is {{itemDeliveryConfigForm.get('fromUser').errors.minlength.requiredLength}}
                     characters.
                 </mat-error>
             </mat-form-field>
