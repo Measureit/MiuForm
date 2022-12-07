@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1670446859631,
+  "timestamp": 1670450389616,
   "index": "/MiuForm/index.html",
   "assetGroups": [
     {
@@ -705,9 +705,9 @@
     "/MiuForm/assets/cmaps/UniKS-UTF8-V.bcmap": "586c64948a67e4cb12de64e221b0dc3d9e47dedf",
     "/MiuForm/assets/cmaps/V.bcmap": "99790f12ca21a196bc1d836ae5bf0ad7af95e079",
     "/MiuForm/assets/cmaps/WP-Symbol.bcmap": "3a6417abad460a1a083be75636c014f3a73937b5",
-    "/MiuForm/assets/i18n/de.json": "97d22d094380e68e5884dfb49338c88a529f8ab8",
-    "/MiuForm/assets/i18n/en.json": "2778f7ad198838c07d6feb6634fc518e521e909f",
-    "/MiuForm/assets/i18n/pl.json": "edfc643bb717488c8bf52eccf8e6bc42d626a4ce",
+    "/MiuForm/assets/i18n/de.json": "7c05d24c18354281156eb228daa0305d8a72d373",
+    "/MiuForm/assets/i18n/en.json": "d988b4413f2d6edba91a2e93093ccc5fddc652d4",
+    "/MiuForm/assets/i18n/pl.json": "fd60caf0b653a9e90f96f75a366e585bceeecbf2",
     "/MiuForm/assets/icons/icon-128x128.png": "ee531ed70d9b2edb27784d9909e227758cd0f826",
     "/MiuForm/assets/icons/icon-144x144.png": "6f8c5e4ec47d7f898e8d091209d4fee2e64f6d14",
     "/MiuForm/assets/icons/icon-152x152.png": "69dbfbe133fccfb2155f5e6b30998e3ed1d13193",
@@ -1010,9 +1010,9 @@
     "/MiuForm/assets/viewer-2.16.450.min.js": "bd193bbc937240c41633880d1fddcdc73b5f2faa",
     "/MiuForm/common.2eb59eef1569385a.js": "c3f10cd2b0623022f6c52cb03b3682bf7fb6473b",
     "/MiuForm/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/MiuForm/index.html": "7121195b7e122287db36fb1f478007dd475fcc10",
+    "/MiuForm/index.html": "ce96afb40d5890ea3c05cb2b32f79d5c11c918f4",
     "/MiuForm/main.c5303740a6c3b31f.js": "badbee1ee3d48579ce918efd81b0ca81733ff8c5",
-    "/MiuForm/manifest.webmanifest": "bb33ce81f78d544452dfba6b32046d490a524c44",
+    "/MiuForm/manifest.webmanifest": "834c6e643ef51fd7fc08a5db774a3c2dfab80f33",
     "/MiuForm/polyfills.95c34e3366b2d476.js": "403f9d168c370ee67147a1d65db932dcda44a123",
     "/MiuForm/runtime.84ce0bc672d0e3bd.js": "adc65d6b556c8b03f9ca3d9cef5a07e45a03d79e",
     "/MiuForm/styles.397d8e5851fafaaf.css": "9b1dca8332a3c77bfba411ab195c5b5cdd5d64d5"

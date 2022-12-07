@@ -1,6 +1,6 @@
 {
-  "name": "Miu App",
-  "short_name": "Miu App",
+  "name": "MiuCheck",
+  "short_name": "MiuCheck",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
